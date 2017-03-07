@@ -1,4 +1,4 @@
-package com.xmartlabs.template.helper.ui;
+package com.xmartlabs.doapp.helper.ui;
 
 import android.app.Activity;
 import android.content.ContentResolver;

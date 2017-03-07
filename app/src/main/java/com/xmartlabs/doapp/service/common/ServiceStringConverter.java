@@ -1,4 +1,4 @@
-package com.xmartlabs.template.service.common;
+package com.xmartlabs.doapp.service.common;
 
 import com.annimon.stream.Objects;
 

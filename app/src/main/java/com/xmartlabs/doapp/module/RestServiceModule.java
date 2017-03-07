@@ -1,11 +1,11 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
 import android.content.Context;
 
 import com.google.gson.Gson;
 import com.xmartlabs.template.R;
-import com.xmartlabs.template.service.AuthService;
-import com.xmartlabs.template.service.common.ServiceStringConverter;
+import com.xmartlabs.doapp.service.AuthService;
+import com.xmartlabs.doapp.service.common.ServiceStringConverter;
 
 import javax.inject.Named;
 import javax.inject.Singleton;

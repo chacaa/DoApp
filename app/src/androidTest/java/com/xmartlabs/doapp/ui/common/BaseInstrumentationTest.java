@@ -1,4 +1,4 @@
-package com.xmartlabs.template.ui.common;
+package com.xmartlabs.doapp.ui.common;
 
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -9,15 +9,13 @@ import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import android.support.test.runner.lifecycle.Stage;
 
 import com.annimon.stream.Objects;
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
 import java.util.Collection;
 import java.util.Locale;
-
-import javax.inject.Inject;
 
 import io.appflate.restmock.RESTMockServer;
 import lombok.Getter;
@@ -33,7 +31,7 @@ public abstract class BaseInstrumentationTest {
   @CallSuper
   public void setUp() {
     instrumentation = InstrumentationRegistry.getInstrumentation();
-    BaseProjectApplication app = (BaseProjectApplication) instrumentation.getTargetContext().getApplicationContext();
+    DoAppApplication app = (DoAppApplication) instrumentation.getTargetContext().getApplicationContext();
     app.inject(this);
     RESTMockServer.reset();
   }

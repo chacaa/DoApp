@@ -1,6 +1,6 @@
-package com.xmartlabs.template.ui;
+package com.xmartlabs.doapp.ui;
 
-import com.xmartlabs.template.ui.mvp.BaseMvpFragment;
+import com.xmartlabs.doapp.ui.mvp.BaseMvpFragment;
 
 import lombok.Getter;
 import lombok.Setter;

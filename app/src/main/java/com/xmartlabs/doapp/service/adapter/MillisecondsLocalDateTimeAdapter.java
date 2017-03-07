@@ -1,4 +1,4 @@
-package com.xmartlabs.template.service.adapter;
+package com.xmartlabs.doapp.service.adapter;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -6,7 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import com.xmartlabs.template.helper.StringUtils;
+import com.xmartlabs.doapp.helper.StringUtils;
 
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDateTime;

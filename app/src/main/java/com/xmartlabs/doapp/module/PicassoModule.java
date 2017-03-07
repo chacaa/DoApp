@@ -1,11 +1,11 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
 import android.content.Context;
 
 import com.crashlytics.android.Crashlytics;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
-import com.xmartlabs.template.helper.GeneralErrorHelper;
+import com.xmartlabs.doapp.helper.GeneralErrorHelper;
 
 import javax.inject.Named;
 import javax.inject.Singleton;

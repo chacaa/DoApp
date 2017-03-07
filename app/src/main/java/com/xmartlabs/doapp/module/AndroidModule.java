@@ -1,10 +1,10 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 
 import javax.inject.Singleton;
 
@@ -16,9 +16,9 @@ import dagger.Provides;
  */
 @Module
 public class AndroidModule {
-  private final BaseProjectApplication application;
+  private final DoAppApplication application;
 
-  public AndroidModule(BaseProjectApplication application) {
+  public AndroidModule(DoAppApplication application) {
     this.application = application;
   }
 

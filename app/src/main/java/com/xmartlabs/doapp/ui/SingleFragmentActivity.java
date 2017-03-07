@@ -1,4 +1,4 @@
-package com.xmartlabs.template.ui;
+package com.xmartlabs.doapp.ui;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import com.xmartlabs.doapp.ui.mvp.BaseMvpFragment;
 import com.xmartlabs.template.R;
-import com.xmartlabs.template.ui.mvp.BaseMvpFragment;
 
 /**
  * Created by santiago on 31/08/15.

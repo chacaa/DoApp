@@ -1,8 +1,8 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
-import com.xmartlabs.template.BaseProjectApplication;
-import com.xmartlabs.template.controller.SessionController;
-import com.xmartlabs.template.model.Session;
+import com.xmartlabs.doapp.DoAppApplication;
+import com.xmartlabs.doapp.controller.SessionController;
+import com.xmartlabs.doapp.model.Session;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ public class SessionInterceptor implements Interceptor {
   @Override
   public Response intercept(Chain chain) throws IOException {
     if (sessionController == null) {
-      BaseProjectApplication.getContext().inject(this); // Can't do this in constructor because it's called in a module.
+      DoAppApplication.getContext().inject(this); // Can't do this in constructor because it's called in a module.
     }
 
     Session authResponse = sessionController.getSession();

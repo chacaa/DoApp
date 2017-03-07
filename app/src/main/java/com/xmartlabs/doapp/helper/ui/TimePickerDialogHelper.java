@@ -1,4 +1,4 @@
-package com.xmartlabs.template.helper.ui;
+package com.xmartlabs.doapp.helper.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

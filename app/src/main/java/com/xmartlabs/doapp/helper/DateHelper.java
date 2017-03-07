@@ -1,4 +1,4 @@
-package com.xmartlabs.template.helper;
+package com.xmartlabs.doapp.helper;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.text.format.DateFormat;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Objects;
 import com.annimon.stream.Stream;
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 
 import org.threeten.bp.Clock;
 import org.threeten.bp.DateTimeUtils;
@@ -54,7 +54,7 @@ public class DateHelper {
   public static final DateTimeFormatter DATE_TIME_FORMATTER_WEEK_DAY_LETTER = DateTimeFormatter.ofPattern("EEEEE");
 
   private static final TimeZone UTC = TimeZone.getTimeZone("UTC");
-  public static final DateTimeFormatter HOUR_MINUTE_FORMAT = DateFormat.is24HourFormat(BaseProjectApplication.getContext())
+  public static final DateTimeFormatter HOUR_MINUTE_FORMAT = DateFormat.is24HourFormat(DoAppApplication.getContext())
       ? DateTimeFormatter.ofPattern("H:mm", Locale.getDefault())
       : DateTimeFormatter.ofPattern("h:mm a", Locale.getDefault());
 
@@ -64,7 +64,7 @@ public class DateHelper {
    * @return DateTimeFormatter formatted on the right way.
    */
   public static DateTimeFormatter getDeviceTimeFormat() {
-    SimpleDateFormat timeFormat = (SimpleDateFormat) DateFormat.getTimeFormat(BaseProjectApplication.getContext());
+    SimpleDateFormat timeFormat = (SimpleDateFormat) DateFormat.getTimeFormat(DoAppApplication.getContext());
     return DateTimeFormatter.ofPattern(timeFormat.toPattern());
   }
 
@@ -74,7 +74,7 @@ public class DateHelper {
    * @return DateTimeFormatter formatted on the right way.
    */
   public static DateTimeFormatter getDeviceMediumDateFormat() {
-    SimpleDateFormat timeFormat = (SimpleDateFormat) DateFormat.getMediumDateFormat(BaseProjectApplication.getContext());
+    SimpleDateFormat timeFormat = (SimpleDateFormat) DateFormat.getMediumDateFormat(DoAppApplication.getContext());
     return DateTimeFormatter.ofPattern(timeFormat.toPattern());
   }
 
@@ -84,7 +84,7 @@ public class DateHelper {
    * @return DateTimeFormatter formatted on the right way.
    */
   public static DateTimeFormatter getDeviceLongDateFormat() {
-    SimpleDateFormat timeFormat = (SimpleDateFormat) DateFormat.getLongDateFormat(BaseProjectApplication.getContext());
+    SimpleDateFormat timeFormat = (SimpleDateFormat) DateFormat.getLongDateFormat(DoAppApplication.getContext());
     return DateTimeFormatter.ofPattern(timeFormat.toPattern());
   }
 

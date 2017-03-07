@@ -1,30 +1,30 @@
-package com.xmartlabs.template;
+package com.xmartlabs.doapp;
 
-import com.xmartlabs.template.controller.AuthController;
-import com.xmartlabs.template.controller.Controller;
-import com.xmartlabs.template.controller.ServiceController;
-import com.xmartlabs.template.controller.SessionController;
-import com.xmartlabs.template.helper.DatabaseHelper;
-import com.xmartlabs.template.helper.GeneralErrorHelper;
-import com.xmartlabs.template.module.AndroidModule;
-import com.xmartlabs.template.module.ControllerModule;
-import com.xmartlabs.template.module.DatabaseModule;
-import com.xmartlabs.template.module.GeneralErrorHelperModule;
-import com.xmartlabs.template.module.GsonModule;
-import com.xmartlabs.template.module.OkHttpModule;
-import com.xmartlabs.template.module.PicassoModule;
-import com.xmartlabs.template.module.ReceiverModule;
-import com.xmartlabs.template.module.RestServiceModule;
-import com.xmartlabs.template.module.SessionInterceptor;
-import com.xmartlabs.template.ui.BaseActivity;
-import com.xmartlabs.template.ui.BaseAppCompatActivity;
-import com.xmartlabs.template.ui.FragmentWithDrawer;
-import com.xmartlabs.template.ui.MainActivity;
-import com.xmartlabs.template.ui.SingleFragmentActivity;
-import com.xmartlabs.template.ui.StartActivity;
-import com.xmartlabs.template.ui.ValidatableFragment;
-import com.xmartlabs.template.ui.WelcomeActivity;
-import com.xmartlabs.template.ui.WelcomeFragment;
+import com.xmartlabs.doapp.controller.Controller;
+import com.xmartlabs.doapp.controller.ServiceController;
+import com.xmartlabs.doapp.controller.SessionController;
+import com.xmartlabs.doapp.helper.DatabaseHelper;
+import com.xmartlabs.doapp.helper.GeneralErrorHelper;
+import com.xmartlabs.doapp.module.AndroidModule;
+import com.xmartlabs.doapp.module.ControllerModule;
+import com.xmartlabs.doapp.module.GeneralErrorHelperModule;
+import com.xmartlabs.doapp.module.OkHttpModule;
+import com.xmartlabs.doapp.module.PicassoModule;
+import com.xmartlabs.doapp.module.ReceiverModule;
+import com.xmartlabs.doapp.module.RestServiceModule;
+import com.xmartlabs.doapp.module.SessionInterceptor;
+import com.xmartlabs.doapp.ui.BaseActivity;
+import com.xmartlabs.doapp.ui.BaseAppCompatActivity;
+import com.xmartlabs.doapp.ui.FragmentWithDrawer;
+import com.xmartlabs.doapp.ui.MainActivity;
+import com.xmartlabs.doapp.ui.StartActivity;
+import com.xmartlabs.doapp.ui.ValidatableFragment;
+import com.xmartlabs.doapp.ui.WelcomeActivity;
+import com.xmartlabs.doapp.ui.WelcomeFragment;
+import com.xmartlabs.doapp.controller.AuthController;
+import com.xmartlabs.doapp.module.DatabaseModule;
+import com.xmartlabs.doapp.module.GsonModule;
+import com.xmartlabs.doapp.ui.SingleFragmentActivity;
 
 import javax.inject.Singleton;
 
@@ -46,7 +46,7 @@ import dagger.Component;
     RestServiceModule.class,
 })
 public interface ApplicationComponent {
-  void inject(BaseProjectApplication baseProjectApplication);
+  void inject(DoAppApplication doAppApplication);
 
   void inject(BaseActivity baseActivity);
   void inject(BaseAppCompatActivity baseAppCompatActivity);

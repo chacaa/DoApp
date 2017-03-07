@@ -1,4 +1,4 @@
-package com.xmartlabs.template.common;
+package com.xmartlabs.doapp.common;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

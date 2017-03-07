@@ -1,7 +1,7 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
-import com.xmartlabs.template.controller.AuthController;
-import com.xmartlabs.template.controller.SessionController;
+import com.xmartlabs.doapp.controller.SessionController;
+import com.xmartlabs.doapp.controller.AuthController;
 
 import javax.inject.Singleton;
 

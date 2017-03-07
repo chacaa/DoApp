@@ -1,10 +1,10 @@
-package com.xmartlabs.template.helper;
+package com.xmartlabs.doapp.helper;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.support.annotation.NonNull;
 
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 
 /**
  * Created by medina on 16/09/2016.
@@ -40,6 +40,6 @@ public class SystemServiceHelper {
   }
 
   private static Object getSystemService(String clipboardService) {
-    return BaseProjectApplication.getContext().getSystemService(clipboardService);
+    return DoAppApplication.getContext().getSystemService(clipboardService);
   }
 }

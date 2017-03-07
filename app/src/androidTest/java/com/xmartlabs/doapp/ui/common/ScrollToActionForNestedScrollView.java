@@ -1,4 +1,4 @@
-package com.xmartlabs.template.ui.common;
+package com.xmartlabs.doapp.ui.common;
 
 import android.graphics.Rect;
 import android.support.test.espresso.PerformException;

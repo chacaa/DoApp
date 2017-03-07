@@ -1,4 +1,4 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
 import android.os.Build;
 import android.os.StatFs;
@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
 
 import com.annimon.stream.Objects;
 import com.moczul.ok2curl.CurlInterceptor;
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 import com.xmartlabs.template.BuildConfig;
-import com.xmartlabs.template.BuildType;
+import com.xmartlabs.doapp.BuildType;
 
 import java.io.File;
 
@@ -60,7 +60,7 @@ public class OkHttpModule {
   @Provides
   @Singleton
   Cache provideCache() {
-    File httpCacheDir = new File(BaseProjectApplication.getContext().getExternalCacheDir(), "cache");
+    File httpCacheDir = new File(DoAppApplication.getContext().getExternalCacheDir(), "cache");
     if (!httpCacheDir.exists()) {
       //noinspection ResultOfMethodCallIgnored
       httpCacheDir.mkdirs();

@@ -1,4 +1,4 @@
-package com.xmartlabs.template;
+package com.xmartlabs.doapp;
 
 import android.support.annotation.Nullable;
 import android.util.Log;

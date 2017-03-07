@@ -1,4 +1,4 @@
-package com.xmartlabs.template;
+package com.xmartlabs.doapp;
 
 /**
  * Created by santiago on 31/08/15.

@@ -1,4 +1,4 @@
-package com.xmartlabs.template.ui;
+package com.xmartlabs.doapp.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -6,10 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
 import com.f2prateek.dart.HensonNavigable;
+import com.xmartlabs.doapp.ui.mvp.BaseMvpAppCompatActivity;
 import com.xmartlabs.template.R;
-import com.xmartlabs.template.ui.mvp.BaseMvpAppCompatActivity;
-import com.xmartlabs.template.ui.mvp.BaseMvpPresenter;
-import com.xmartlabs.template.ui.mvp.MvpView;
+import com.xmartlabs.doapp.ui.mvp.BaseMvpPresenter;
+import com.xmartlabs.doapp.ui.mvp.MvpView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,4 +1,4 @@
-package com.xmartlabs.template.common;
+package com.xmartlabs.doapp.common;
 
 import java.util.concurrent.TimeUnit;
 

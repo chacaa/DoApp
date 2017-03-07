@@ -1,4 +1,4 @@
-package com.xmartlabs.template.helper;
+package com.xmartlabs.doapp.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,10 +6,10 @@ import android.content.SharedPreferences;
 import com.annimon.stream.Objects;
 import com.annimon.stream.Stream;
 import com.crashlytics.android.Crashlytics;
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 import com.xmartlabs.template.BuildConfig;
-import com.xmartlabs.template.common.ServiceExceptionWithMessage;
-import com.xmartlabs.template.controller.SessionController;
+import com.xmartlabs.doapp.common.ServiceExceptionWithMessage;
+import com.xmartlabs.doapp.controller.SessionController;
 
 import java.util.Locale;
 
@@ -55,7 +55,7 @@ public class GeneralErrorHelper {
   };
 
   public GeneralErrorHelper() {
-    BaseProjectApplication.getContext().inject(this);
+    DoAppApplication.getContext().inject(this);
   }
 
   private void logCrashlyticsError(ServiceExceptionWithMessage exceptionWithMessage) {

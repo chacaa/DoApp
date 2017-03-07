@@ -1,5 +1,7 @@
 package com.xmartlabs.template.helper;
 
+import com.xmartlabs.doapp.helper.StringUtils;
+
 import org.junit.Assert;
 import org.junit.Test;
 

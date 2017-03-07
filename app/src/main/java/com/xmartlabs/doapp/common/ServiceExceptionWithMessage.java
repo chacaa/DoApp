@@ -1,9 +1,9 @@
-package com.xmartlabs.template.common;
+package com.xmartlabs.doapp.common;
 
 import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class ServiceExceptionWithMessage extends RuntimeException {
   public ServiceExceptionWithMessage(Response<?> response) {
     super("HTTP " + response.code() + " " + response.message());
     //noinspection ThrowableResultOfMethodCallIgnored
-    BaseProjectApplication.getContext().inject(this);
+    DoAppApplication.getContext().inject(this);
 
     code = response.code();
     message = response.message();

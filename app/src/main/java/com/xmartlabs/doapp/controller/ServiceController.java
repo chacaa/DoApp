@@ -1,6 +1,6 @@
-package com.xmartlabs.template.controller;
+package com.xmartlabs.doapp.controller;
 
-import com.xmartlabs.template.helper.GeneralErrorHelper;
+import com.xmartlabs.doapp.helper.GeneralErrorHelper;
 
 import javax.inject.Inject;
 

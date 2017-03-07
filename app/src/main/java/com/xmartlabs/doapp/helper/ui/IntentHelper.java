@@ -1,4 +1,4 @@
-package com.xmartlabs.template.helper.ui;
+package com.xmartlabs.doapp.helper.ui;
 
 import android.Manifest;
 import android.content.Intent;
@@ -9,9 +9,8 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringRes;
 
-import com.xmartlabs.template.BaseProjectApplication;
-import com.xmartlabs.template.R;
-import com.xmartlabs.template.helper.StringUtils;
+import com.xmartlabs.doapp.DoAppApplication;
+import com.xmartlabs.doapp.helper.StringUtils;
 
 import lombok.val;
 
@@ -106,7 +105,7 @@ public class IntentHelper {
    * @return true if there's an app that can handle the <code>intent</code>
    */
   public static boolean deviceHasAnyAbility(@NonNull Intent intent) {
-    return BaseProjectApplication.getContext()
+    return DoAppApplication.getContext()
         .getPackageManager().queryIntentActivities(intent, 0).size() > 0;
   }
 
@@ -115,7 +114,7 @@ public class IntentHelper {
    * @return true if the device has a camera
    */
   public static boolean deviceHasCameraAbility() {
-    return BaseProjectApplication.getContext()
+    return DoAppApplication.getContext()
         .getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
   }
 
@@ -126,6 +125,6 @@ public class IntentHelper {
    */
   @NonNull
   private static String getString(@StringRes int messageRes) {
-    return BaseProjectApplication.getContext().getResources().getString(messageRes);
+    return DoAppApplication.getContext().getResources().getString(messageRes);
   }
 }

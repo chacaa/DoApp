@@ -1,10 +1,10 @@
-package com.xmartlabs.template.helper;
+package com.xmartlabs.doapp.helper;
 
 import android.support.annotation.NonNull;
 
-import com.xmartlabs.template.BaseProjectApplication;
-import com.xmartlabs.template.controller.SessionController;
-import com.xmartlabs.template.model.Session;
+import com.xmartlabs.doapp.DoAppApplication;
+import com.xmartlabs.doapp.controller.SessionController;
+import com.xmartlabs.doapp.model.Session;
 
 import javax.inject.Inject;
 
@@ -17,7 +17,7 @@ public class DatabaseHelper {
   SessionController sessionController;
 
   public DatabaseHelper() {
-    BaseProjectApplication.getContext().inject(this);
+    DoAppApplication.getContext().inject(this);
   }
 
   public void deleteAll() {

@@ -1,19 +1,12 @@
-package com.xmartlabs.template.helper.ui;
+package com.xmartlabs.doapp.helper.ui;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-import com.xmartlabs.template.helper.DateHelper;
 
 import org.threeten.bp.Clock;
 import org.threeten.bp.LocalDate;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-import lombok.Setter;
 
 /**
  * Created by medina on 19/09/2016.

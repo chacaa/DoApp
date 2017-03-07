@@ -1,4 +1,4 @@
-package com.xmartlabs.template.model;
+package com.xmartlabs.doapp.model;
 
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.structure.BaseModel;

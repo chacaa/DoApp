@@ -1,14 +1,14 @@
-package com.xmartlabs.template;
+package com.xmartlabs.doapp;
 
-import com.xmartlabs.template.module.AndroidModule;
-import com.xmartlabs.template.module.ControllerModule;
-import com.xmartlabs.template.module.DatabaseModule;
-import com.xmartlabs.template.module.GeneralErrorHelperModule;
-import com.xmartlabs.template.module.GsonModule;
-import com.xmartlabs.template.module.MockRestServiceModule;
-import com.xmartlabs.template.module.OkHttpModule;
-import com.xmartlabs.template.module.PicassoModule;
-import com.xmartlabs.template.ui.common.BaseInstrumentationTest;
+import com.xmartlabs.doapp.module.MockRestServiceModule;
+import com.xmartlabs.doapp.ui.common.BaseInstrumentationTest;
+import com.xmartlabs.doapp.module.AndroidModule;
+import com.xmartlabs.doapp.module.ControllerModule;
+import com.xmartlabs.doapp.module.DatabaseModule;
+import com.xmartlabs.doapp.module.GeneralErrorHelperModule;
+import com.xmartlabs.doapp.module.GsonModule;
+import com.xmartlabs.doapp.module.OkHttpModule;
+import com.xmartlabs.doapp.module.PicassoModule;
 
 import javax.inject.Singleton;
 

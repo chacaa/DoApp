@@ -1,6 +1,6 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
-import com.xmartlabs.template.helper.DatabaseHelper;
+import com.xmartlabs.doapp.helper.DatabaseHelper;
 
 import javax.inject.Singleton;
 

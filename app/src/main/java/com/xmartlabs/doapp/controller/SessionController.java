@@ -1,4 +1,4 @@
-package com.xmartlabs.template.controller;
+package com.xmartlabs.doapp.controller;
 
 import android.content.SharedPreferences;
 import android.support.annotation.CheckResult;
@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
-import com.xmartlabs.template.model.AuthResponse;
-import com.xmartlabs.template.model.Session;
+import com.xmartlabs.doapp.model.AuthResponse;
+import com.xmartlabs.doapp.model.Session;
 
 import javax.inject.Inject;
 

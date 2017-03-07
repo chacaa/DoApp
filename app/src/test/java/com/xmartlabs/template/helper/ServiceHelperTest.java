@@ -1,6 +1,6 @@
 package com.xmartlabs.template.helper;
 
-import android.app.Service;
+import com.xmartlabs.doapp.helper.ServiceHelper;
 
 import org.junit.Before;
 import org.junit.Test;

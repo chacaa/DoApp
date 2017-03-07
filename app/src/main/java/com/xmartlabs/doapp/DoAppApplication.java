@@ -1,4 +1,4 @@
-package com.xmartlabs.template;
+package com.xmartlabs.doapp;
 
 import android.app.Application;
 
@@ -7,8 +7,9 @@ import com.crashlytics.android.core.CrashlyticsCore;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
-import com.xmartlabs.template.helper.GeneralErrorHelper;
-import com.xmartlabs.template.module.AndroidModule;
+import com.xmartlabs.doapp.helper.GeneralErrorHelper;
+import com.xmartlabs.doapp.module.AndroidModule;
+import com.xmartlabs.template.BuildConfig;
 
 import javax.inject.Inject;
 
@@ -20,19 +21,19 @@ import timber.log.Timber;
 /**
  * Created by remer on 08/12/15.
  */
-public class BaseProjectApplication extends Application {
-  private static BaseProjectApplication instance;
+public class DoAppApplication extends Application {
+  private static DoAppApplication instance;
 
   private ObjectGraph bullet;
 
   @Inject
   GeneralErrorHelper generalErrorHelper;
 
-  public BaseProjectApplication() {
+  public DoAppApplication() {
     instance = this;
   }
 
-  public static BaseProjectApplication getContext() {
+  public static DoAppApplication getContext() {
     return instance;
   }
 

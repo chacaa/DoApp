@@ -1,4 +1,4 @@
-package com.xmartlabs.template.ui.mvp;
+package com.xmartlabs.doapp.ui.mvp;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.hannesdorfmann.fragmentargs.FragmentArgs;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.trello.rxlifecycle.components.support.RxFragment;
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 import com.xmartlabs.template.R;
 
 import butterknife.ButterKnife;
@@ -46,7 +46,7 @@ public abstract class BaseMvpFragment<V extends MvpView, P extends MvpPresenter<
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     FragmentArgs.inject(this);
-    BaseProjectApplication.getContext().inject(this);
+    DoAppApplication.getContext().inject(this);
   }
 
   @NonNull

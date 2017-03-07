@@ -1,4 +1,4 @@
-package com.xmartlabs.template.ui.mvp;
+package com.xmartlabs.doapp.ui.mvp;
 
 import android.support.annotation.UiThread;
 

@@ -1,6 +1,6 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
-import com.xmartlabs.template.helper.GeneralErrorHelper;
+import com.xmartlabs.doapp.helper.GeneralErrorHelper;
 
 import javax.inject.Singleton;
 

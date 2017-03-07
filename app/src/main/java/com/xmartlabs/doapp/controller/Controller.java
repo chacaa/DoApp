@@ -1,12 +1,12 @@
-package com.xmartlabs.template.controller;
+package com.xmartlabs.doapp.controller;
 
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 
 /**
  * Created by santiago on 17/09/15.
  */
 public abstract class Controller {
   public Controller() {
-    BaseProjectApplication.getContext().inject(this);
+    DoAppApplication.getContext().inject(this);
   }
 }

@@ -1,4 +1,4 @@
-package com.xmartlabs.template.ui.common;
+package com.xmartlabs.doapp.ui.common;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -19,7 +19,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static com.xmartlabs.template.ui.common.RecyclerViewAssertions.countIs;
+import static com.xmartlabs.doapp.ui.common.RecyclerViewAssertions.countIs;
 import static io.appflate.restmock.utils.RequestMatchers.pathContains;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anyOf;

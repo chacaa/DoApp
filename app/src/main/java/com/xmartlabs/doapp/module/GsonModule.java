@@ -1,4 +1,4 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
 import android.support.annotation.NonNull;
 
@@ -7,10 +7,10 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.raizlabs.android.dbflow.structure.ModelAdapter;
+import com.xmartlabs.doapp.common.GsonExclude;
+import com.xmartlabs.doapp.service.adapter.MillisecondsLocalDateAdapter;
+import com.xmartlabs.doapp.service.adapter.MillisecondsLocalDateTimeAdapter;
 import com.xmartlabs.template.BuildConfig;
-import com.xmartlabs.template.common.GsonExclude;
-import com.xmartlabs.template.service.adapter.MillisecondsLocalDateAdapter;
-import com.xmartlabs.template.service.adapter.MillisecondsLocalDateTimeAdapter;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalDateTime;

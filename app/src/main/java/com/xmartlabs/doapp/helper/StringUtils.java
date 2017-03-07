@@ -1,4 +1,4 @@
-package com.xmartlabs.template.helper;
+package com.xmartlabs.doapp.helper;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

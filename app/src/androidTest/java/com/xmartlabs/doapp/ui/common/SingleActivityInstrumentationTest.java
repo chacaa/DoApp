@@ -1,9 +1,10 @@
-package com.xmartlabs.template.ui.common;
+package com.xmartlabs.doapp.ui.common;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
@@ -23,7 +24,6 @@ import org.junit.runner.RunWith;
 import lombok.Getter;
 import timber.log.Timber;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
@@ -80,7 +80,7 @@ public abstract class SingleActivityInstrumentationTest<T extends Activity> exte
 
   protected void allowPermissionsIfNeeded() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
       UiObject allowPermissions = device.findObject(new UiSelector().clickable(true).index(1));
       if (allowPermissions.exists()) {
         try {

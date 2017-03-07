@@ -1,4 +1,4 @@
-package com.xmartlabs.template.ui;
+package com.xmartlabs.doapp.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.f2prateek.dart.Dart;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 
 /**
  * Created by diegomedina24 on 12/16/16.
@@ -24,7 +24,7 @@ public abstract class BaseAppCompatActivity extends RxAppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Dart.inject(this);
-    BaseProjectApplication.getContext().inject(this);
+    DoAppApplication.getContext().inject(this);
   }
 
   /**

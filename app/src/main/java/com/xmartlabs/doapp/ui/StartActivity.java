@@ -1,11 +1,11 @@
-package com.xmartlabs.template.ui;
+package com.xmartlabs.doapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.xmartlabs.template.controller.AuthController;
-import com.xmartlabs.template.controller.SessionController;
-import com.xmartlabs.template.model.Session;
+import com.xmartlabs.doapp.controller.AuthController;
+import com.xmartlabs.doapp.controller.SessionController;
+import com.xmartlabs.doapp.model.Session;
 
 import javax.inject.Inject;
 

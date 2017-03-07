@@ -1,10 +1,10 @@
-package com.xmartlabs.template.helper.ui;
+package com.xmartlabs.doapp.helper.ui;
 
 import android.content.res.TypedArray;
 import android.support.annotation.DimenRes;
 import android.support.annotation.Dimension;
 
-import com.xmartlabs.template.BaseProjectApplication;
+import com.xmartlabs.doapp.DoAppApplication;
 import com.xmartlabs.template.R;
 
 /**
@@ -87,7 +87,7 @@ public class MetricsHelper {
     return (float) Math.sqrt(dx * dx + dy * dy);
   }
 
-  private static BaseProjectApplication getContext() {
-    return BaseProjectApplication.getContext();
+  private static DoAppApplication getContext() {
+    return DoAppApplication.getContext();
   }
 }

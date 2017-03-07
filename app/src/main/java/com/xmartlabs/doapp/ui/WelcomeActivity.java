@@ -1,9 +1,9 @@
-package com.xmartlabs.template.ui;
+package com.xmartlabs.doapp.ui;
 
 import android.support.annotation.NonNull;
 
 import com.f2prateek.dart.HensonNavigable;
-import com.xmartlabs.template.ui.mvp.BaseMvpFragment;
+import com.xmartlabs.doapp.ui.mvp.BaseMvpFragment;
 
 /**
  * Created by santiago on 31/08/15.

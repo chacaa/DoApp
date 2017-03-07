@@ -1,13 +1,13 @@
-package com.xmartlabs.template;
+package com.xmartlabs.doapp;
 
-import com.xmartlabs.template.module.AndroidModule;
+import com.xmartlabs.doapp.module.AndroidModule;
 
 import bullet.ObjectGraph;
 
 /**
  * Created by medina on 21/09/2016.
  */
-public class TestApplication extends BaseProjectApplication {
+public class TestApplication extends DoAppApplication {
   @Override
   protected ApplicationComponent createComponent() {
     return DaggerTestComponent.builder()

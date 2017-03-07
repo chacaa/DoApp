@@ -1,4 +1,4 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
 import org.threeten.bp.Clock;
 import org.threeten.bp.Instant;

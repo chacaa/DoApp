@@ -1,4 +1,4 @@
-package com.xmartlabs.template.ui.common;
+package com.xmartlabs.doapp.ui.common;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;

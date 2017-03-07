@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.xmartlabs.template.helper;
+package com.xmartlabs.doapp.helper;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

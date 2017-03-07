@@ -1,11 +1,11 @@
-package com.xmartlabs.template.controller;
+package com.xmartlabs.doapp.controller;
 
 import android.support.annotation.NonNull;
 
-import com.xmartlabs.template.model.AuthResponse;
-import com.xmartlabs.template.model.LoginRequest;
-import com.xmartlabs.template.model.Session;
-import com.xmartlabs.template.service.AuthService;
+import com.xmartlabs.doapp.model.AuthResponse;
+import com.xmartlabs.doapp.model.LoginRequest;
+import com.xmartlabs.doapp.model.Session;
+import com.xmartlabs.doapp.service.AuthService;
 
 import javax.inject.Inject;
 

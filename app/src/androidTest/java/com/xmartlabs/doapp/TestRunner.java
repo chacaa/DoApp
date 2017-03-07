@@ -1,4 +1,4 @@
-package com.xmartlabs.template;
+package com.xmartlabs.doapp;
 
 import android.app.Application;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.support.test.espresso.IdlingResource;
 import android.support.test.runner.AndroidJUnitRunner;
 
 import com.jakewharton.espresso.OkHttp3IdlingResource;
-import com.xmartlabs.template.common.ImmediateNewThreadScheduler;
-import com.xmartlabs.template.module.MockClockModule;
-import com.xmartlabs.template.module.OkHttpModule;
+import com.xmartlabs.doapp.common.ImmediateNewThreadScheduler;
+import com.xmartlabs.doapp.module.MockClockModule;
+import com.xmartlabs.doapp.module.OkHttpModule;
 
 import java.util.Locale;
 import java.util.TimeZone;

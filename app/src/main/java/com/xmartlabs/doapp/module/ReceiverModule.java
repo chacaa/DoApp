@@ -1,4 +1,4 @@
-package com.xmartlabs.template.module;
+package com.xmartlabs.doapp.module;
 
 import dagger.Module;
 
