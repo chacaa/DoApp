@@ -10,8 +10,6 @@ import com.xmartlabs.doapp.database.AppDataBase;
 import org.parceler.Parcel;
 import org.threeten.bp.LocalDateTime;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
