@@ -10,4 +10,10 @@
     <string name="log_in">Log in</string>
     <string name="field_required">Field required</string>
     <string name="the_email_not_valid">The email is not valid</string>
+    <string name="sing_in">Sing In</string>
+    <string name="sing_up">Sing Up</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
 </resources>

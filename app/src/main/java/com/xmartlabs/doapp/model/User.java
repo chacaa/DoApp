@@ -8,7 +8,6 @@ import com.xmartlabs.doapp.Gender;
 import com.xmartlabs.doapp.database.AppDataBase;
 
 import org.parceler.Parcel;
-import org.threeten.bp.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +33,7 @@ public class User extends BaseModel {
   @Column
   String email;
   @Column
-  LocalDateTime date;
+  int date;
   @Column
   String password;
 }

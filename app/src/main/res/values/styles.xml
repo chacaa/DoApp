@@ -101,4 +101,10 @@
         <item name="android:textColor">@color/textSecondary</item>
         <item name="android:textSize">16sp</item>
     </style>
+
+    <style name="TextEditStyle">
+        <item name="android:editTextColor">#ffffff</item>
+        <item name="android:textColorHint">#ffffff</item>
+    </style>
+
 </resources>

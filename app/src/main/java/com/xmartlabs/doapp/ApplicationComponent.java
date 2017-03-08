@@ -15,7 +15,10 @@ import com.xmartlabs.doapp.module.RestServiceModule;
 import com.xmartlabs.doapp.module.SessionInterceptor;
 import com.xmartlabs.doapp.ui.BaseActivity;
 import com.xmartlabs.doapp.ui.BaseAppCompatActivity;
+import com.xmartlabs.doapp.ui.BaseFragment;
 import com.xmartlabs.doapp.ui.FragmentWithDrawer;
+import com.xmartlabs.doapp.ui.LoginActivity;
+import com.xmartlabs.doapp.ui.LoginFragment;
 import com.xmartlabs.doapp.ui.MainActivity;
 import com.xmartlabs.doapp.ui.StartActivity;
 import com.xmartlabs.doapp.ui.ValidatableFragment;
@@ -71,4 +74,8 @@ public interface ApplicationComponent {
 
   void inject(DatabaseHelper databaseHelper);
   void inject(GeneralErrorHelper generalErrorHelper);
+
+  void inject(BaseFragment baseFragment);
+  void inject(LoginFragment loginFragment);
+  void inject(LoginActivity loginActivity);
 }
