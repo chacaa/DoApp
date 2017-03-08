@@ -8,6 +8,7 @@ import com.xmartlabs.doapp.Gender;
 import com.xmartlabs.doapp.database.AppDataBase;
 
 import org.parceler.Parcel;
+import org.threeten.bp.LocalDateTime;
 
 import java.util.Date;
 
@@ -20,8 +21,8 @@ import lombok.NoArgsConstructor;
  * Created by scasas on 3/7/17.
  */
 @AllArgsConstructor
-@Data
 @Builder
+@Data
 @NoArgsConstructor
 @Parcel
 @Table(database = AppDataBase.class, cachingEnabled = true, cacheSize = 100)
@@ -35,7 +36,7 @@ public class User extends BaseModel {
   @Column
   String email;
   @Column
-  Date date;
+  LocalDateTime date;
   @Column
   String password;
 }

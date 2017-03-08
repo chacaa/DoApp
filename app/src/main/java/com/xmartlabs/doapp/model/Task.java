@@ -8,8 +8,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.xmartlabs.doapp.database.AppDataBase;
 
 import org.parceler.Parcel;
-
-import java.util.Date;
+import org.threeten.bp.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,8 +19,8 @@ import lombok.NoArgsConstructor;
  * Created by scasas on 3/7/17.
  */
 @AllArgsConstructor
-@Data
 @Builder
+@Data
 @NoArgsConstructor
 @Parcel
 @Table(database = AppDataBase.class, cachingEnabled = true, cacheSize = 100)
@@ -31,7 +30,7 @@ public class Task extends BaseModel {
   @Column
   String name;
   @Column
-  Date date;
+  LocalDateTime date;
   @Column
   Double duration;
   @Column
