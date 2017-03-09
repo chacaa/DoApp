@@ -17,9 +17,11 @@ import com.xmartlabs.doapp.ui.BaseActivity;
 import com.xmartlabs.doapp.ui.BaseAppCompatActivity;
 import com.xmartlabs.doapp.ui.BaseFragment;
 import com.xmartlabs.doapp.ui.FragmentWithDrawer;
-import com.xmartlabs.doapp.ui.LoginActivity;
-import com.xmartlabs.doapp.ui.LoginFragment;
+import com.xmartlabs.doapp.ui.SinginActivity;
+import com.xmartlabs.doapp.ui.SinginFragment;
 import com.xmartlabs.doapp.ui.MainActivity;
+import com.xmartlabs.doapp.ui.SingupActivity;
+import com.xmartlabs.doapp.ui.SingupFragment;
 import com.xmartlabs.doapp.ui.StartActivity;
 import com.xmartlabs.doapp.ui.ValidatableFragment;
 import com.xmartlabs.doapp.ui.WelcomeActivity;
@@ -76,6 +78,10 @@ public interface ApplicationComponent {
   void inject(GeneralErrorHelper generalErrorHelper);
 
   void inject(BaseFragment baseFragment);
-  void inject(LoginFragment loginFragment);
-  void inject(LoginActivity loginActivity);
+
+  void inject(SinginFragment loginFragment);
+  void inject(SinginActivity singinActivity);
+
+  void inject(SingupFragment singupFragment);
+  void inject(SingupActivity singupActivity);
 }

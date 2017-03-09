@@ -36,7 +36,6 @@
             android:text="@string/sing_in"
             android:textColor="#ffffff"
             android:textSize="15sp"
-            android:r
             />
 
         <LinearLayout

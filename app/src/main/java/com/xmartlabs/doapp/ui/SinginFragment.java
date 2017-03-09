@@ -1,5 +1,6 @@
 package com.xmartlabs.doapp.ui;
 
+import android.content.Intent;
 import android.widget.EditText;
 
 import com.xmartlabs.template.R;
@@ -11,7 +12,7 @@ import butterknife.OnTextChanged;
 /**
  * Created by scasas on 3/8/17.
  */
-public class LoginFragment extends BaseFragment {
+public class SinginFragment extends BaseFragment {
   @BindView(R.id.editTextPassword)
   EditText password;
   @BindView(R.id.editTextUser)
@@ -19,12 +20,13 @@ public class LoginFragment extends BaseFragment {
 
   @Override
   protected int getLayoutResId() {
-    return R.layout.login_fragment;
+    return R.layout.singin_fragment;
   }
 
   @OnClick(R.id.sign_up)
   void onClickedSignUp() {
-    //TODO
+    Intent intent = Henson.with(getContext()).gotoSingupActivity().build();
+    getContext().startActivity(intent);
   }
 
   @OnClick(R.id.sign_in)

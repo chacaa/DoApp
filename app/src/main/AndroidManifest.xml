@@ -43,8 +43,12 @@
         </activity>
 
         <activity
-            android:label="@string/welcome"
-            android:name="com.xmartlabs.doapp.ui.LoginActivity"
+            android:name="com.xmartlabs.doapp.ui.SinginActivity"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
+            android:name="com.xmartlabs.doapp.ui.SingupActivity"
             android:screenOrientation="portrait"
             />
 
