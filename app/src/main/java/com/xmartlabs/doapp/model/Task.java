@@ -5,6 +5,7 @@ import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
+import com.xmartlabs.doapp.MilisecondsLocalDateAdapter;
 import com.xmartlabs.doapp.database.AppDataBase;
 
 import org.parceler.Parcel;
@@ -28,8 +29,8 @@ public class Task extends BaseModel {
   long id;
   @Column
   String name;
-  @Column
-  int date;
+  @Column(typeConverter = MilisecondsLocalDateAdapter.class)
+  long date;
   @Column
   Double duration;
   @Column

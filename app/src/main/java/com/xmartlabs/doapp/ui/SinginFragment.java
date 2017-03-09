@@ -1,13 +1,17 @@
 package com.xmartlabs.doapp.ui;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.widget.EditText;
 
+import com.xmartlabs.doapp.controller.UserController;
+import com.xmartlabs.doapp.model.User;
 import com.xmartlabs.template.R;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import rx.SingleSubscriber;
 
 /**
  * Created by scasas on 3/8/17.
@@ -16,7 +20,9 @@ public class SinginFragment extends BaseFragment {
   @BindView(R.id.editTextPassword)
   EditText password;
   @BindView(R.id.editTextUser)
-  EditText user;
+  EditText userEmail;
+
+  private User user;
 
   @Override
   protected int getLayoutResId() {
@@ -31,11 +37,33 @@ public class SinginFragment extends BaseFragment {
 
   @OnClick(R.id.sign_in)
   void onClickedSingIn() {
-    //TODO
+    if (user.getPassword().equals(password.getText().toString())) {
+      //TODO
+      Snackbar.make(getView(), "It's all good my friend!", Snackbar.LENGTH_SHORT).show();
+    } else {
+      Snackbar.make(getView(), "Wrong password", Snackbar.LENGTH_SHORT).show();
+    }
+
   }
 
   @OnTextChanged(R.id.editTextUser)
-  void onUserTextChanged() {
+  void onUserTextChanged(CharSequence userEmailValue) {
+    String email = userEmailValue.toString().trim();
+    getUser(email);
     //TODO
+  }
+
+  private void getUser(String userEmail){
+    UserController.getInstance().getUser(userEmail).subscribe(new SingleSubscriber<User>() {
+      @Override
+      public void onSuccess(User userValue) {
+        user = userValue;
+      }
+
+      @Override
+      public void onError(Throwable error) {
+        Snackbar.make(getView(), "Wrong email account", Snackbar.LENGTH_SHORT).show();
+      }
+    });
   }
 }
