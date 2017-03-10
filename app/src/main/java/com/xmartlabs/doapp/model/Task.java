@@ -9,6 +9,7 @@ import com.xmartlabs.doapp.MilisecondsLocalDateAdapter;
 import com.xmartlabs.doapp.database.AppDataBase;
 
 import org.parceler.Parcel;
+import org.threeten.bp.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,7 +31,7 @@ public class Task extends BaseModel {
   @Column
   String name;
   @Column(typeConverter = MilisecondsLocalDateAdapter.class)
-  long date;
+  LocalDate date;
   @Column
   Double duration;
   @Column

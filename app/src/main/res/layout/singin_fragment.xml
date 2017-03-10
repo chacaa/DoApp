@@ -89,9 +89,12 @@
             android:drawablePadding="15dp"
             android:drawableStart="@drawable/username"
             android:hint="@string/username"
+            android:inputType="textEmailAddress"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
+            android:maxLines="1"
+            android:nextFocusForward="@+id/editTextPassword"
             android:textSize="14sp"
             android:theme="@style/TextEditStyle"
             />

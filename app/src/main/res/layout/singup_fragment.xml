@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_signup"
@@ -89,8 +90,11 @@
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
+            android:maxLines="1"
             android:textSize="14sp"
             android:theme="@style/TextEditStyle"
+            android:nextFocusForward="@+id/editTextEmail"
+            android:inputType="textPersonName"
             />
 
         <View
@@ -108,12 +112,15 @@
             android:drawablePadding="15dp"
             android:drawableStart="@drawable/email"
             android:hint="@string/email"
+            android:inputType="textEmailAddress"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="25.5dp"
+            android:maxLines="1"
             android:textSize="14sp"
             android:theme="@style/TextEditStyle"
+            android:nextFocusForward="@+id/editTextPassword"
             />
 
         <View
@@ -137,6 +144,7 @@
             android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="25.5dp"
+            android:maxLines="1"
             android:textSize="14sp"
             android:theme="@style/TextEditStyle"
             />
@@ -149,20 +157,21 @@
             android:background="#ffffff"
             />
 
-        <EditText
-            android:id="@+id/editTextBirthday"
+        <TextView
+            android:id="@+id/texViewBirthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:clickable="true"
             android:drawablePadding="15dp"
             android:drawableStart="@drawable/birthday"
-            android:hint="@string/birthday"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="25.5dp"
             android:textSize="14sp"
             android:theme="@style/TextEditStyle"
+            tools:hint="@string/birthday"
             />
 
         <View

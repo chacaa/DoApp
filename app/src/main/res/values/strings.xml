@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Base project</string>
+    <string name="app_name" translatable="false">Do it!</string>
     <string name="url_service" translatable="false">https://api.github.com/</string><!-- TODO -->
 
     <string name="loading">Loading…</string>
@@ -19,5 +19,9 @@
     <string name="birthday">Birthday</string>
     <string name="join">Join</string>
     <string name="already_have_account">Already have an account?</string>
+    <string name="failed_create_account">Failed to create the account</string>
+    <string name="name_field_required">Name field required</string>
+    <string name="email_field_required">Email field required</string>
+    <string name="password_field_required">Password field required</string>
 
 </resources>
