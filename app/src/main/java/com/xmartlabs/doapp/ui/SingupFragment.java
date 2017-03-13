@@ -90,6 +90,7 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
     userController.insertUser(user).subscribe(new SingleSubscriber<User>() {
       @Override
       public void onSuccess(User value) {
+
         Snackbar.make(getView(), "It's all good my friend", Snackbar.LENGTH_SHORT).show();
         //TODO
       }

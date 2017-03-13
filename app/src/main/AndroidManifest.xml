@@ -53,5 +53,10 @@
             android:screenOrientation="portrait"
             />
 
+        <activity
+            android:name="com.xmartlabs.doapp.ui.OnBoardingActivity"
+            android:screenOrientation="portrait"
+            />
+
     </application>
 </manifest>
