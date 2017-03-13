@@ -60,10 +60,15 @@ public interface ApplicationComponent {
   void inject(MainActivity mainActivity);
   void inject(StartActivity startActivity);
   void inject(WelcomeActivity welcomeActivity);
+  void inject(SinginActivity singinActivity);
+  void inject(SingupActivity singupActivity);
 
+  void inject(BaseFragment baseFragment);
   void inject(FragmentWithDrawer fragmentWithDrawer);
   void inject(ValidatableFragment validatableFragment);
 
+  void inject(SinginFragment singinFragment);
+  void inject(SingupFragment singupFragment);
   void inject(WelcomeFragment welcomeFragment);
 
   void inject(Controller controller);
@@ -76,12 +81,4 @@ public interface ApplicationComponent {
 
   void inject(DatabaseHelper databaseHelper);
   void inject(GeneralErrorHelper generalErrorHelper);
-
-  void inject(BaseFragment baseFragment);
-
-  void inject(SinginFragment loginFragment);
-  void inject(SinginActivity singinActivity);
-
-  void inject(SingupFragment singupFragment);
-  void inject(SingupActivity singupActivity);
 }

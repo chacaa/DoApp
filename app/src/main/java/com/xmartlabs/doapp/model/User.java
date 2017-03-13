@@ -6,7 +6,7 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.annotation.Unique;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.xmartlabs.doapp.Gender;
-import com.xmartlabs.doapp.MilisecondsLocalDateAdapter;
+import com.xmartlabs.doapp.LocalDateAdapter;
 import com.xmartlabs.doapp.database.AppDataBase;
 
 import org.parceler.Parcel;
@@ -36,7 +36,7 @@ public class User extends BaseModel {
   @Column
   @Unique
   String email;
-  @Column(typeConverter = MilisecondsLocalDateAdapter.class)
+  @Column(typeConverter = LocalDateAdapter.class)
   LocalDate birthday;
   @Column
   String password;

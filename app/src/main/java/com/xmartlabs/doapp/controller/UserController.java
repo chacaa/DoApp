@@ -15,13 +15,6 @@ import rx.schedulers.Schedulers;
  * Created by scasas on 3/9/17.
  */
 public class UserController extends Controller {
-  @NonNull
-  private final static UserController INSTANCE = new UserController();
-
-  public static UserController getInstance() {
-    return INSTANCE;
-  }
-
   public Single<User> insertUser(User user) {
     return Single
         .fromCallable(() -> {
@@ -43,5 +36,4 @@ public class UserController extends Controller {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io());
   }
-
 }

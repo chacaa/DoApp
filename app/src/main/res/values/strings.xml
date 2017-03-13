@@ -23,5 +23,10 @@
     <string name="name_field_required">Name field required</string>
     <string name="email_field_required">Email field required</string>
     <string name="password_field_required">Password field required</string>
-
+    <string name="wrong_password">Wrong password</string>
+    <string name="user_doesnt_exist">User doesn\'t exists</string>
+    <string name="complete_user_field">Complete Username field</string>
+    <string name="complete_pass_field">Complete Password field</string>
+    <string name="wrong_email">Wrong email account</string>
+    <string name="its_all_good">It\'s all good my friend!</string>
 </resources>

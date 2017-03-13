@@ -16,7 +16,6 @@ public abstract class ValidatableFragment extends BaseFragment {
   }
 
   public void submit() {
-
   }
 
   @Override

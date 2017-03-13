@@ -12,6 +12,6 @@ public class SinginActivity extends SingleFragmentActivity {
   @NonNull
   @Override
   protected BaseFragment createFragment() {
-    return new SinginFragment();
+    return new SinginFragmentBuilder().build();
   }
 }

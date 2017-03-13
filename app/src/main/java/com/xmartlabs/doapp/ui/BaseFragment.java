@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,6 +105,12 @@ public abstract class BaseFragment extends RxFragment {
       removeItselfFromActivity();
     } else {
       removeItselfFromParentFragment();
+    }
+  }
+
+  protected void showSnackbarMessage(@StringRes int stringId) {
+    if (getView() != null) {
+      Snackbar.make(getView(), stringId, Snackbar.LENGTH_SHORT).show();
     }
   }
 }

@@ -1,26 +1,33 @@
 package com.xmartlabs.doapp.ui;
 
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.widget.EditText;
 
+import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.xmartlabs.doapp.controller.UserController;
 import com.xmartlabs.doapp.model.User;
 import com.xmartlabs.template.R;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import rx.SingleSubscriber;
+import timber.log.Timber;
 
 /**
  * Created by scasas on 3/8/17.
  */
+@FragmentWithArgs
 public class SinginFragment extends BaseFragment {
   @BindView(R.id.editTextPassword)
   EditText password;
   @BindView(R.id.editTextUser)
   EditText username;
+
+  @Inject
+  UserController userController;
 
   private User user;
 
@@ -37,36 +44,35 @@ public class SinginFragment extends BaseFragment {
 
   @OnClick(R.id.sign_in)
   void onClickedSingIn() {
-    if (aFieldIsNotCompleted()) {
+    if (someFieldsAreEmpty()) {
       return;
     }
-    if (user == null){
-      Snackbar.make(getView(), "User doesn't exists", Snackbar.LENGTH_SHORT).show();
+    if (user == null) {
+      showSnackbarMessage(R.string.user_doesnt_exist);
       return;
     }
     if (user.getPassword().equals(password.getText().toString())) {
-      //TODO
-      Snackbar.make(getView(), "It's all good my friend!", Snackbar.LENGTH_SHORT).show();
+      //TODO change the snackbar message for a call to the next activity
+      showSnackbarMessage(R.string.its_all_good);
     } else {
-      Snackbar.make(getView(), "Wrong password", Snackbar.LENGTH_SHORT).show();
+      showSnackbarMessage(R.string.wrong_password);
     }
   }
 
   @OnTextChanged(R.id.editTextUser)
   void onUserTextChanged(CharSequence userEmailValue) {
-    String email = userEmailValue.toString().trim();
-    getUser(email);
+    getUser(userEmailValue.toString().trim());
   }
 
-  private boolean aFieldIsNotCompleted() {
-    if (notHasText(username)) {
-      Snackbar.make(getView(), "Complete Username field", Snackbar.LENGTH_SHORT).show();
+  private boolean someFieldsAreEmpty() {
+    if (fieldIsEmpty(username)) {
+      showSnackbarMessage(R.string.complete_user_field);
       //noinspection deprecation
       username.setHintTextColor(getResources().getColor(R.color.reddish_pink));
       return true;
     }
-    if (notHasText(password)) {
-      Snackbar.make(getView(), "Complete Password field", Snackbar.LENGTH_SHORT).show();
+    if (fieldIsEmpty(password)) {
+      showSnackbarMessage(R.string.complete_pass_field);
       //noinspection deprecation
       password.setHintTextColor(getResources().getColor(R.color.reddish_pink));
       return true;
@@ -74,13 +80,12 @@ public class SinginFragment extends BaseFragment {
     return false;
   }
 
-  private boolean notHasText(EditText editText) {
+  private boolean fieldIsEmpty(EditText editText) {
     return editText.getText().toString().isEmpty();
   }
 
-
-  private void getUser(String userEmail){
-    UserController.getInstance().getUser(userEmail).subscribe(new SingleSubscriber<User>() {
+  private void getUser(String userEmail) {
+    userController.getUser(userEmail).subscribe(new SingleSubscriber<User>() {
       @Override
       public void onSuccess(User userValue) {
         user = userValue;
@@ -88,7 +93,7 @@ public class SinginFragment extends BaseFragment {
 
       @Override
       public void onError(Throwable error) {
-        Snackbar.make(getView(), "Wrong email account", Snackbar.LENGTH_SHORT).show();
+        Timber.e(error);
       }
     });
   }

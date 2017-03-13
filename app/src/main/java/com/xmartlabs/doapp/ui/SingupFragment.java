@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import com.xmartlabs.doapp.Gender;
@@ -18,6 +19,8 @@ import com.xmartlabs.template.R;
 
 import org.threeten.bp.LocalDate;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import rx.SingleSubscriber;
@@ -25,6 +28,7 @@ import rx.SingleSubscriber;
 /**
  * Created by santiago on 3/9/17.
  */
+@FragmentWithArgs
 public class SingupFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
   @BindView(R.id.editTextUser)
   EditText username;
@@ -34,6 +38,9 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
   TextView birthday;
   @BindView(R.id.editTextPassword)
   EditText password;
+
+  @Inject
+  UserController userController;
 
   private User user = createEmptyUser();
 
@@ -49,12 +56,12 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
   }
 
   @OnClick(R.id.sign_in)
-  void onClickedSingIn() {
+  void onSingInClicked() {
     goToSinginActivity();
   }
 
   @OnClick(R.id.sign_up)
-  void onClickedSignUp() {
+  void onSignUpClicked() {
     if (aFieldIsNotCompleted()) {
       return;
     }
@@ -64,7 +71,7 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
   }
 
   @OnClick(R.id.texViewBirthday)
-  void onClickedBirthday() {
+  void onBirthdayClicked() {
     DatePickerDialog datePickerDialog;
     datePickerDialog = DatePickerDialog.newInstance(
         this,
@@ -80,7 +87,7 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
   }
 
   private void insertUser() {
-    UserController.getInstance().insertUser(user).subscribe(new SingleSubscriber<User>() {
+    userController.insertUser(user).subscribe(new SingleSubscriber<User>() {
       @Override
       public void onSuccess(User value) {
         Snackbar.make(getView(), "It's all good my friend", Snackbar.LENGTH_SHORT).show();
