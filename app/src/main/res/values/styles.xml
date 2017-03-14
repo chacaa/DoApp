@@ -104,8 +104,9 @@
     </style>
 
     <style name="TextEditStyle">
-        <item name="android:editTextColor">#ffffff</item>
-        <item name="android:textColorHint">#ffffff</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
     </style>
 
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,18 +8,18 @@
     >
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/sing_up"
         android:layout_marginStart="25.2dp"
         android:layout_marginTop="60dp"
-        android:textColorHint="#ffffff"
+        android:textColorHint="@color/white"
         android:textSize="36.5sp"
         />
 
     <LinearLayout
-        android:id="@+id/linearSignUp"
+        android:id="@+id/linear_sign_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -29,11 +30,11 @@
             android:id="@+id/sign_up"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#ff3366"
+            android:background="@color/reddish_pink"
             android:clickable="true"
             android:gravity="center"
             android:text="@string/join"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="15sp"
             />
 
@@ -52,7 +53,7 @@
                 android:alpha="0.5"
                 android:gravity="center"
                 android:text="@string/already_have_account"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 />
 
@@ -62,7 +63,7 @@
                 android:gravity="center"
                 android:layout_marginStart="5dp"
                 android:text="@string/sing_in"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 />
 
@@ -74,13 +75,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_above="@id/linearSignUp"
-        android:layout_below="@id/textView"
+        android:layout_above="@id/linear_sign_up"
+        android:layout_below="@id/text_view"
         android:orientation="vertical"
         >
 
         <EditText
-            android:id="@+id/editTextUser"
+            android:id="@+id/edit_text_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -91,8 +92,9 @@
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="25dp"
             android:layout_marginStart="25dp"
+            android:layout_marginTop="25.5dp"
             android:maxLines="1"
-            android:nextFocusForward="@+id/editTextEmail"
+            android:nextFocusForward="@+id/edit_text_email"
             android:textSize="14sp"
             android:theme="@style/TextEditStyle"
             />
@@ -101,11 +103,11 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:alpha="0.1"
-            android:background="#ffffff"
+            android:background="@color/white"
             />
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/edit_text_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -118,7 +120,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="25.5dp"
             android:maxLines="1"
-            android:nextFocusForward="@+id/editTextPassword"
+            android:nextFocusForward="@+id/edit_text_password"
             android:textSize="14sp"
             android:theme="@style/TextEditStyle"
             />
@@ -127,12 +129,11 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:alpha="0.1"
-            android:background="#ffffff"
+            android:background="@color/white"
             />
 
-
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/edit_text_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -149,16 +150,15 @@
             android:theme="@style/TextEditStyle"
             />
 
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:alpha="0.1"
-            android:background="#ffffff"
+            android:background="@color/white"
             />
 
         <TextView
-            android:id="@+id/texViewBirthday"
+            android:id="@+id/text_view_birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -178,7 +178,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:alpha="0.1"
-            android:background="#ffffff"
+            android:background="@color/white"
             />
 
     </LinearLayout>
