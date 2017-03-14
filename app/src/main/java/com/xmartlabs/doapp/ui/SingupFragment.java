@@ -1,5 +1,6 @@
 package com.xmartlabs.doapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -99,8 +100,8 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
         .subscribe(new SingleSubscriber<User>() {
           @Override
           public void onSuccess(User value) {
-            Snackbar.make(getView(), "It's all good my friend", Snackbar.LENGTH_SHORT).show();
-            //TODO
+            Intent intent = Henson.with(getContext()).gotoOnBoardingActivity().build();
+            getContext().startActivity(intent);
           }
 
           @Override

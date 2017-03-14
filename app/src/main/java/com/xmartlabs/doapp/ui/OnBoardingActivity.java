@@ -1,26 +1,18 @@
 package com.xmartlabs.doapp.ui;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
-import android.util.AttributeSet;
-import android.view.View;
 
 import com.codemybrainsout.onboarder.AhoyOnboarderActivity;
 import com.codemybrainsout.onboarder.AhoyOnboarderCard;
-import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.HensonNavigable;
-import com.xmartlabs.doapp.DoAppApplication;
 import com.xmartlabs.doapp.helper.ui.MetricsHelper;
 import com.xmartlabs.template.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by scasas on 3/13/17.
@@ -28,15 +20,11 @@ import butterknife.ButterKnife;
 @HensonNavigable
 public class OnBoardingActivity extends AhoyOnboarderActivity {
   private List<AhoyOnboarderCard> pages = new ArrayList<>();
-//  @BindView(R.id.vp_pager)
-//  ViewPager cardViewPager;
-
   private ViewPager cardViewPager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-//    ButterKnife.bind(this);
     cardViewPager = (ViewPager) findViewById(R.id.vp_pager);
     createOnboardingCards("", "Create groups for different purpouses", R.drawable.tutorial_1);
     createOnboardingCards("", "Add & Manage Tasks", R.drawable.tutorial_2);
@@ -45,6 +33,7 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     setImageBackground(R.drawable.bg_walkthrough);
     showNavigationControls(false);
     setOnboardPages(pages);
+    setFinishButtonTitle("Let's Do it!");
     cardViewPager.setPadding(100, 376, 100, 391);
   }
 
