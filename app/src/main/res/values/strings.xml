@@ -29,4 +29,9 @@
     <string name="complete_pass_field">Complete Password field</string>
     <string name="wrong_email">Wrong email account</string>
     <string name="its_all_good">It\'s all good my friend!</string>
+    <string name="lets_do_it">Let\'s Do it!</string>
+    <string name="create_groups">Create groups for different purpouses</string>
+    <string name="add_manage_tasks">Add &amp; Manage Tasks</string>
+    <string name="how_you_are_doing">View how you are doing!</string>
+    <string name="to_dashboard">Go to dashboard</string>
 </resources>

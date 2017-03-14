@@ -2,6 +2,7 @@ package com.xmartlabs.doapp.ui;
 
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.support.v4.view.ViewPager;
 
 import com.codemybrainsout.onboarder.AhoyOnboarderActivity;
@@ -24,14 +25,14 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     cardViewPager = (ViewPager) findViewById(R.id.vp_pager);
-    createOnboardingCards("", "Create groups for different purpouses", R.drawable.tutorial_1);
-    createOnboardingCards("", "Add & Manage Tasks", R.drawable.tutorial_2);
-    createOnboardingCards("", "View how you are doing!", R.drawable.tutorial_3);
-    createOnboardingCards("", "Go to dashboard", R.drawable.tutorial_4);
+    createOnboardingCards(R.string.create_groups, R.drawable.tutorial_1);
+    createOnboardingCards(R.string.add_manage_tasks, R.drawable.tutorial_2);
+    createOnboardingCards(R.string.how_you_are_doing, R.drawable.tutorial_3);
+    createOnboardingCards(R.string.to_dashboard, R.drawable.tutorial_4);
     setImageBackground(R.drawable.bg_walkthrough);
     showNavigationControls(false);
     setOnboardPages(pages);
-    setFinishButtonTitle("Let's Do it!");
+    setFinishButtonTitle(R.string.lets_do_it);
     cardViewPager.setPadding(75, 276, 75, 281);
   }
 
@@ -40,10 +41,10 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     //TODO go to dashboard
   }
 
-  private void createOnboardingCards(String title, String description, @DrawableRes int iconId) {
-    AhoyOnboarderCard ahoyOnboarderCard = new AhoyOnboarderCard(title, description, iconId);
+  private void createOnboardingCards(@StringRes int description, @DrawableRes int iconId) {
+    AhoyOnboarderCard ahoyOnboarderCard = new AhoyOnboarderCard("", getString(description), iconId);
     ahoyOnboarderCard.setBackgroundColor(R.color.white);
-    ahoyOnboarderCard.setDescriptionColor(R.color.dark);
+    ahoyOnboarderCard.setDescriptionColor(R.color.color_dark);
     pages.add(ahoyOnboarderCard);
   }
 }
