@@ -3,12 +3,10 @@ package com.xmartlabs.doapp.ui;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
 
 import com.codemybrainsout.onboarder.AhoyOnboarderActivity;
 import com.codemybrainsout.onboarder.AhoyOnboarderCard;
 import com.f2prateek.dart.HensonNavigable;
-import com.xmartlabs.doapp.helper.ui.MetricsHelper;
 import com.xmartlabs.template.R;
 
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     showNavigationControls(false);
     setOnboardPages(pages);
     setFinishButtonTitle("Let's Do it!");
-    cardViewPager.setPadding(100, 376, 100, 391);
+    cardViewPager.setPadding(75, 276, 75, 281);
   }
 
   @Override
@@ -46,8 +44,6 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     AhoyOnboarderCard ahoyOnboarderCard = new AhoyOnboarderCard(title, description, iconId);
     ahoyOnboarderCard.setBackgroundColor(R.color.white);
     ahoyOnboarderCard.setDescriptionColor(R.color.dark);
-    //ahoyOnboarderCard.setDescriptionTextSize(MetricsHelper.spToPx(15));
-    ahoyOnboarderCard.setIconLayoutParams(MetricsHelper.dpToPxInt(130), MetricsHelper.dpToPxInt(130), MetricsHelper.dpToPxInt(60), MetricsHelper.dpToPxInt(85), MetricsHelper.dpToPxInt(85), MetricsHelper.dpToPxInt(110));
     pages.add(ahoyOnboarderCard);
   }
 }
