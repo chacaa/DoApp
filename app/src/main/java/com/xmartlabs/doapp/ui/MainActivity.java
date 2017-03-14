@@ -1,15 +1,11 @@
 package com.xmartlabs.doapp.ui;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
-import com.f2prateek.dart.HensonNavigable;
-import com.xmartlabs.doapp.ui.mvp.BaseMvpAppCompatActivity;
+import com.f2prateek.dart.*;
 import com.xmartlabs.template.R;
-import com.xmartlabs.doapp.ui.mvp.BaseMvpPresenter;
-import com.xmartlabs.doapp.ui.mvp.MvpView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +15,7 @@ import butterknife.Unbinder;
  * Created by santiago on 03/03/16.
  */
 @HensonNavigable
-public class MainActivity extends BaseMvpAppCompatActivity<MvpView, BaseMvpPresenter<MvpView>> {
+public class MainActivity extends BaseAppCompatActivity {
   private Unbinder unbinder;
 
   @BindView(R.id.toolbar)
@@ -39,11 +35,5 @@ public class MainActivity extends BaseMvpAppCompatActivity<MvpView, BaseMvpPrese
   protected void onDestroy() {
     super.onDestroy();
     unbinder.unbind();
-  }
-
-  @NonNull
-  @Override
-  protected BaseMvpPresenter<MvpView> createPresenter() {
-    return new BaseMvpPresenter<>();
   }
 }

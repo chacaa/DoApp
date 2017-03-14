@@ -15,8 +15,13 @@ import com.xmartlabs.doapp.module.RestServiceModule;
 import com.xmartlabs.doapp.module.SessionInterceptor;
 import com.xmartlabs.doapp.ui.BaseActivity;
 import com.xmartlabs.doapp.ui.BaseAppCompatActivity;
+import com.xmartlabs.doapp.ui.BaseFragment;
 import com.xmartlabs.doapp.ui.FragmentWithDrawer;
+import com.xmartlabs.doapp.ui.SinginActivity;
+import com.xmartlabs.doapp.ui.SinginFragment;
 import com.xmartlabs.doapp.ui.MainActivity;
+import com.xmartlabs.doapp.ui.SingupActivity;
+import com.xmartlabs.doapp.ui.SingupFragment;
 import com.xmartlabs.doapp.ui.StartActivity;
 import com.xmartlabs.doapp.ui.ValidatableFragment;
 import com.xmartlabs.doapp.ui.WelcomeActivity;
@@ -55,10 +60,15 @@ public interface ApplicationComponent {
   void inject(MainActivity mainActivity);
   void inject(StartActivity startActivity);
   void inject(WelcomeActivity welcomeActivity);
+  void inject(SinginActivity singinActivity);
+  void inject(SingupActivity singupActivity);
 
+  void inject(BaseFragment baseFragment);
   void inject(FragmentWithDrawer fragmentWithDrawer);
   void inject(ValidatableFragment validatableFragment);
 
+  void inject(SinginFragment singinFragment);
+  void inject(SingupFragment singupFragment);
   void inject(WelcomeFragment welcomeFragment);
 
   void inject(Controller controller);

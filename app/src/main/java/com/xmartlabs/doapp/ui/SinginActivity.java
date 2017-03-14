@@ -5,13 +5,13 @@ import android.support.annotation.NonNull;
 import com.f2prateek.dart.HensonNavigable;
 
 /**
- * Created by santiago on 31/08/15.
+ * Created by scasas on 3/8/17.
  */
 @HensonNavigable
-public class WelcomeActivity extends SingleFragmentActivity {
+public class SinginActivity extends SingleFragmentActivity {
   @NonNull
   @Override
   protected BaseFragment createFragment() {
-    return new WelcomeFragmentBuilder().build();
+    return new SinginFragmentBuilder().build();
   }
 }

@@ -3,12 +3,14 @@ package com.xmartlabs.doapp.model;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.annotation.Unique;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 import com.xmartlabs.doapp.Gender;
+import com.xmartlabs.doapp.LocalDateAdapter;
 import com.xmartlabs.doapp.database.AppDataBase;
 
 import org.parceler.Parcel;
-import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,9 +34,10 @@ public class User extends BaseModel {
   @Column
   Gender gender;
   @Column
+  @Unique
   String email;
-  @Column
-  LocalDateTime date;
+  @Column(typeConverter = LocalDateAdapter.class)
+  LocalDate birthday;
   @Column
   String password;
 }

@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.xmartlabs.doapp.ui.mvp.BaseMvpFragment;
 import com.xmartlabs.template.R;
 
 /**
@@ -15,7 +14,7 @@ import com.xmartlabs.template.R;
  */
 public abstract class SingleFragmentActivity extends BaseAppCompatActivity {
   @NonNull
-  protected abstract BaseMvpFragment createFragment();
+  protected abstract BaseFragment createFragment();
 
   @LayoutRes
   protected int getLayoutResId() {

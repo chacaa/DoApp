@@ -16,4 +16,6 @@
     <color name="grayLight">#b6b6b6</color>
     <color name="pink">#ff4081</color>
     <color name="white">@android:color/white</color>
+    <color name="reddish_pink">#ff3366</color>
+    
 </resources>

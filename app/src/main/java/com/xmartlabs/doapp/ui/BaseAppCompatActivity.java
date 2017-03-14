@@ -13,7 +13,7 @@ import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.xmartlabs.doapp.DoAppApplication;
 
 /**
- * Created by diegomedina24 on 12/16/16.
+ * Created by santiago on 31/08/15.
  */
 public abstract class BaseAppCompatActivity extends RxAppCompatActivity {
   protected Context getContext() {
@@ -24,19 +24,14 @@ public abstract class BaseAppCompatActivity extends RxAppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Dart.inject(this);
+
     DoAppApplication.getContext().inject(this);
   }
 
-  /**
-   * Removes the given fragment from the view.
-   *
-   * @param fragment the fragment to be removed
-   */
   public void removeFragment(@NonNull Fragment fragment) {
     getSupportFragmentManager().beginTransaction().remove(fragment).commit();
   }
 
-  /** Hides the keyboard, if visible */
   protected void hideKeyboard() {
     InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
     View currentFocus = this.getCurrentFocus();

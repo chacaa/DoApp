@@ -5,10 +5,11 @@ import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
+import com.xmartlabs.doapp.LocalDateAdapter;
 import com.xmartlabs.doapp.database.AppDataBase;
 
 import org.parceler.Parcel;
-import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,8 +30,8 @@ public class Task extends BaseModel {
   long id;
   @Column
   String name;
-  @Column
-  LocalDateTime date;
+  @Column(typeConverter = LocalDateAdapter.class)
+  LocalDate date;
   @Column
   Double duration;
   @Column

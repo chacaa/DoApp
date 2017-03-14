@@ -1,14 +1,12 @@
 package com.xmartlabs.doapp.ui;
 
-import com.xmartlabs.doapp.ui.mvp.BaseMvpFragment;
-
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Created by santiago on 20/10/15.
  */
-public abstract class ValidatableFragment extends BaseMvpFragment {
+public abstract class ValidatableFragment extends BaseFragment {
   @Getter
   @Setter
   boolean submitOnStop = true;
@@ -18,7 +16,6 @@ public abstract class ValidatableFragment extends BaseMvpFragment {
   }
 
   public void submit() {
-
   }
 
   @Override

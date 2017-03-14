@@ -1,7 +1,6 @@
 package com.xmartlabs.doapp.ui;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.trello.rxlifecycle.RxLifecycle;
@@ -9,9 +8,6 @@ import com.trello.rxlifecycle.android.FragmentEvent;
 import com.xmartlabs.template.R;
 import com.xmartlabs.doapp.controller.AuthController;
 import com.xmartlabs.doapp.model.LoginRequest;
-import com.xmartlabs.doapp.ui.mvp.BaseMvpFragment;
-import com.xmartlabs.doapp.ui.mvp.BaseMvpPresenter;
-import com.xmartlabs.doapp.ui.mvp.MvpView;
 
 import javax.inject.Inject;
 
@@ -21,7 +17,7 @@ import butterknife.OnClick;
  * Created by santiago on 31/08/15.
  */
 @FragmentWithArgs
-public class WelcomeFragment extends BaseMvpFragment<MvpView, BaseMvpPresenter<MvpView>> {
+public class WelcomeFragment extends BaseFragment {
   @Inject
   AuthController authController;
 
@@ -45,11 +41,5 @@ public class WelcomeFragment extends BaseMvpFragment<MvpView, BaseMvpPresenter<M
             },
             throwable -> showAlertError(R.string.message_error_service_call)
         );
-  }
-
-  @NonNull
-  @Override
-  protected BaseMvpPresenter<MvpView> createPresenter() {
-    return new BaseMvpPresenter<>();
   }
 }
