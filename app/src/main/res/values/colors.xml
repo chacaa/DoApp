@@ -17,5 +17,5 @@
     <color name="pink">#ff4081</color>
     <color name="white">@android:color/white</color>
     <color name="reddish_pink">#ff3366</color>
-    
+    <color name="dark_grey">#1d1d26</color>
 </resources>

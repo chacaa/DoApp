@@ -39,12 +39,20 @@
         </activity>
 
         <activity
+            android:launchMode="singleTask"
             android:name="com.xmartlabs.doapp.ui.SinginActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
+            android:launchMode="singleTask"
             android:name="com.xmartlabs.doapp.ui.SingupActivity"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
+            android:launchMode="singleTask"
+            android:name="com.xmartlabs.doapp.ui.OnBoardingActivity"
             android:screenOrientation="portrait"
             />
 
