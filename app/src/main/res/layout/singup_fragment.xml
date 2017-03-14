@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +14,7 @@
         android:hint="@string/sing_up"
         android:layout_marginStart="25.2dp"
         android:layout_marginTop="60dp"
-        android:textColorHint="#ffffff"
+        android:textColorHint="@color/white"
         android:textSize="36.5sp"
         />
 
@@ -29,11 +30,11 @@
             android:id="@+id/sign_up"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#ff3366"
+            android:background="@color/reddish_pink"
             android:clickable="true"
             android:gravity="center"
             android:text="@string/join"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="15sp"
             />
 
@@ -52,7 +53,7 @@
                 android:alpha="0.5"
                 android:gravity="center"
                 android:text="@string/already_have_account"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 />
 
@@ -62,7 +63,7 @@
                 android:gravity="center"
                 android:layout_marginStart="5dp"
                 android:text="@string/sing_in"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="13sp"
                 />
 
@@ -101,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:alpha="0.1"
-            android:background="#ffffff"
+            android:background="@color/white"
             />
 
         <EditText
@@ -127,9 +128,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:alpha="0.1"
-            android:background="#ffffff"
+            android:background="@color/white"
             />
-
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -148,7 +148,6 @@
             android:textSize="14sp"
             android:theme="@style/TextEditStyle"
             />
-
 
         <View
             android:layout_width="match_parent"
@@ -178,7 +177,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:alpha="0.1"
-            android:background="#ffffff"
+            android:background="@color/white"
             />
 
     </LinearLayout>
