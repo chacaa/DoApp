@@ -102,7 +102,6 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
           public void onSuccess(User value) {
             Intent intent = Henson.with(getContext()).gotoOnBoardingActivity().build();
             getContext().startActivity(intent);
-
           }
 
           @Override
