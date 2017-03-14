@@ -30,13 +30,13 @@ import rx.SingleSubscriber;
  */
 @FragmentWithArgs
 public class SingupFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
-  @BindView(R.id.editTextUser)
+  @BindView(R.id.edit_text_user)
   EditText username;
-  @BindView(R.id.editTextEmail)
+  @BindView(R.id.edit_text_email)
   EditText email;
-  @BindView(R.id.texViewBirthday)
+  @BindView(R.id.text_view_birthday)
   TextView birthday;
-  @BindView(R.id.editTextPassword)
+  @BindView(R.id.edit_text_password)
   EditText password;
 
   @Inject
@@ -62,7 +62,7 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
 
   @OnClick(R.id.sign_up)
   void onSignUpClicked() {
-    if (aFieldIsNotCompleted()) {
+    if (hasAnEmptyField()) {
       return;
     }
     setUserValues();
@@ -70,7 +70,7 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
     //TODO go to onboarding view
   }
 
-  @OnClick(R.id.texViewBirthday)
+  @OnClick(R.id.text_view_birthday)
   void onBirthdayClicked() {
     DatePickerDialog datePickerDialog;
     datePickerDialog = DatePickerDialog.newInstance(
@@ -110,20 +110,20 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
         .build();
   }
 
-  private boolean aFieldIsNotCompleted() {
-    if (notHasText(username)) {
+  private boolean hasAnEmptyField() {
+    if (theFieldIsEmpty(username)) {
       Snackbar.make(getView(), R.string.name_field_required, Snackbar.LENGTH_SHORT).show();
       //noinspection deprecation
       username.setHintTextColor(getResources().getColor(R.color.reddish_pink));
       return true;
     }
-    if (notHasText(email)) {
+    if (theFieldIsEmpty(email)) {
       Snackbar.make(getView(), R.string.email_field_required, Snackbar.LENGTH_SHORT).show();
       //noinspection deprecation
       email.setHintTextColor(getResources().getColor(R.color.reddish_pink));
       return true;
     }
-    if (notHasText(password)) {
+    if (theFieldIsEmpty(password)) {
       Snackbar.make(getView(), R.string.password_field_required, Snackbar.LENGTH_SHORT).show();
       //noinspection deprecation
       password.setHintTextColor(getResources().getColor(R.color.reddish_pink));
@@ -132,7 +132,7 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
     return false;
   }
 
-  private boolean notHasText(EditText editText) {
+  private boolean theFieldIsEmpty(EditText editText) {
     return editText.getText().toString().isEmpty();
   }
 

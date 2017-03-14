@@ -21,9 +21,9 @@ import timber.log.Timber;
  */
 @FragmentWithArgs
 public class SinginFragment extends BaseFragment {
-  @BindView(R.id.editTextPassword)
+  @BindView(R.id.edit_text_password)
   EditText password;
-  @BindView(R.id.editTextUser)
+  @BindView(R.id.edit_text_user)
   EditText username;
 
   @Inject
@@ -44,7 +44,7 @@ public class SinginFragment extends BaseFragment {
 
   @OnClick(R.id.sign_in)
   void onClickedSingIn() {
-    if (someFieldsAreEmpty()) {
+    if (hasAnEmptyField()) {
       return;
     }
     if (user == null) {
@@ -59,12 +59,12 @@ public class SinginFragment extends BaseFragment {
     }
   }
 
-  @OnTextChanged(R.id.editTextUser)
+  @OnTextChanged(R.id.edit_text_user)
   void onUserTextChanged(CharSequence userEmailValue) {
     getUser(userEmailValue.toString().trim());
   }
 
-  private boolean someFieldsAreEmpty() {
+  private boolean hasAnEmptyField() {
     if (fieldIsEmpty(username)) {
       showSnackbarMessage(R.string.complete_user_field);
       //noinspection deprecation
