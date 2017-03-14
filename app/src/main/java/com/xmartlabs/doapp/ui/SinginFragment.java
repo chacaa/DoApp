@@ -7,6 +7,7 @@ import android.widget.EditText;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.trello.rxlifecycle.RxLifecycle;
 import com.trello.rxlifecycle.android.FragmentEvent;
+
 import com.xmartlabs.doapp.controller.UserController;
 import com.xmartlabs.doapp.model.User;
 import com.xmartlabs.template.R;
@@ -35,7 +36,7 @@ public class SinginFragment extends BaseFragment {
   UserController userController;
 
   private User user;
-
+  
   @LayoutRes
   @Override
   protected int getLayoutResId() {
@@ -64,7 +65,7 @@ public class SinginFragment extends BaseFragment {
       showSnackbarMessage(R.string.wrong_password);
     }
   }
-
+    
   @OnTextChanged(R.id.edit_text_user)
   void onUserTextChanged(CharSequence userEmailValue) {
     getUser(userEmailValue.toString().trim());
