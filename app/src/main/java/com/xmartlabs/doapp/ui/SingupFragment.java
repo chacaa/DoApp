@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
+import com.trello.rxlifecycle.RxLifecycle;
+import com.trello.rxlifecycle.android.FragmentEvent;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import com.xmartlabs.doapp.Gender;
@@ -18,6 +20,9 @@ import com.xmartlabs.doapp.model.User;
 import com.xmartlabs.template.R;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
+
+import java.util.concurrent.CancellationException;
 
 import javax.inject.Inject;
 
@@ -87,7 +92,9 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
   }
 
   private void insertUser() {
-    userController.insertUser(user).subscribe(new SingleSubscriber<User>() {
+    userController.insertUser(user)
+        .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
+        .subscribe(new SingleSubscriber<User>() {
       @Override
       public void onSuccess(User value) {
         Snackbar.make(getView(), "It's all good my friend", Snackbar.LENGTH_SHORT).show();
@@ -96,6 +103,9 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
 
       @Override
       public void onError(Throwable error) {
+        if (!(error instanceof CancellationException)) {
+          //TODO
+        }
         Snackbar.make(getView(), R.string.failed_create_account, Snackbar.LENGTH_SHORT).show();
       }
     });
@@ -150,9 +160,8 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
 
   private void setUpBirthdayTextView() {
     LocalDate date = user.getBirthday();
-    String month = date.getMonth().getValue() <= 9 ? "0" + date.getMonth().getValue() : date.getMonth().getValue() + "";
-    String day = date.getDayOfMonth() <= 9 ? "0" + date.getDayOfMonth() : date.getDayOfMonth() + "";
-    String stringDate = month + "/" + day + "/" + date.getYear();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    String stringDate = date.format(formatter);
     birthday.setText(stringDate);
     //noinspection deprecation
     birthday.setTextColor(getResources().getColor(R.color.white));

@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.widget.EditText;
 
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
+import com.trello.rxlifecycle.RxLifecycle;
+import com.trello.rxlifecycle.android.FragmentEvent;
 import com.xmartlabs.doapp.controller.UserController;
 import com.xmartlabs.doapp.model.User;
 import com.xmartlabs.template.R;
+
+import java.util.concurrent.CancellationException;
 
 import javax.inject.Inject;
 
@@ -85,7 +89,9 @@ public class SinginFragment extends BaseFragment {
   }
 
   private void getUser(String userEmail) {
-    userController.getUser(userEmail).subscribe(new SingleSubscriber<User>() {
+    userController.getUser(userEmail)
+        .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
+        .subscribe(new SingleSubscriber<User>() {
       @Override
       public void onSuccess(User userValue) {
         user = userValue;
@@ -93,6 +99,9 @@ public class SinginFragment extends BaseFragment {
 
       @Override
       public void onError(Throwable error) {
+        if (!(error instanceof CancellationException)) {
+          //TODO
+        }
         Timber.e(error);
       }
     });
