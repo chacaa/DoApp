@@ -1,6 +1,7 @@
 package com.xmartlabs.doapp.ui;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 
@@ -55,6 +56,7 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
     setUpBirthdayTextView();
   }
 
+  @LayoutRes
   @Override
   protected int getLayoutResId() {
     return R.layout.singup_fragment;
@@ -95,20 +97,20 @@ public class SingupFragment extends BaseFragment implements DatePickerDialog.OnD
     userController.insertUser(user)
         .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
         .subscribe(new SingleSubscriber<User>() {
-      @Override
-      public void onSuccess(User value) {
-        Snackbar.make(getView(), "It's all good my friend", Snackbar.LENGTH_SHORT).show();
-        //TODO
-      }
+          @Override
+          public void onSuccess(User value) {
+            Snackbar.make(getView(), "It's all good my friend", Snackbar.LENGTH_SHORT).show();
+            //TODO
+          }
 
-      @Override
-      public void onError(Throwable error) {
-        if (!(error instanceof CancellationException)) {
-          //TODO
-        }
-        Snackbar.make(getView(), R.string.failed_create_account, Snackbar.LENGTH_SHORT).show();
-      }
-    });
+          @Override
+          public void onError(Throwable error) {
+            if (!(error instanceof CancellationException)) {
+              //TODO
+            }
+            Snackbar.make(getView(), R.string.failed_create_account, Snackbar.LENGTH_SHORT).show();
+          }
+        });
   }
 
   private User createEmptyUser() {

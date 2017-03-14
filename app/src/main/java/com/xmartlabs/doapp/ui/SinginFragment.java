@@ -1,6 +1,7 @@
 package com.xmartlabs.doapp.ui;
 
 import android.content.Intent;
+import android.support.annotation.LayoutRes;
 import android.widget.EditText;
 
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
@@ -35,6 +36,7 @@ public class SinginFragment extends BaseFragment {
 
   private User user;
 
+  @LayoutRes
   @Override
   protected int getLayoutResId() {
     return R.layout.singin_fragment;
@@ -92,18 +94,18 @@ public class SinginFragment extends BaseFragment {
     userController.getUser(userEmail)
         .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
         .subscribe(new SingleSubscriber<User>() {
-      @Override
-      public void onSuccess(User userValue) {
-        user = userValue;
-      }
+          @Override
+          public void onSuccess(User userValue) {
+            user = userValue;
+          }
 
-      @Override
-      public void onError(Throwable error) {
-        if (!(error instanceof CancellationException)) {
-          //TODO
-        }
-        Timber.e(error);
-      }
-    });
+          @Override
+          public void onError(Throwable error) {
+            if (!(error instanceof CancellationException)) {
+              //TODO
+            }
+            Timber.e(error);
+          }
+        });
   }
 }
