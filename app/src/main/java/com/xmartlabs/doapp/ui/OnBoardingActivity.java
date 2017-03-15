@@ -44,7 +44,7 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
   private void createOnboardingCards(@StringRes int description, @DrawableRes int iconId) {
     AhoyOnboarderCard ahoyOnboarderCard = new AhoyOnboarderCard("", getString(description), iconId);
     ahoyOnboarderCard.setBackgroundColor(R.color.white);
-    ahoyOnboarderCard.setDescriptionColor(R.color.color_dark);
+    ahoyOnboarderCard.setDescriptionColor(R.color.dark_grey);
     pages.add(ahoyOnboarderCard);
   }
 }

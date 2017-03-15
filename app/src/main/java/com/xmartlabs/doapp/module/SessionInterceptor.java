@@ -22,7 +22,7 @@ public class SessionInterceptor implements Interceptor {
   @Override
   public Response intercept(Chain chain) throws IOException {
     if (sessionController == null) {
-      DoAppApplication.getContext().inject(this); // Can't do this in constructor because it's called in a module.
+      DoAppApplication.getContext().inject(this); // Can't undo this in constructor because it's called in a module.
     }
 
     Session authResponse = sessionController.getSession();

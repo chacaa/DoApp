@@ -56,5 +56,10 @@
             android:screenOrientation="portrait"
             />
 
+        <activity
+            android:launchMode="singleTask"
+            android:name="com.xmartlabs.doapp.ui.TasksListActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 </manifest>

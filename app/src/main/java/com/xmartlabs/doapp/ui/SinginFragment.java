@@ -59,7 +59,8 @@ public class SinginFragment extends BaseFragment {
       return;
     }
     if (user.getPassword().equals(password.getText().toString())) {
-      Intent intent = Henson.with(getContext()).gotoOnBoardingActivity().build();
+//      Intent intent = Henson.with(getContext()).gotoOnBoardingActivity().build();
+      Intent intent = Henson.with(getContext()).gotoTasksListActivity().build();
       getContext().startActivity(intent);
     } else {
       showSnackbarMessage(R.string.wrong_password);
