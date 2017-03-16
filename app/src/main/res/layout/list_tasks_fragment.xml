@@ -17,7 +17,7 @@
         >
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/main.collapsing"
+            android:id="@+id/main_collapsing"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black"
@@ -38,6 +38,19 @@
                 app:layout_collapseMode="parallax"
                 />
 
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="Shop"
+                android:textSize="35sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="80dp"
+                android:layout_marginStart="25dp"
+                app:layout_collapseMode="parallax"
+                />
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/main.toolbar"
                 android:layout_width="match_parent"
@@ -49,6 +62,17 @@
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_button"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:background="@color/reddish_pink"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:src="@drawable/add"
+        app:layout_anchor="@id/main.appbar"
+        app:layout_anchorGravity="bottom|right|end"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,63 +91,70 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
+                android:layout_height="34.5dp"
                 android:gravity="center_vertical"
+                android:layout_marginEnd="25dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
+                android:orientation="horizontal"
                 >
 
                 <EditText
                     android:id="@+id/title_edit_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/add_title"
+                    android:inputType="textNoSuggestions"
                     android:layout_marginEnd="25dp"
-                    android:hint="Add title"
-                    android:textSize="16sp"
+                    android:maxLines="1"
+                    android:nextFocusForward="@+id/description_edit_text"
                     android:textColor="@color/white"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     />
 
                 <ImageView
                     android:id="@+id/close"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:src="@drawable/icon_close"
                     />
+
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
+                android:layout_height="34.5dp"
                 android:gravity="center_vertical"
                 android:layout_marginBottom="5dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginStart="25dp"
+                android:orientation="horizontal"
                 >
 
                 <EditText
                     android:id="@+id/description_edit_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/add_description"
+                    android:inputType="textNoSuggestions"
                     android:layout_marginEnd="25dp"
-                    android:hint="Add description"
-                    android:textSize="14sp"
                     android:textColor="@color/white"
+                    android:textSize="14sp"
                     />
 
                 <TextView
                     android:id="@+id/add_task"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ADD"
-                    android:layout_gravity="center"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
                     android:clickable="true"
+                    android:gravity="end"
+                    android:text="@string/add"
+                    android:textColor="@color/white"
                     />
 
             </LinearLayout>
@@ -145,16 +176,5 @@
         </android.support.v4.widget.NestedScrollView>
 
     </LinearLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_button"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:background="@color/reddish_pink"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:src="@drawable/add"
-        app:layout_anchor="@id/main.appbar"
-        app:layout_anchorGravity="bottom|right|end"
-        />
 
 </android.support.design.widget.CoordinatorLayout>

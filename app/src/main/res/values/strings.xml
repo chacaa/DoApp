@@ -34,4 +34,7 @@
     <string name="add_manage_tasks">Add &amp; Manage Tasks</string>
     <string name="how_you_are_doing">View how you are doing!</string>
     <string name="to_dashboard">Go to dashboard</string>
+    <string name="add_title">Add title</string>
+    <string name="add_description">Add description</string>
+    <string name="add">ADD</string>
 </resources>

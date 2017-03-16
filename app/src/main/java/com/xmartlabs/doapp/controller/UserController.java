@@ -1,7 +1,5 @@
 package com.xmartlabs.doapp.controller;
 
-import android.support.annotation.NonNull;
-
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import com.xmartlabs.doapp.model.User;
