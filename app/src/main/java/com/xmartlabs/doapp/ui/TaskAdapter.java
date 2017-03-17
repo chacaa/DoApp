@@ -26,8 +26,8 @@ import rx.functions.Action1;
  */
 @RequiredArgsConstructor
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
-  private static final int ALPHA_VALUE_DIFFERENCE = 255;
   private static final double ALPHA = 0.5;
+  private static final int ALPHA_VALUE_DIFFERENCE = 255;
 
   @NonNull
   private final Action1<Task> onTaskTapped;
@@ -64,16 +64,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
   }
 
   static class TaskHolder extends RecyclerView.ViewHolder {
-    @BindView(R.id.image_view)
-    ImageView doneImageView;
     @BindView(R.id.color_view)
     View colorView;
     @BindView(R.id.description_task)
     TextView descriptionTextView;
-    @BindView(R.id.title_task)
-    TextView titleTextView;
+    @BindView(R.id.image_view)
+    ImageView doneImageView;
     @BindView(R.id.task_linear_layout)
     LinearLayout taskLinearView;
+    @BindView(R.id.title_task)
+    TextView titleTextView;
 
     @NonNull
     private final Action1<Task> onTaskTapped;
