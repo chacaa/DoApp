@@ -85,7 +85,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
       this.onTaskTapped = onTaskTapped;
     }
 
-    public void bind(Task task) {
+    public void bind(@NonNull Task task) {
       titleTextView.setText(task.getTitle());
       if (task.getDescription().isEmpty()) {
         descriptionTextView.setVisibility(View.GONE);
