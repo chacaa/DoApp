@@ -17,11 +17,11 @@ import com.xmartlabs.doapp.ui.BaseActivity;
 import com.xmartlabs.doapp.ui.BaseAppCompatActivity;
 import com.xmartlabs.doapp.ui.BaseFragment;
 import com.xmartlabs.doapp.ui.FragmentWithDrawer;
-import com.xmartlabs.doapp.ui.SinginActivity;
-import com.xmartlabs.doapp.ui.SinginFragment;
+import com.xmartlabs.doapp.ui.SignInActivity;
+import com.xmartlabs.doapp.ui.SignInFragment;
 import com.xmartlabs.doapp.ui.MainActivity;
-import com.xmartlabs.doapp.ui.SingupActivity;
-import com.xmartlabs.doapp.ui.SingupFragment;
+import com.xmartlabs.doapp.ui.SignUpActivity;
+import com.xmartlabs.doapp.ui.SignUpFragment;
 import com.xmartlabs.doapp.ui.StartActivity;
 import com.xmartlabs.doapp.ui.TasksListActivity;
 import com.xmartlabs.doapp.ui.TasksListFragment;
@@ -60,20 +60,20 @@ public interface ApplicationComponent {
   void inject(SingleFragmentActivity singleFragmentActivity);
 
   void inject(MainActivity mainActivity);
+  void inject(SignInActivity signInActivity);
+  void inject(SignUpActivity signUpActivity);
   void inject(StartActivity startActivity);
-  void inject(WelcomeActivity welcomeActivity);
-  void inject(SinginActivity singinActivity);
-  void inject(SingupActivity singupActivity);
   void inject(TasksListActivity tasksListActivity);
+  void inject(WelcomeActivity welcomeActivity);
 
   void inject(BaseFragment baseFragment);
   void inject(FragmentWithDrawer fragmentWithDrawer);
   void inject(ValidatableFragment validatableFragment);
 
-  void inject(SinginFragment singinFragment);
-  void inject(SingupFragment singupFragment);
-  void inject(WelcomeFragment welcomeFragment);
+  void inject(SignInFragment signInFragment);
+  void inject(SignUpFragment signUpFragment);
   void inject(TasksListFragment tasksListFragment);
+  void inject(WelcomeFragment welcomeFragment);
 
   void inject(Controller controller);
   void inject(ServiceController serviceController);

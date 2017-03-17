@@ -26,7 +26,7 @@ import timber.log.Timber;
  * Created by scasas on 3/8/17.
  */
 @FragmentWithArgs
-public class SinginFragment extends BaseFragment {
+public class SignInFragment extends BaseFragment {
   @BindView(R.id.edit_text_password)
   EditText passwordView;
   @BindView(R.id.edit_text_user)

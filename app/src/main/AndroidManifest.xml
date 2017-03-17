@@ -41,13 +41,13 @@
 
         <activity
             android:launchMode="singleTask"
-            android:name="com.xmartlabs.doapp.ui.SinginActivity"
+            android:name="com.xmartlabs.doapp.ui.SignInActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
             android:launchMode="singleTask"
-            android:name="com.xmartlabs.doapp.ui.SingupActivity"
+            android:name="com.xmartlabs.doapp.ui.SignUpActivity"
             android:screenOrientation="portrait"
             />
 

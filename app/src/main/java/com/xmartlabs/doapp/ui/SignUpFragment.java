@@ -39,7 +39,7 @@ import rx.SingleSubscriber;
  * Created by santiago on 3/9/17.
  */
 @FragmentWithArgs
-public class SingupFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
+public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
   @BindView(R.id.edit_text_user)
   EditText username;
   @BindView(R.id.edit_text_email)
