@@ -23,6 +23,8 @@ import com.xmartlabs.doapp.ui.MainActivity;
 import com.xmartlabs.doapp.ui.SingupActivity;
 import com.xmartlabs.doapp.ui.SingupFragment;
 import com.xmartlabs.doapp.ui.StartActivity;
+import com.xmartlabs.doapp.ui.TasksListActivity;
+import com.xmartlabs.doapp.ui.TasksListFragment;
 import com.xmartlabs.doapp.ui.ValidatableFragment;
 import com.xmartlabs.doapp.ui.WelcomeActivity;
 import com.xmartlabs.doapp.ui.WelcomeFragment;
@@ -62,6 +64,7 @@ public interface ApplicationComponent {
   void inject(WelcomeActivity welcomeActivity);
   void inject(SinginActivity singinActivity);
   void inject(SingupActivity singupActivity);
+  void inject(TasksListActivity tasksListActivity);
 
   void inject(BaseFragment baseFragment);
   void inject(FragmentWithDrawer fragmentWithDrawer);
@@ -70,6 +73,7 @@ public interface ApplicationComponent {
   void inject(SinginFragment singinFragment);
   void inject(SingupFragment singupFragment);
   void inject(WelcomeFragment welcomeFragment);
+  void inject(TasksListFragment tasksListFragment);
 
   void inject(Controller controller);
   void inject(ServiceController serviceController);

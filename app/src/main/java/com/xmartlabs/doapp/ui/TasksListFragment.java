@@ -71,7 +71,6 @@ public class TasksListFragment extends BaseFragment {
     setpuRecyclerView();
     //generateTasks();
     getTasks();
-    adapter.setTasks(tasks);
     new_task.setVisibility(View.GONE);
     return view;
   }
@@ -142,7 +141,8 @@ public class TasksListFragment extends BaseFragment {
       @Override
       public void onSuccess(Task task) {
         String message = task.isFinished() ? "Task done! Good job!" : "C'mon you can Do it!";
-        Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT);
+        Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
+        updateRecyclerViewContent();
       }
 
       @Override
@@ -157,7 +157,7 @@ public class TasksListFragment extends BaseFragment {
       @Override
       public void onSuccess(Task value) {
         tasks.add(task);
-        adapter.setTasks(tasks);
+        updateRecyclerViewContent();
         Snackbar.make(getView(), "Task added", Snackbar.LENGTH_SHORT).show();
       }
 
@@ -174,6 +174,7 @@ public class TasksListFragment extends BaseFragment {
       public void onSuccess(List<Task> tasksList) {
         if (!tasksList.isEmpty()) {
           tasks = tasksList;
+          updateRecyclerViewContent();
         }
       }
 
@@ -183,5 +184,9 @@ public class TasksListFragment extends BaseFragment {
         //TODO
       }
     });
+  }
+
+  private void updateRecyclerViewContent() {
+    adapter.setTasks(tasks);
   }
 }
