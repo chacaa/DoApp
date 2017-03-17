@@ -36,6 +36,7 @@ public class Task extends BaseModel {
   LocalDate date;
   @Column
   boolean isFinished;
+  //TODO: I'll be using it later in the next feature
 //  @ForeignKey
 //  User user;
 //  @ForeignKey

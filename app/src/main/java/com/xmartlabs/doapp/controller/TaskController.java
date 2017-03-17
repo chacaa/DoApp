@@ -12,38 +12,37 @@ import rx.schedulers.Schedulers;
 /**
  * Created by scasas on 3/16/17.
  */
-
 public class TaskController extends Controller {
-    public Single<Task> insertTask(Task task) {
-        return Single
-                .fromCallable(() -> {
-                    task.insert();
-                    return task;
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io());
-    }
+  public Single<Task> insertTask(Task task) {
+    return Single
+        .fromCallable(() -> {
+          task.insert();
+          return task;
+        })
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io());
+  }
 
-    public Single<List<Task>> getTasks() {
-        return Single
-                .fromCallable(() -> SQLite.select()
-                        .from(Task.class)
-                        .where()
-                        .queryResults()
-                        .toList()
-                )
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io());
-    }
+  public Single<List<Task>> getTasks() {
+    return Single
+        .fromCallable(() -> SQLite.select()
+            .from(Task.class)
+            .where()
+            .queryResults()
+            .toList()
+        )
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io());
+  }
 
-    public Single<Task> changeTaskState(Task task) {
-        return Single
-                .fromCallable(() -> {
-                    task.setFinished(!task.isFinished());
-                    task.update();
-                    return task;
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io());
-    }
+  public Single<Task> changeTaskState(Task task) {
+    return Single
+        .fromCallable(() -> {
+          task.setFinished(!task.isFinished());
+          task.update();
+          return task;
+        })
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io());
+  }
 }

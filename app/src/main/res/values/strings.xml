@@ -37,4 +37,7 @@
     <string name="add_title">Add title</string>
     <string name="add_description">Add description</string>
     <string name="add">ADD</string>
+    <string name="cmon_you_can_do_this">C\'mon you can Do it!</string>
+    <string name="good_job">Task done! Good job!</string>
+    <string name="task_added">Task added</string>
 </resources>

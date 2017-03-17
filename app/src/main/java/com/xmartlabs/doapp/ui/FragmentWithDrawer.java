@@ -9,7 +9,7 @@ public abstract class FragmentWithDrawer extends ValidatableFragment {
   /**
    * This may be called when fragment is not attached, so be careful with context.
    *
-   * @return The fragment title
+   * @return The fragment titleView
    */
   @Nullable
   public String getTitle() {

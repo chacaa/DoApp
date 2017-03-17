@@ -28,15 +28,15 @@ import timber.log.Timber;
 @FragmentWithArgs
 public class SinginFragment extends BaseFragment {
   @BindView(R.id.edit_text_password)
-  EditText password;
+  EditText passwordView;
   @BindView(R.id.edit_text_user)
-  EditText username;
+  EditText usernameView;
 
   @Inject
   UserController userController;
 
   private User user;
-  
+
   @LayoutRes
   @Override
   protected int getLayoutResId() {
@@ -58,31 +58,31 @@ public class SinginFragment extends BaseFragment {
       showSnackbarMessage(R.string.user_doesnt_exist);
       return;
     }
-    if (user.getPassword().equals(password.getText().toString())) {
-//      Intent intent = Henson.with(getContext()).gotoOnBoardingActivity().build();
-      Intent intent = Henson.with(getContext()).gotoTasksListActivity().build();
+    if (user.getPassword().equals(passwordView.getText().toString())) {
+      //Intent intent = Henson.with(getContext()).gotoOnBoardingActivity().build(); //This is the right call
+      Intent intent = Henson.with(getContext()).gotoTasksListActivity().build(); //TODO: remove it later
       getContext().startActivity(intent);
     } else {
       showSnackbarMessage(R.string.wrong_password);
     }
   }
-    
+
   @OnTextChanged(R.id.edit_text_user)
   void onUserTextChanged(CharSequence userEmailValue) {
     getUser(userEmailValue.toString().trim());
   }
 
   private boolean hasAnEmptyField() {
-    if (fieldIsEmpty(username)) {
+    if (fieldIsEmpty(usernameView)) {
       showSnackbarMessage(R.string.complete_user_field);
       //noinspection deprecation
-      username.setHintTextColor(getResources().getColor(R.color.reddish_pink));
+      usernameView.setHintTextColor(getResources().getColor(R.color.reddish_pink));
       return true;
     }
-    if (fieldIsEmpty(password)) {
+    if (fieldIsEmpty(passwordView)) {
       showSnackbarMessage(R.string.complete_pass_field);
       //noinspection deprecation
-      password.setHintTextColor(getResources().getColor(R.color.reddish_pink));
+      passwordView.setHintTextColor(getResources().getColor(R.color.reddish_pink));
       return true;
     }
     return false;

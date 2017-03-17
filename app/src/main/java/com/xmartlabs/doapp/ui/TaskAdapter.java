@@ -1,6 +1,7 @@
 package com.xmartlabs.doapp.ui;
 
 import android.support.annotation.MainThread;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +24,11 @@ import rx.functions.Action1;
  * Created by scasas on 3/15/17.
  */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
-  private List<Task> tasks = new ArrayList<>();
+  private static final int VALUE = 255;
+
+  @NonNull
   private final Action1<Task> onTaskTapped;
+  private List<Task> tasks = new ArrayList<>();
 
   @MainThread
   public void setTasks(List<Task> tasks) {
@@ -32,8 +36,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
     notifyDataSetChanged();
   }
 
-  public TaskAdapter (Action1<Task> onTaskTapped) {
+  public TaskAdapter(@NonNull Action1<Task> onTaskTapped) {
     this.onTaskTapped = onTaskTapped;
+  }
+
+  @MainThread
+  public void addTask(@NonNull Task task) {
+    tasks.add(task);
+    notifyDataSetChanged();
   }
 
   @Override
@@ -64,11 +74,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
     @BindView(R.id.title_task)
     TextView titleTextView;
     @BindView(R.id.task_linear_layout)
-    LinearLayout task_linear;
+    LinearLayout taskLinearView;
 
+    @NonNull
     private final Action1<Task> onTaskTapped;
 
-    public TaskHolder(View itemView, Action1<Task> onTaskTapped) {
+    public TaskHolder(View itemView, @NonNull Action1<Task> onTaskTapped) {
       super(itemView);
       ButterKnife.bind(this, itemView);
       this.onTaskTapped = onTaskTapped;
@@ -82,42 +93,33 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
         descriptionTextView.setVisibility(View.VISIBLE);
         descriptionTextView.setText(task.getDescription());
       }
-      if (task.isFinished()) {
-        setDone();
-      } else {
-        setUndone();
-      }
-      task_linear.setOnClickListener(v -> {
-        if (task.isFinished()) {
-          setUndone();
-        } else {
-          setDone();
-        }
+      setDoneState(task.isFinished());
+      taskLinearView.setOnClickListener(v -> {
+        setDoneState(!task.isFinished());
         onTaskTapped.call(task);
-        //task.setFinished(!task.isFinished());
       });
     }
 
-    private void setDone() {
-      //noinspection deprecation
-      task_linear.setBackgroundColor(itemView.getResources().getColor(R.color.seafoam_blue_two_light));
-      //noinspection deprecation
-      colorView.setBackgroundColor(itemView.getResources().getColor(R.color.seafoam_blue_two));
-      //noinspection deprecation
-      doneImageView.setImageDrawable(itemView.getResources().getDrawable(R.drawable.done));
-      //noinspection deprecation
-      doneImageView.setAlpha(255);
-    }
-
-    private void setUndone() {
-      //noinspection deprecation
-      task_linear.setBackgroundColor(itemView.getResources().getColor(R.color.white));
-      //noinspection deprecation
-      colorView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
-      //noinspection deprecation
-      doneImageView.setImageDrawable(itemView.getResources().getDrawable(R.drawable.undo));
-      //noinspection deprecation
-      doneImageView.setAlpha((int) (0.5 * 255));
+    private void setDoneState(boolean done) {
+      if (done) {
+        //noinspection deprecation
+        taskLinearView.setBackgroundColor(itemView.getResources().getColor(R.color.seafoam_blue_two_light));
+        //noinspection deprecation
+        colorView.setBackgroundColor(itemView.getResources().getColor(R.color.seafoam_blue_two));
+        //noinspection deprecation
+        doneImageView.setImageDrawable(itemView.getResources().getDrawable(R.drawable.done));
+        //noinspection deprecation
+        doneImageView.setAlpha(VALUE);
+      } else {
+        //noinspection deprecation
+        taskLinearView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
+        //noinspection deprecation
+        colorView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
+        //noinspection deprecation
+        doneImageView.setImageDrawable(itemView.getResources().getDrawable(R.drawable.undo));
+        //noinspection deprecation
+        doneImageView.setAlpha((int) (0.5 * VALUE));
+      }
     }
   }
 }
