@@ -32,7 +32,7 @@ import rx.SingleSubscriber;
 import timber.log.Timber;
 
 /**
- * Created by santiago on 3/15/17.
+ * Created by santiago on 3/15/2017.
  */
 @FragmentWithArgs
 public class TasksListFragment extends BaseFragment {

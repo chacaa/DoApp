@@ -23,7 +23,7 @@ import rx.SingleSubscriber;
 import timber.log.Timber;
 
 /**
- * Created by scasas on 3/8/17.
+ * Created by scasas on 3/8/2017.
  */
 @FragmentWithArgs
 public class SignInFragment extends BaseFragment {

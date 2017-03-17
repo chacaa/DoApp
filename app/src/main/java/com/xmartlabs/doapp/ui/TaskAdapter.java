@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 import rx.functions.Action1;
 
 /**
- * Created by scasas on 3/15/17.
+ * Created by scasas on 3/15/2017.
  */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
   private static final int VALUE = 255;
