@@ -11,4 +11,8 @@ All notable changes will be documented in this file.
 * First commit.
 * Initial commit.
 
+### [1.0.0](https://github.com/chacaa/DoApp/releases/tag/v1.0.1)
+<!-- Released on 2017-17-03. -->
+* Fix minor issues.
+
 [xmartlabs]: https://xmartlabs.com
