@@ -18,11 +18,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lombok.RequiredArgsConstructor;
 import rx.functions.Action1;
 
 /**
  * Created by scasas on 3/15/2017.
  */
+@RequiredArgsConstructor
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
   private static final int VALUE = 255;
 
@@ -34,10 +36,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
   public void setTasks(List<Task> tasks) {
     this.tasks = tasks;
     notifyDataSetChanged();
-  }
-
-  public TaskAdapter(@NonNull Action1<Task> onTaskTapped) {
-    this.onTaskTapped = onTaskTapped;
   }
 
   @MainThread
