@@ -45,7 +45,7 @@ public class SignInFragment extends BaseFragment {
 
   @OnClick(R.id.sign_up)
   void onClickedSignUp() {
-    Intent intent = Henson.with(getContext()).gotoSingupActivity().build();
+    Intent intent = Henson.with(getContext()).gotoSignUpActivity().build();
     getContext().startActivity(intent);
   }
 

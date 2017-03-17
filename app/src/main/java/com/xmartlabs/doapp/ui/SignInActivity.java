@@ -12,6 +12,6 @@ public class SignInActivity extends SingleFragmentActivity {
   @NonNull
   @Override
   protected BaseFragment createFragment() {
-    return new SinginFragmentBuilder().build();
+    return new SignInFragmentBuilder().build();
   }
 }

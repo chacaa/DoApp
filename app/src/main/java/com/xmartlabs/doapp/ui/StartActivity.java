@@ -26,7 +26,7 @@ public class StartActivity extends BaseActivity {
 
     Intent intent;
     if (session == null) {
-      intent = Henson.with(getContext()).gotoSinginActivity().build();
+      intent = Henson.with(getContext()).gotoSignInActivity().build();
     } else {
       intent = Henson.with(getContext()).gotoMainActivity().build();
       authController.setLoginInfo(session);
