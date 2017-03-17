@@ -18,4 +18,6 @@
     <color name="white">@android:color/white</color>
     <color name="reddish_pink">#ff3366</color>
     <color name="dark_grey">#1d1d26</color>
+    <color name="seafoam_blue_two">#50d2c2</color>
+    <color name="seafoam_blue_two_light">#f5f9f9</color>
 </resources>

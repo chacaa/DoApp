@@ -36,17 +36,18 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity
             android:launchMode="singleTask"
-            android:name="com.xmartlabs.doapp.ui.SinginActivity"
+            android:name="com.xmartlabs.doapp.ui.SignInActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
             android:launchMode="singleTask"
-            android:name="com.xmartlabs.doapp.ui.SingupActivity"
+            android:name="com.xmartlabs.doapp.ui.SignUpActivity"
             android:screenOrientation="portrait"
             />
 
@@ -56,5 +57,12 @@
             android:screenOrientation="portrait"
             />
 
+        <activity
+            android:launchMode="singleTask"
+            android:name="com.xmartlabs.doapp.ui.TasksListActivity"
+            android:screenOrientation="portrait"
+            />
+
     </application>
+
 </manifest>

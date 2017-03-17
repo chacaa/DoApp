@@ -29,15 +29,16 @@ public class Task extends BaseModel {
   @PrimaryKey(autoincrement = true)
   long id;
   @Column
-  String name;
+  String title;
+  @Column
+  String description;
   @Column(typeConverter = LocalDateAdapter.class)
   LocalDate date;
   @Column
-  Double duration;
-  @Column
   boolean isFinished;
-  @ForeignKey
-  User user;
-  @ForeignKey
-  Group group;
+  //TODO: I'll be using it later in the next feature
+//  @ForeignKey
+//  User user;
+//  @ForeignKey
+//  Group group;
 }
