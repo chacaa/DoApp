@@ -60,14 +60,12 @@ public class TasksListFragment extends BaseFragment {
     return R.layout.list_tasks_fragment;
   }
 
-  @NonNull
   @Override
-  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View view = super.onCreateView(inflater, container, savedInstanceState);
+  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
     setupRecyclerView();
     getTasks();
     newTaskView.setVisibility(View.GONE);
-    return view;
   }
 
   private void setupRecyclerView() {

@@ -26,7 +26,8 @@ import rx.functions.Action1;
  */
 @RequiredArgsConstructor
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
-  private static final int VALUE = 255;
+  private static final int ALPHA_VALUE_DIFFERENCE = 255;
+  private static final double ALPHA = 0.5;
 
   @NonNull
   private final Action1<Task> onTaskTapped;
@@ -85,10 +86,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
 
     public void bind(@NonNull Task task) {
       titleTextView.setText(task.getTitle());
-      if (task.getDescription().isEmpty()) {
-        descriptionTextView.setVisibility(View.GONE);
-      } else {
-        descriptionTextView.setVisibility(View.VISIBLE);
+      descriptionTextView.setVisibility(task.getDescription().isEmpty() ? View.GONE : View.VISIBLE);
+      if (!task.getDescription().isEmpty()) {
         descriptionTextView.setText(task.getDescription());
       }
       setDoneState(task.isFinished());
@@ -98,25 +97,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
       });
     }
 
+    @SuppressWarnings("deprecation")
     private void setDoneState(boolean done) {
       if (done) {
-        //noinspection deprecation
         taskLinearView.setBackgroundColor(itemView.getResources().getColor(R.color.seafoam_blue_two_light));
-        //noinspection deprecation
         colorView.setBackgroundColor(itemView.getResources().getColor(R.color.seafoam_blue_two));
-        //noinspection deprecation
         doneImageView.setImageDrawable(itemView.getResources().getDrawable(R.drawable.done));
-        //noinspection deprecation
-        doneImageView.setAlpha(VALUE);
+        doneImageView.setAlpha(ALPHA_VALUE_DIFFERENCE);
       } else {
-        //noinspection deprecation
         taskLinearView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
-        //noinspection deprecation
         colorView.setBackgroundColor(itemView.getResources().getColor(R.color.white));
-        //noinspection deprecation
         doneImageView.setImageDrawable(itemView.getResources().getDrawable(R.drawable.undo));
-        //noinspection deprecation
-        doneImageView.setAlpha((int) (0.5 * VALUE));
+        doneImageView.setAlpha((int) (ALPHA * ALPHA_VALUE_DIFFERENCE));
       }
     }
   }
