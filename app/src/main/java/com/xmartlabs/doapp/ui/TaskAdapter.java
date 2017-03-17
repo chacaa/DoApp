@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 import rx.functions.Action1;
 
 /**
- * Created by scasas on 3/15/2017.
+ * Created by scasas on 3/15/17.
  */
 @RequiredArgsConstructor
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHolder> {
