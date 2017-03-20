@@ -40,4 +40,11 @@
     <string name="cmon_you_can_do_this">C\'mon you can Do it!</string>
     <string name="good_job">Task done! Good job!</string>
     <string name="task_added">Task added</string>
+    <string name="shop">Shop</string>
+    <string name="work">Work</string>
+    <string name="health">Health</string>
+    <string name="travel">Travel</string>
+    <string name="bills">Bills</string>
+    <string name="auto">Auto</string>
+    <string name="zero_item">0 ITEMS</string>
 </resources>

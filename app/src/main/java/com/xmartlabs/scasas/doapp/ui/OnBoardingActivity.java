@@ -1,5 +1,6 @@
 package com.xmartlabs.scasas.doapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
@@ -38,7 +39,9 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
 
   @Override
   public void onFinishButtonPressed() {
-    //TODO go to dashboard
+    Intent intent = Henson.with(getApplicationContext())
+        .gotoGroupsListActivity().build();
+    startActivity(intent);
   }
 
   private void createOnboardingCards(@StringRes int description, @DrawableRes int iconId) {
