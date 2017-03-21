@@ -63,6 +63,7 @@
             android:launchMode="singleTask"
             android:name=".ui.TasksListActivity"
             android:screenOrientation="portrait"
+            android:parentActivityName=".ui.GroupsListActivity"
             />
 
         <activity

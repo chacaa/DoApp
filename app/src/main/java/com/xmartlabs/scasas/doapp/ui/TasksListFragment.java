@@ -5,6 +5,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -40,7 +41,7 @@ public class TasksListFragment extends BaseFragment {
   @BindView(R.id.title_edit_text)
   EditText titleView;
   @BindView(R.id.description_edit_text)
-  EditText description;
+  EditText descriptionView;
   @BindView(R.id.fab_button)
   FloatingActionButton fabButtonView;
   @BindView(R.id.header_title)
@@ -55,6 +56,12 @@ public class TasksListFragment extends BaseFragment {
   @Override
   protected int getLayoutResId() {
     return R.layout.list_tasks_fragment;
+  }
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
   }
 
   @Override
@@ -87,7 +94,7 @@ public class TasksListFragment extends BaseFragment {
   void onClickedAddTextView() {
     Task task = Task.builder()
         .title(titleView.getText().toString().trim())
-        .description(description.getText().toString().trim())
+        .description(descriptionView.getText().toString().trim())
         .date(LocalDate.now())
         .isFinished(false)
         .build();
@@ -97,7 +104,7 @@ public class TasksListFragment extends BaseFragment {
 
   private void setFieldsEmpty() {
     titleView.setText(null);
-    description.setText(null);
+    descriptionView.setText(null);
   }
 
   private void closeNewTaskView() {

@@ -2,6 +2,7 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -70,7 +71,7 @@
         <LinearLayout
             android:id="@+id/new_task"
             android:layout_width="match_parent"
-            android:layout_height="93.5dp"
+            android:layout_height="wrap_content"
             android:background="@color/reddish_pink"
             android:orientation="vertical"
             >
@@ -80,8 +81,47 @@
                 android:layout_height="34.5dp"
                 android:gravity="center_vertical"
                 android:layout_marginEnd="25dp"
-                android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                >
+
+                <com.rey.material.widget.Spinner
+                    android:id="@+id/groups_spinner"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-2dp"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="20dp"
+                    app:spn_arrowColor="@color/white"
+                    app:spn_arrowSize="5dp"
+                    app:spn_arrowSwitchMode="true"
+                    app:spn_dividerColor="@android:color/transparent"
+                    app:spn_label="Spinner"
+                    />
+
+                <LinearLayout
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <ImageView
+                    android:id="@+id/close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:src="@drawable/icon_close"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34.5dp"
+                android:gravity="center_vertical"
+                android:layout_marginEnd="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="4dp"
                 android:orientation="horizontal"
                 >
 
@@ -100,12 +140,15 @@
                     android:textStyle="bold"
                     />
 
-                <ImageView
-                    android:id="@+id/close"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/add_task"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/icon_close"
+                    android:gravity="end"
+                    android:text="@string/add"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+
                     />
 
             </LinearLayout>
@@ -130,15 +173,6 @@
                     android:layout_marginEnd="25dp"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    />
-
-                <TextView
-                    android:id="@+id/add_task"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="@string/add"
-                    android:textColor="@color/white"
                     />
 
             </LinearLayout>
@@ -166,6 +200,7 @@
                     >
 
                     <LinearLayout
+                        android:id="@+id/shop_linear"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -183,6 +218,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/shop_items"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:alpha="0.5"
@@ -210,6 +246,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/work_linear"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -227,6 +264,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/work_items"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:alpha="0.5"
@@ -263,6 +301,7 @@
                     >
 
                     <LinearLayout
+                        android:id="@+id/health_linear"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -280,6 +319,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/health_items"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:alpha="0.5"
@@ -307,6 +347,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/travel_linear"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -324,6 +365,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/travel_items"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:alpha="0.5"
@@ -360,6 +402,7 @@
                     >
 
                     <LinearLayout
+                        android:id="@+id/bills_linear"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -377,6 +420,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/bills_items"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:alpha="0.5"
@@ -404,8 +448,10 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/auto_linear"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
                         android:layout_weight="1"
                         android:orientation="vertical"
                         >
@@ -421,6 +467,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/auto_items"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:alpha="0.5"
