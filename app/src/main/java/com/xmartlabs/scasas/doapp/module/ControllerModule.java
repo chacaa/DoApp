@@ -1,5 +1,6 @@
 package com.xmartlabs.scasas.doapp.module;
 
+import com.xmartlabs.scasas.doapp.controller.GroupController;
 import com.xmartlabs.scasas.doapp.controller.SessionController;
 import com.xmartlabs.scasas.doapp.controller.AuthController;
 import com.xmartlabs.scasas.doapp.controller.TaskController;
@@ -37,5 +38,11 @@ public class ControllerModule {
   @Singleton
   TaskController provideTaskController() {
     return new TaskController();
+  }
+
+  @Provides
+  @Singleton
+  GroupController provideGroupController() {
+    return new GroupController();
   }
 }

@@ -5,6 +5,7 @@ import com.xmartlabs.scasas.doapp.controller.ServiceController;
 import com.xmartlabs.scasas.doapp.controller.SessionController;
 import com.xmartlabs.scasas.doapp.helper.DatabaseHelper;
 import com.xmartlabs.scasas.doapp.helper.GeneralErrorHelper;
+import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.module.AndroidModule;
 import com.xmartlabs.scasas.doapp.module.ControllerModule;
 import com.xmartlabs.scasas.doapp.module.GeneralErrorHelperModule;
@@ -17,6 +18,8 @@ import com.xmartlabs.scasas.doapp.ui.BaseActivity;
 import com.xmartlabs.scasas.doapp.ui.BaseAppCompatActivity;
 import com.xmartlabs.scasas.doapp.ui.BaseFragment;
 import com.xmartlabs.scasas.doapp.ui.FragmentWithDrawer;
+import com.xmartlabs.scasas.doapp.ui.GroupsListActivity;
+import com.xmartlabs.scasas.doapp.ui.GroupsListFragment;
 import com.xmartlabs.scasas.doapp.ui.SignInActivity;
 import com.xmartlabs.scasas.doapp.ui.SignInFragment;
 import com.xmartlabs.scasas.doapp.ui.MainActivity;
@@ -65,6 +68,7 @@ public interface ApplicationComponent {
   void inject(StartActivity startActivity);
   void inject(TasksListActivity tasksListActivity);
   void inject(WelcomeActivity welcomeActivity);
+  void inject(GroupsListActivity groupsListActivity);
 
   void inject(BaseFragment baseFragment);
   void inject(FragmentWithDrawer fragmentWithDrawer);
@@ -74,6 +78,7 @@ public interface ApplicationComponent {
   void inject(SignUpFragment signUpFragment);
   void inject(TasksListFragment tasksListFragment);
   void inject(WelcomeFragment welcomeFragment);
+  void inject(GroupsListFragment groupsListFragment);
 
   void inject(Controller controller);
   void inject(ServiceController serviceController);

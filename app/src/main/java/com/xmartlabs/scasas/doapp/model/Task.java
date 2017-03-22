@@ -1,6 +1,7 @@
 package com.xmartlabs.scasas.doapp.model;
 
 import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
@@ -35,9 +36,8 @@ public class Task extends BaseModel {
   LocalDate date;
   @Column
   boolean isFinished;
-  //TODO: I'll be using it later in the next feature
-//  @ForeignKey
-//  User user;
-//  @ForeignKey
-//  Group group;
+  @ForeignKey
+  User user;
+  @ForeignKey
+  Group group;
 }
