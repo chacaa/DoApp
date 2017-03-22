@@ -224,7 +224,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/zero_item"
+                            android:text="@string/item"
                             android:textSize="12sp"
                             />
 
@@ -270,7 +270,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/zero_item"
+                            android:text="@string/item"
                             android:textSize="12sp"
                             />
 
@@ -325,7 +325,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/zero_item"
+                            android:text="@string/item"
                             android:textSize="12sp"
                             />
 
@@ -371,7 +371,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/zero_item"
+                            android:text="@string/item"
                             android:textSize="12sp"
                             />
 
@@ -426,7 +426,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/zero_item"
+                            android:text="@string/item"
                             android:textSize="12sp"
                             />
 
@@ -473,7 +473,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/zero_item"
+                            android:text="@string/item"
                             android:textSize="12sp"
                             />
 

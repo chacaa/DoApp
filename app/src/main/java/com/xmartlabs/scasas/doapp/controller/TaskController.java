@@ -1,7 +1,11 @@
 package com.xmartlabs.scasas.doapp.controller;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.Task;
+import com.xmartlabs.scasas.doapp.model.Task_Table;
+import com.xmartlabs.scasas.doapp.model.User;
+import com.xmartlabs.scasas.doapp.ui.SingleFragmentActivity;
 
 import java.util.List;
 
@@ -23,11 +27,12 @@ public class TaskController extends Controller {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<List<Task>> getTasks() {
+  public Single<List<Task>> getTasks(User user, Group group) {
     return Single
         .fromCallable(() -> SQLite.select()
             .from(Task.class)
-            .where()
+            .where(Task_Table.user_id.eq(user.getId()))
+            .and(Task_Table.group_id.eq(group.getId()))
             .queryResults()
             .toList()
         )
@@ -42,6 +47,18 @@ public class TaskController extends Controller {
           task.update();
           return task;
         })
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io());
+  }
+
+  public Single<Long> getTasksCount(User user, Group group) {
+    return Single
+        .fromCallable(() -> SQLite.select()
+            .from(Task.class)
+            .where(Task_Table.user_id.eq(user.getId()))
+            .and(Task_Table.group_id.eq(group.getId()))
+            .count()
+        )
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io());
   }

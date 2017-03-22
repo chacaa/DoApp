@@ -2,6 +2,8 @@ package com.xmartlabs.scasas.doapp.controller;
 
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xmartlabs.scasas.doapp.model.Group;
+import com.xmartlabs.scasas.doapp.model.Group_Table;
+import com.xmartlabs.scasas.doapp.model.User;
 
 import java.util.List;
 
@@ -23,11 +25,11 @@ public class GroupController extends Controller {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Single<List<Group>> getGroups() {
+    public Single<List<Group>> getGroups(User user) {
         return Single
                 .fromCallable(() -> SQLite.select()
                         .from(Group.class)
-                        .where()
+                        .where(Group_Table.user_id.eq(user.getId()))
                         .queryResults()
                         .toList()
                 )

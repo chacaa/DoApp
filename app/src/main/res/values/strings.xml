@@ -46,7 +46,7 @@
     <string name="travel">Travel</string>
     <string name="bills">Bills</string>
     <string name="auto">Auto</string>
-    <string name="zero_item">0 ITEMS</string>
+    <string name="item">%1$d ITEMS</string>
     <string-array name="group_array">
         <item>@string/shop</item>
         <item>@string/work</item>
@@ -55,4 +55,5 @@
         <item>@string/bills</item>
         <item>@string/auto</item>
     </string-array>
+    <string name="all">All</string>
 </resources>

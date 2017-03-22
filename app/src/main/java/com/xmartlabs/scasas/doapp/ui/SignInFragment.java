@@ -59,8 +59,10 @@ public class SignInFragment extends BaseFragment {
       return;
     }
     if (user.getPassword().equals(passwordView.getText().toString())) {
-      //Intent intent = Henson.with(getContext()).gotoOnBoardingActivity().build(); //This is the right call
-      Intent intent = Henson.with(getContext()).gotoGroupsListActivity().build(); //TODO: remove it later
+      Intent intent = Henson.with(getContext())
+          .gotoGroupsListActivity()
+          .user(user)
+          .build();
       getContext().startActivity(intent);
     } else {
       showSnackbarMessage(R.string.wrong_password);

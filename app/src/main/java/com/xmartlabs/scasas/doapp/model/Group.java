@@ -1,6 +1,7 @@
 package com.xmartlabs.scasas.doapp.model;
 
 import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
@@ -27,4 +28,6 @@ public class Group extends BaseModel {
   long id;
   @Column
   String name;
+  @ForeignKey
+  User user;
 }

@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.annimon.stream.Stream;
+import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.trello.rxlifecycle.RxLifecycle;
 import com.trello.rxlifecycle.android.FragmentEvent;
@@ -19,7 +21,9 @@ import com.trello.rxlifecycle.android.FragmentEvent;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import com.xmartlabs.scasas.doapp.Gender;
+import com.xmartlabs.scasas.doapp.controller.GroupController;
 import com.xmartlabs.scasas.doapp.controller.UserController;
+import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.User;
 import com.xmartlabs.scasas.doapp.R;
 
@@ -28,12 +32,12 @@ import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.concurrent.CancellationException;
 
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import rx.SingleSubscriber;
+import timber.log.Timber;
 
 /**
  * Created by santiago on 3/9/17.
@@ -51,6 +55,9 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
 
   @Inject
   UserController userController;
+
+  @Inject
+  GroupController groupController;
 
   private User user = createEmptyUser();
 
@@ -78,7 +85,6 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
     }
     setUserValues();
     insertUser();
-    //TODO go to onboarding view
   }
 
   @OnClick(R.id.text_view_birthday)
@@ -102,8 +108,12 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
         .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
         .subscribe(new SingleSubscriber<User>() {
           @Override
-          public void onSuccess(User value) {
-            Intent intent = Henson.with(getContext()).gotoOnBoardingActivity().build();
+          public void onSuccess(User user) {
+            createGroups();
+            Intent intent = Henson.with(getContext())
+                .gotoOnBoardingActivity()
+                .user(user)
+                .build();
             getContext().startActivity(intent);
           }
 
@@ -171,5 +181,28 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
     birthday.setText(stringDate);
     //noinspection deprecation
     birthday.setTextColor(getResources().getColor(R.color.white));
+  }
+
+  private void createGroups() {
+    Stream.of(getResources().getStringArray(R.array.group_array))
+        .forEach(stringResValue -> insertGroup(stringResValue));
+  }
+
+  private void insertGroup(String name) {
+    Group group = Group.builder()
+        .name(name)
+        .user(user)
+        .build();
+    groupController.insertGroup(group).subscribe(new SingleSubscriber<Group>() {
+      @Override
+      public void onSuccess(Group value) {
+      }
+
+      @Override
+      public void onError(Throwable error) {
+        Snackbar.make(getView(),error.toString(),Snackbar.LENGTH_LONG);
+        Timber.e(error);
+      }
+    });
   }
 }

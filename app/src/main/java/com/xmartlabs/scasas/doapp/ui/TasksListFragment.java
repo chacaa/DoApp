@@ -37,140 +37,142 @@ import timber.log.Timber;
  */
 @FragmentWithArgs
 public class TasksListFragment extends BaseFragment {
-    @BindView(R.id.task_recycler_view)
-    RecyclerView recyclerView;
-    @BindView(R.id.new_task)
-    LinearLayout newTaskView;
-    @BindView(R.id.title_edit_text)
-    EditText titleView;
-    @BindView(R.id.description_edit_text)
-    EditText descriptionView;
-    @BindView(R.id.fab_button)
-    FloatingActionButton fabButtonView;
-    @BindView(R.id.header_title)
-    TextView headerTitleView;
+  @BindView(R.id.task_recycler_view)
+  RecyclerView recyclerView;
+  @BindView(R.id.new_task)
+  LinearLayout newTaskView;
+  @BindView(R.id.title_edit_text)
+  EditText titleView;
+  @BindView(R.id.description_edit_text)
+  EditText descriptionView;
+  @BindView(R.id.fab_button)
+  FloatingActionButton fabButtonView;
+  @BindView(R.id.header_title)
+  TextView headerTitleView;
 
-    @Inject
-    TaskController taskController;
+  @Inject
+  TaskController taskController;
 
-    @Arg(bundler = ParcelerArgsBundler.class)
-    Group group;
-    @Arg(bundler = ParcelerArgsBundler.class)
-    User user;
+  @Arg(bundler = ParcelerArgsBundler.class)
+  Group group;
+  @Arg(bundler = ParcelerArgsBundler.class)
+  User user;
 
-    private TaskAdapter adapter;
+  private TaskAdapter adapter;
 
-    @LayoutRes
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.list_tasks_fragment;
-    }
+  @LayoutRes
+  @Override
+  protected int getLayoutResId() {
+    return R.layout.list_tasks_fragment;
+  }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        setupRecyclerView();
-        getTasks();
-        newTaskView.setVisibility(View.GONE);
-    }
+  @Override
+  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    setupRecyclerView();
+    getTasks();
+    newTaskView.setVisibility(View.GONE);
+  }
 
-    private void setupRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setHasFixedSize(true);
-        adapter = new TaskAdapter(this::onTappedTask);
-        recyclerView.setAdapter(adapter);
-    }
+  private void setupRecyclerView() {
+    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    recyclerView.setHasFixedSize(true);
+    adapter = new TaskAdapter(this::onTappedTask);
+    recyclerView.setAdapter(adapter);
+  }
 
-    @OnClick(R.id.fab_button)
-    void onClickedFabButton() {
-        fabButtonView.setVisibility(View.GONE);
-        newTaskView.setVisibility(View.VISIBLE);
-    }
+  @OnClick(R.id.fab_button)
+  void onClickedFabButton() {
+    fabButtonView.setVisibility(View.GONE);
+    newTaskView.setVisibility(View.VISIBLE);
+  }
 
-    @OnClick(R.id.close)
-    void onClickedCloseImageView() {
-        closeNewTaskView();
-    }
+  @OnClick(R.id.close)
+  void onClickedCloseImageView() {
+    closeNewTaskView();
+  }
 
-    @OnClick(R.id.add_task)
-    void onClickedAddTextView() {
-        Task task = Task.builder()
-                .title(titleView.getText().toString().trim())
-                .description(descriptionView.getText().toString().trim())
-                .date(LocalDate.now())
-                .isFinished(false)
-                .build();
-        insertTask(task);
-        closeNewTaskView();
-    }
+  @OnClick(R.id.add_task)
+  void onClickedAddTextView() {
+    Task task = Task.builder()
+        .title(titleView.getText().toString().trim())
+        .description(descriptionView.getText().toString().trim())
+        .date(LocalDate.now())
+        .isFinished(false)
+        .user(user)
+        .group(group)
+        .build();
+    insertTask(task);
+    closeNewTaskView();
+  }
 
-    private void setFieldsEmpty() {
-        titleView.setText(null);
-        descriptionView.setText(null);
-    }
+  private void setFieldsEmpty() {
+    titleView.setText(null);
+    descriptionView.setText(null);
+  }
 
-    private void closeNewTaskView() {
-        fabButtonView.setVisibility(View.VISIBLE);
-        newTaskView.setVisibility(View.GONE);
-        setFieldsEmpty();
-    }
+  private void closeNewTaskView() {
+    fabButtonView.setVisibility(View.VISIBLE);
+    newTaskView.setVisibility(View.GONE);
+    setFieldsEmpty();
+  }
 
-    private void onTappedTask(Task task) {
-        updateTaskState(task);
-    }
+  private void onTappedTask(Task task) {
+    updateTaskState(task);
+  }
 
-    private void updateTaskState(Task task) {
-        taskController.changeTaskState(task)
-                .subscribe(new SingleSubscriber<Task>() {
-                    @Override
-                    public void onSuccess(Task task) {
-                        int message = task.isFinished() ? R.string.good_job : R.string.cmon_you_can_do_this;
-                        Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
-                    }
+  private void updateTaskState(Task task) {
+    taskController.changeTaskState(task)
+        .subscribe(new SingleSubscriber<Task>() {
+          @Override
+          public void onSuccess(Task task) {
+            int message = task.isFinished() ? R.string.good_job : R.string.cmon_you_can_do_this;
+            Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
+          }
 
-                    @Override
-                    public void onError(Throwable error) {
-                        Timber.e(error);
-                    }
-                });
-    }
+          @Override
+          public void onError(Throwable error) {
+            Timber.e(error);
+          }
+        });
+  }
 
-    private void insertTask(Task task) {
-        taskController.insertTask(task)
-                .subscribe(new SingleSubscriber<Task>() {
-                    @Override
-                    public void onSuccess(Task task) {
-                        adapter.addTask(task);
-                        Snackbar.make(getView(), R.string.task_added, Snackbar.LENGTH_SHORT).show();
-                    }
+  private void insertTask(Task task) {
+    taskController.insertTask(task)
+        .subscribe(new SingleSubscriber<Task>() {
+          @Override
+          public void onSuccess(Task task) {
+            adapter.addTask(task);
+            Snackbar.make(getView(), R.string.task_added, Snackbar.LENGTH_SHORT).show();
+          }
 
-                    @Override
-                    public void onError(Throwable error) {
-                        Timber.e(error);
-                    }
-                });
-    }
+          @Override
+          public void onError(Throwable error) {
+            Timber.e(error);
+          }
+        });
+  }
 
-    private void getTasks() {
-        taskController.getTasks()
-                .subscribe(new SingleSubscriber<List<Task>>() {
-                    @Override
-                    public void onSuccess(List<Task> tasks) {
-                        if (!tasks.isEmpty()) {
-                            adapter.setTasks(tasks);
-                        }
-                    }
+  private void getTasks() {
+    taskController.getTasks(user, group)
+        .subscribe(new SingleSubscriber<List<Task>>() {
+          @Override
+          public void onSuccess(List<Task> tasks) {
+            if (!tasks.isEmpty()) {
+              adapter.setTasks(tasks);
+            }
+          }
 
-                    @Override
-                    public void onError(Throwable error) {
-                        Timber.e(error);
-                    }
-                });
-    }
+          @Override
+          public void onError(Throwable error) {
+            Timber.e(error);
+          }
+        });
+  }
 }

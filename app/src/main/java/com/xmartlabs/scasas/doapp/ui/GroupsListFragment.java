@@ -2,7 +2,9 @@ package com.xmartlabs.scasas.doapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -10,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.annimon.stream.Stream;
 
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
@@ -25,8 +29,9 @@ import com.xmartlabs.scasas.doapp.model.User;
 
 import org.threeten.bp.LocalDate;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -40,128 +45,257 @@ import timber.log.Timber;
  */
 @FragmentWithArgs
 public class GroupsListFragment extends BaseFragment {
-    @BindView(R.id.groups_spinner)
-    Spinner groupsSpinnerView;
-    @BindView(R.id.fab_button)
-    FloatingActionButton fabButtonView;
-    @BindView(R.id.new_task)
-    LinearLayout newTaskView;
-    @BindView(R.id.title_edit_text)
-    EditText titleView;
-    @BindView(R.id.description_edit_text)
-    EditText descriptionView;
+  @BindView(R.id.groups_spinner)
+  Spinner groupsSpinnerView;
+  @BindView(R.id.fab_button)
+  FloatingActionButton fabButtonView;
+  @BindView(R.id.new_task)
+  LinearLayout newTaskView;
+  @BindView(R.id.title_edit_text)
+  EditText titleView;
+  @BindView(R.id.description_edit_text)
+  EditText descriptionView;
+  @BindView(R.id.shop_items)
+  TextView shopItemsView;
+  @BindView(R.id.work_items)
+  TextView workItemsView;
+  @BindView(R.id.health_items)
+  TextView healthItemsView;
+  @BindView(R.id.travel_items)
+  TextView travelItemsView;
+  @BindView(R.id.bills_items)
+  TextView billsItemsView;
+  @BindView(R.id.auto_items)
+  TextView autoItemsView;
 
-    @Inject
-    GroupController groupController;
-    @Inject
-    TaskController taskController;
+  @Inject
+  GroupController groupController;
+  @Inject
+  TaskController taskController;
 
-    @Arg(bundler = ParcelerArgsBundler.class)
-    User user;
+  @Arg(bundler = ParcelerArgsBundler.class)
+  User user;
 
-    private List<Group> groups;
+  private List<Group> groups = new ArrayList<Group>();
 
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.list_groups_fragment;
-    }
+  @Override
+  protected int getLayoutResId() {
+    return R.layout.list_groups_fragment;
+  }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getGroups();
-        newTaskView.setVisibility(View.GONE);
-        String[] items = getResources().getStringArray(R.array.group_array);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, items);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        groupsSpinnerView.setAdapter(adapter);
-        adjustSpinnerView(groupsSpinnerView);
-    }
+  @Override
+  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    getGroups();
+    newTaskView.setVisibility(View.GONE);
+    String[] items = getResources().getStringArray(R.array.group_array);
+    ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, items);
+    adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+    groupsSpinnerView.setAdapter(adapter);
+    adjustSpinnerView(groupsSpinnerView);
+  }
 
-    @OnClick(R.id.fab_button)
-    void onClickedFabButton() {
-        fabButtonView.setVisibility(View.GONE);
-        newTaskView.setVisibility(View.VISIBLE);
-    }
+  @OnClick(R.id.fab_button)
+  void onClickedFabButton() {
+    fabButtonView.setVisibility(View.GONE);
+    newTaskView.setVisibility(View.VISIBLE);
+  }
 
-    @OnClick(R.id.close)
-    void onClickedCloseImageView() {
-        closeNewTaskView();
-    }
+  @OnClick(R.id.close)
+  void onClickedCloseImageView() {
+    closeNewTaskView();
+  }
 
-    @OnClick(R.id.shop_linear)
-    void onClikedShopGroup() {
-        goToListOfTasksFragment();
-    }
+  @OnClick(R.id.shop_linear)
+  void onClikedShopGroup() {
+    Group group = getGroup(R.string.shop);
+    goToListOfTasksFragment(group);
+  }
 
-    @OnClick(R.id.add_task)
-    void onClickedAddTextView() {
-        Task task = Task.builder()
-                .title(titleView.getText().toString().trim())
-                .description(descriptionView.getText().toString().trim())
-                .date(LocalDate.now())
-                .isFinished(false)
-                .build();
-        insertTask(task);
-        closeNewTaskView();
-    }
+  @OnClick(R.id.add_task)
+  void onClickedAddTextView() {
+    Group group = getGroup(groupsSpinnerView.getSelectedItem().toString());
+    Task task = Task.builder()
+        .title(titleView.getText().toString().trim())
+        .description(descriptionView.getText().toString().trim())
+        .date(LocalDate.now())
+        .isFinished(false)
+        .group(group)
+        .build();
+    insertTask(task);
+    updateItemCount(group.getName());
+    closeNewTaskView();
+  }
 
-    private void setFieldsEmpty() {
-        titleView.setText(null);
-        descriptionView.setText(null);
-    }
+  private void setFieldsEmpty() {
+    titleView.setText(null);
+    descriptionView.setText(null);
+  }
 
-    private void closeNewTaskView() {
-        fabButtonView.setVisibility(View.VISIBLE);
-        newTaskView.setVisibility(View.GONE);
-        setFieldsEmpty();
-    }
+  private void closeNewTaskView() {
+    fabButtonView.setVisibility(View.VISIBLE);
+    newTaskView.setVisibility(View.GONE);
+    setFieldsEmpty();
+  }
 
-    private void adjustSpinnerView(Spinner spinner) {
-        TextView textView = (TextView) spinner.getSelectedView();
-        //noinspection deprecation
-        textView.setTextColor(getResources().getColor(R.color.white));
-        textView.setTextSize(2, 14);
-    }
+  private void adjustSpinnerView(Spinner spinner) {
+    TextView textView = (TextView) spinner.getSelectedView();
+    //noinspection deprecation
+    textView.setTextColor(getResources().getColor(R.color.white));
+    textView.setTextSize(2, 14);
+  }
 
-    private void goToListOfTasksFragment() {
-        Intent intent = Henson.with(getContext()).gotoTasksListActivity().build();
-        getContext().startActivity(intent);
-    }
+  private void goToListOfTasksFragment(Group group) {
+    Intent intent = Henson.with(getContext())
+        .gotoTasksListActivity()
+        .group(group)
+        .user(user)
+        .build();
+    getContext().startActivity(intent);
+  }
 
-    private void getGroups() {
-        groupController.getGroups().subscribe(new SingleSubscriber<List<Group>>() {
-            @Override
-            public void onSuccess(List<Group> groupList) {
-                groups = groupList;
-            }
+  private void getGroups() {
+    groupController.getGroups(user).subscribe(new SingleSubscriber<List<Group>>() {
+      @Override
+      public void onSuccess(List<Group> groupList) {
+        groups = groupList;
+        updateAll();
+      }
 
-            @Override
-            public void onError(Throwable error) {
-                Timber.e(error);
-            }
+      @Override
+      public void onError(Throwable error) {
+        Timber.e(error);
+      }
+    });
+  }
+
+  private Group getGroup(@NonNull String groupName) {
+    return Stream.of(groups)
+        .filter(group -> Objects.equals(groupName, group.getName()))
+        .findFirst()
+        .get();
+  }
+
+  private Group getGroup(@StringRes int groupName) {
+    String name = getString(groupName);
+    return getGroup(name);
+  }
+
+  private void insertTask(Task task) {
+    taskController.insertTask(task)
+        .subscribe(new SingleSubscriber<Task>() {
+          @Override
+          public void onSuccess(Task task) {
+            Snackbar.make(getView(), R.string.task_added, Snackbar.LENGTH_SHORT).show();
+          }
+
+          @Override
+          public void onError(Throwable error) {
+            Timber.e(error);
+          }
         });
-    }
+  }
 
-    private Group getGroup(String name) {
-        return groups.stream()
-                .findFirst()
-                .filter(group -> name.equals(group.getName()))
-                .get();
+  private void updateItemCount(String groupName) {
+    int group = getStringRes(groupName);
+    if (group != 0) {
+      updateItemCount(group);
     }
+  }
 
-    private void insertTask(Task task) {
-        taskController.insertTask(task)
-                .subscribe(new SingleSubscriber<Task>() {
-                    @Override
-                    public void onSuccess(Task task) {
-                        Snackbar.make(getView(), R.string.task_added, Snackbar.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(Throwable error) {
-                        Timber.e(error);
-                    }
-                });
+  private void updateItemCount(@StringRes int groupName) {
+    switch (groupName) {
+      case R.string.shop:
+        getTaskCount(R.string.shop);
+        break;
+      case R.string.work:
+        getTaskCount(R.string.work);
+        break;
+      case R.string.health:
+        getTaskCount(R.string.health);
+        break;
+      case R.string.travel:
+        getTaskCount(R.string.travel);
+        break;
+      case R.string.bills:
+        getTaskCount(R.string.bills);
+        break;
+      case R.string.auto:
+        getTaskCount(R.string.auto);
+        break;
+      default:
+        updateAll();
     }
+  }
+
+  private void updateAll() {
+    Stream.of(R.array.group_array)
+        .forEach(this::getTaskCount);
+  }
+
+  private void getTaskCount(@StringRes int groupName) {
+    Group group = getGroup(groupName);
+    taskController.getTasksCount(user, group).subscribe(new SingleSubscriber<Long>() {
+      @Override
+      public void onSuccess(Long taskCount) {
+        int groupName = getStringRes(group.getName());
+        updateItemField(groupName, taskCount);
+      }
+
+      @Override
+      public void onError(Throwable error) {
+
+      }
+    });
+  }
+
+  private String getTextFromStringRes(@StringRes int text) {
+    return getResources().getString(text);
+  }
+
+  private int getStringRes(String text) {
+    if (text.equals(getTextFromStringRes(R.string.shop))) {
+      return R.string.shop;
+    }
+    if (text.equals(getTextFromStringRes(R.string.work))) {
+      return R.string.work;
+    }
+    if (text.equals(getTextFromStringRes(R.string.health))) {
+      return R.string.health;
+    }
+    if (text.equals(getTextFromStringRes(R.string.travel))) {
+      return R.string.travel;
+    }
+    if (text.equals(getTextFromStringRes(R.string.bills))) {
+      return R.string.bills;
+    }
+    if (text.equals(getTextFromStringRes(R.string.auto))) {
+      return R.string.auto;
+    }
+    return 0;
+  }
+
+  private void updateItemField(@StringRes int groupName, long itemCount) {
+    switch (groupName) {
+      case R.string.shop:
+        shopItemsView.setText(String.format(getString(R.string.item), itemCount));
+        break;
+      case R.string.work:
+        workItemsView.setText(String.format(getString(R.string.item), itemCount));
+        break;
+      case R.string.health:
+        healthItemsView.setText(String.format(getString(R.string.item), itemCount));
+        break;
+      case R.string.travel:
+        travelItemsView.setText(String.format(getString(R.string.item), itemCount));
+        break;
+      case R.string.bills:
+        billsItemsView.setText(String.format(getString(R.string.item), itemCount));
+        break;
+      case R.string.auto:
+        autoItemsView.setText(String.format(getString(R.string.item), itemCount));
+        break;
+      default:
+    }
+  }
 }

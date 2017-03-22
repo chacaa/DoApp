@@ -3,13 +3,17 @@ package com.xmartlabs.scasas.doapp.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v4.view.ViewPager;
 
 import com.codemybrainsout.onboarder.AhoyOnboarderActivity;
 import com.codemybrainsout.onboarder.AhoyOnboarderCard;
+import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.HensonNavigable;
+import com.f2prateek.dart.InjectExtra;
 import com.xmartlabs.scasas.doapp.R;
+import com.xmartlabs.scasas.doapp.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +21,18 @@ import java.util.List;
 /**
  * Created by scasas on 3/13/17.
  */
-@HensonNavigable
 public class OnBoardingActivity extends AhoyOnboarderActivity {
+  @NonNull
+  @InjectExtra
+  User user;
+
   private List<AhoyOnboarderCard> pages = new ArrayList<>();
   private ViewPager cardViewPager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Dart.inject(this);
     cardViewPager = (ViewPager) findViewById(R.id.vp_pager);
     createOnboardingCards(R.string.create_groups, R.drawable.tutorial_1);
     createOnboardingCards(R.string.add_manage_tasks, R.drawable.tutorial_2);
@@ -40,7 +48,9 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
   @Override
   public void onFinishButtonPressed() {
     Intent intent = Henson.with(getApplicationContext())
-        .gotoGroupsListActivity().build();
+        .gotoGroupsListActivity()
+        .user(user)
+        .build();
     startActivity(intent);
   }
 
