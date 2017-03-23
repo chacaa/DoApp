@@ -56,4 +56,6 @@
         <item>@string/auto</item>
     </string-array>
     <string name="all">All</string>
+    <string name="simbol">%</string>
+    <string name="completed">Completed</string>
 </resources>

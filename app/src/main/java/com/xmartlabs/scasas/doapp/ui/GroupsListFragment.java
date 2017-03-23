@@ -1,6 +1,7 @@
 package com.xmartlabs.scasas.doapp.ui;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -19,6 +21,8 @@ import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 
 import com.hannesdorfmann.fragmentargs.bundler.ParcelerArgsBundler;
+import com.hookedonplay.decoviewlib.DecoView;
+import com.hookedonplay.decoviewlib.charts.SeriesItem;
 import com.rey.material.widget.Spinner;
 import com.xmartlabs.scasas.doapp.R;
 import com.xmartlabs.scasas.doapp.controller.GroupController;
@@ -67,6 +71,10 @@ public class GroupsListFragment extends BaseFragment {
   TextView billsItemsView;
   @BindView(R.id.auto_items)
   TextView autoItemsView;
+  @BindView(R.id.circle_chart)
+  DecoView cricleChartView;
+  @BindView(R.id.portcentage)
+  TextView porcentageView;
 
   @Inject
   GroupController groupController;
@@ -93,6 +101,32 @@ public class GroupsListFragment extends BaseFragment {
     adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
     groupsSpinnerView.setAdapter(adapter);
     adjustSpinnerView(groupsSpinnerView);
+
+    //noinspection deprecation
+    cricleChartView.addSeries(new SeriesItem.Builder(Color.argb(255, 218, 218, 218))
+        .setRange(0, 100, 100)
+        .setLineWidth(10f)
+        .build());
+
+    //noinspection deprecation
+    SeriesItem seriesItem1 = new SeriesItem.Builder(getResources().getColor(R.color.seafoam_blue_two))
+        .setRange(0, 100, 54)
+        .setLineWidth(10f)
+        .build();
+
+    seriesItem1.addArcSeriesItemListener(new SeriesItem.SeriesItemListener() {
+      @Override
+      public void onSeriesItemAnimationProgress(float percentComplete, float currentPosition) {
+        porcentageView.setText(String.valueOf((int) currentPosition));
+      }
+
+      @Override
+      public void onSeriesItemDisplayProgress(float percentComplete) {
+
+      }
+    });
+
+    int series1Index = cricleChartView.addSeries(seriesItem1);
   }
 
   @OnClick(R.id.fab_button)
