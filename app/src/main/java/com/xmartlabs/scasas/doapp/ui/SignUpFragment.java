@@ -185,7 +185,7 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
 
   private void createGroups() {
     Stream.of(getResources().getStringArray(R.array.group_array))
-        .forEach(stringResValue -> insertGroup(stringResValue));
+        .forEach(this::insertGroup);
   }
 
   private void insertGroup(String name) {

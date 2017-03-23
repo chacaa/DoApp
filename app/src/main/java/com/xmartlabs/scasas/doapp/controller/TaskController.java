@@ -53,7 +53,7 @@ public class TaskController extends Controller {
 
   public Single<Long> getTasksCount(User user, Group group) {
     return Single
-        .fromCallable(() -> SQLite.select()
+        .fromCallable(() -> SQLite.selectCountOf()
             .from(Task.class)
             .where(Task_Table.user_id.eq(user.getId()))
             .and(Task_Table.group_id.eq(group.getId()))

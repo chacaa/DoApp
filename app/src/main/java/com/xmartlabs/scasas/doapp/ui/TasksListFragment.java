@@ -1,6 +1,8 @@
 package com.xmartlabs.scasas.doapp.ui;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +27,7 @@ import com.xmartlabs.scasas.doapp.model.User;
 import org.threeten.bp.LocalDate;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -49,6 +53,8 @@ public class TasksListFragment extends BaseFragment {
   FloatingActionButton fabButtonView;
   @BindView(R.id.header_title)
   TextView headerTitleView;
+  @BindView(R.id.header_image)
+  ImageView headerImageView;
 
   @Inject
   TaskController taskController;
@@ -75,6 +81,7 @@ public class TasksListFragment extends BaseFragment {
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    setupHeader();
     setupRecyclerView();
     getTasks();
     newTaskView.setVisibility(View.GONE);
@@ -174,5 +181,40 @@ public class TasksListFragment extends BaseFragment {
             Timber.e(error);
           }
         });
+  }
+
+  private void setupHeader() {
+    if (Objects.equals(group.getName(), getString(R.string.shop))) {
+      headerImageView.setImageDrawable(getDrawable(R.drawable.food_image));
+      headerTitleView.setText(getString(R.string.shop));
+      return;
+    }
+    if (Objects.equals(group.getName(), getString(R.string.work))) {
+      headerImageView.setImageDrawable(getDrawable(R.drawable.work));
+      headerTitleView.setText(getString(R.string.work));
+      return;
+    }
+    if (Objects.equals(group.getName(), getString(R.string.health))) {
+      headerImageView.setImageDrawable(getDrawable(R.drawable.healthy));
+      headerTitleView.setText(getString(R.string.health));
+      return;
+    }
+    if (Objects.equals(group.getName(), getString(R.string.travel))) {
+      headerImageView.setImageDrawable(getDrawable(R.drawable.travels));
+      headerTitleView.setText(getString(R.string.travel));
+      return;
+    }
+    if (Objects.equals(group.getName(), getString(R.string.bills))) {
+      headerImageView.setImageDrawable(getDrawable(R.drawable.bills));
+      headerTitleView.setText(getString(R.string.bills));
+      return;
+    }
+    headerImageView.setImageDrawable(getDrawable(R.drawable.cars));
+    headerTitleView.setText(getString(R.string.auto));
+  }
+
+  private Drawable getDrawable(@DrawableRes int image) {
+    //noinspection deprecation
+    return getResources().getDrawable(image);
   }
 }

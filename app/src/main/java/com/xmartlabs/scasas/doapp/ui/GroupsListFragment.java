@@ -112,6 +112,36 @@ public class GroupsListFragment extends BaseFragment {
     goToListOfTasksFragment(group);
   }
 
+  @OnClick(R.id.work_linear)
+  void onClikedWorkGroup() {
+    Group group = getGroup(R.string.work);
+    goToListOfTasksFragment(group);
+  }
+
+  @OnClick(R.id.health_linear)
+  void onClikedHealthGroup() {
+    Group group = getGroup(R.string.health);
+    goToListOfTasksFragment(group);
+  }
+
+  @OnClick(R.id.travel_linear)
+  void onClikedTravelGroup() {
+    Group group = getGroup(R.string.travel);
+    goToListOfTasksFragment(group);
+  }
+
+  @OnClick(R.id.bills_linear)
+  void onClikedBillsGroup() {
+    Group group = getGroup(R.string.bills);
+    goToListOfTasksFragment(group);
+  }
+
+  @OnClick(R.id.auto_linear)
+  void onClikedAutoGroup() {
+    Group group = getGroup(R.string.auto);
+    goToListOfTasksFragment(group);
+  }
+
   @OnClick(R.id.add_task)
   void onClickedAddTextView() {
     Group group = getGroup(groupsSpinnerView.getSelectedItem().toString());
@@ -121,10 +151,9 @@ public class GroupsListFragment extends BaseFragment {
         .date(LocalDate.now())
         .isFinished(false)
         .group(group)
+        .user(user)
         .build();
-    insertTask(task);
-    updateItemCount(group.getName());
-    closeNewTaskView();
+    insertTask(task, group);
   }
 
   private void setFieldsEmpty() {
@@ -159,7 +188,7 @@ public class GroupsListFragment extends BaseFragment {
       @Override
       public void onSuccess(List<Group> groupList) {
         groups = groupList;
-        updateAll();
+        updateAll(groupList);
       }
 
       @Override
@@ -177,16 +206,18 @@ public class GroupsListFragment extends BaseFragment {
   }
 
   private Group getGroup(@StringRes int groupName) {
-    String name = getString(groupName);
+    String name = getResources().getString(groupName);
     return getGroup(name);
   }
 
-  private void insertTask(Task task) {
+  private void insertTask(Task task, Group group) {
     taskController.insertTask(task)
         .subscribe(new SingleSubscriber<Task>() {
           @Override
           public void onSuccess(Task task) {
             Snackbar.make(getView(), R.string.task_added, Snackbar.LENGTH_SHORT).show();
+            updateItemCount(group.getName());
+            closeNewTaskView();
           }
 
           @Override
@@ -224,13 +255,12 @@ public class GroupsListFragment extends BaseFragment {
         getTaskCount(R.string.auto);
         break;
       default:
-        updateAll();
+        updateAll(groups);
     }
   }
 
-  private void updateAll() {
-    Stream.of(R.array.group_array)
-        .forEach(this::getTaskCount);
+  private void updateAll(List<Group> groups) {
+    Stream.of(groups).forEach(this::getTaskCount);
   }
 
   private void getTaskCount(@StringRes int groupName) {
@@ -244,7 +274,22 @@ public class GroupsListFragment extends BaseFragment {
 
       @Override
       public void onError(Throwable error) {
+        Timber.e(error);
+      }
+    });
+  }
 
+  private void getTaskCount(Group group) {
+    taskController.getTasksCount(user, group).subscribe(new SingleSubscriber<Long>() {
+      @Override
+      public void onSuccess(Long taskCount) {
+        int groupName = getStringRes(group.getName());
+        updateItemField(groupName, taskCount);
+      }
+
+      @Override
+      public void onError(Throwable error) {
+        Timber.e(error);
       }
     });
   }
@@ -297,5 +342,11 @@ public class GroupsListFragment extends BaseFragment {
         break;
       default:
     }
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    updateAll(groups);
   }
 }
