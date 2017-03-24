@@ -58,4 +58,5 @@
     <string name="all">All</string>
     <string name="simbol">%</string>
     <string name="completed">Completed</string>
+    <string name="do_it">Do it!</string>
 </resources>

@@ -7,10 +7,13 @@ import com.xmartlabs.scasas.doapp.model.Task_Table;
 import com.xmartlabs.scasas.doapp.model.User;
 import com.xmartlabs.scasas.doapp.ui.SingleFragmentActivity;
 
+import org.threeten.bp.LocalDate;
+
 import java.util.List;
 
 import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 
 /**
@@ -58,6 +61,56 @@ public class TaskController extends Controller {
             .where(Task_Table.user_id.eq(user.getId()))
             .and(Task_Table.group_id.eq(group.getId()))
             .count()
+        )
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io());
+  }
+
+  public Single<Long> getTasksCountForASpecificMonth(User user, LocalDate date) {
+    return Single
+        .fromCallable(() -> SQLite.selectCountOf()
+            .from(Task.class)
+            .where(Task_Table.user_id.eq(user.getId()))
+            .and(Task_Table.date.greaterThanOrEq(date))
+            .and(Task_Table.date.lessThan(date.plusMonths(1)))
+            .count()
+        )
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io());
+  }
+
+  public Single<Long> getFinishedTasksCount(User user, Group group) {
+    return Single
+        .fromCallable(() -> SQLite.selectCountOf()
+            .from(Task.class)
+            .where(Task_Table.user_id.eq(user.getId()))
+            .and(Task_Table.group_id.eq(group.getId()))
+            .and(Task_Table.isFinished.eq(true))
+            .count()
+        )
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io());
+  }
+
+  public Single<Long> getFinishedTasksCountForASpecificMonth(User user, LocalDate date) {
+    return Single
+        .fromCallable(() -> SQLite.selectCountOf()
+            .from(Task.class)
+            .where(Task_Table.user_id.eq(user.getId()))
+            .and(Task_Table.date.greaterThanOrEq(date))
+            .and(Task_Table.date.lessThan(date.plusMonths(1)))
+            .and(Task_Table.isFinished.eq(true))
+            .count()
+        )
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io());
+  }
+
+  public Single<Long> getIntFinishPercentage(User user, LocalDate date) {
+    return Single
+        .zip(getTasksCountForASpecificMonth(user, date),
+            getFinishedTasksCountForASpecificMonth(user, date),
+            (totalCount, finishedCount) -> finishedCount * 100 / totalCount
         )
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io());

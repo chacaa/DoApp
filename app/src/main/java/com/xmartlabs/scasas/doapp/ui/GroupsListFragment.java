@@ -8,7 +8,10 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,6 +26,7 @@ import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.hannesdorfmann.fragmentargs.bundler.ParcelerArgsBundler;
 import com.hookedonplay.decoviewlib.DecoView;
 import com.hookedonplay.decoviewlib.charts.SeriesItem;
+import com.hookedonplay.decoviewlib.events.DecoEvent;
 import com.rey.material.widget.Spinner;
 import com.xmartlabs.scasas.doapp.R;
 import com.xmartlabs.scasas.doapp.controller.GroupController;
@@ -75,6 +79,8 @@ public class GroupsListFragment extends BaseFragment {
   DecoView cricleChartView;
   @BindView(R.id.portcentage)
   TextView porcentageView;
+  @BindView(R.id.main_toolbar)
+  Toolbar toolbar;
 
   @Inject
   GroupController groupController;
@@ -94,6 +100,7 @@ public class GroupsListFragment extends BaseFragment {
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+//    toolbar.setTitle(R.string.do_it);
     getGroups();
     newTaskView.setVisibility(View.GONE);
     String[] items = getResources().getStringArray(R.array.group_array);
@@ -101,32 +108,6 @@ public class GroupsListFragment extends BaseFragment {
     adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
     groupsSpinnerView.setAdapter(adapter);
     adjustSpinnerView(groupsSpinnerView);
-
-    //noinspection deprecation
-    cricleChartView.addSeries(new SeriesItem.Builder(Color.argb(255, 218, 218, 218))
-        .setRange(0, 100, 100)
-        .setLineWidth(10f)
-        .build());
-
-    //noinspection deprecation
-    SeriesItem seriesItem1 = new SeriesItem.Builder(getResources().getColor(R.color.seafoam_blue_two))
-        .setRange(0, 100, 54)
-        .setLineWidth(10f)
-        .build();
-
-    seriesItem1.addArcSeriesItemListener(new SeriesItem.SeriesItemListener() {
-      @Override
-      public void onSeriesItemAnimationProgress(float percentComplete, float currentPosition) {
-        porcentageView.setText(String.valueOf((int) currentPosition));
-      }
-
-      @Override
-      public void onSeriesItemDisplayProgress(float percentComplete) {
-
-      }
-    });
-
-    int series1Index = cricleChartView.addSeries(seriesItem1);
   }
 
   @OnClick(R.id.fab_button)
@@ -382,5 +363,64 @@ public class GroupsListFragment extends BaseFragment {
   public void onResume() {
     super.onResume();
     updateAll(groups);
+    setupChart();
+    LocalDate date = LocalDate.now();
+    date.plusDays(-23);
+    getFinishedPorcentage(date);
+  }
+
+  private void getFinishedPorcentage(LocalDate date) {
+    taskController.getIntFinishPercentage(user, date).subscribe(new SingleSubscriber<Long>() {
+      @Override
+      public void onSuccess(Long percentage) {
+        setupCurrentPercentage(percentage.intValue());
+      }
+
+      @Override
+      public void onError(Throwable error) {
+
+      }
+    });
+  }
+
+  private void setupCurrentPercentage(int percentage) {
+    //noinspection deprecation
+    SeriesItem seriesItem1 = new SeriesItem.Builder(getResources().getColor(R.color.seafoam_blue_two))
+        .setRange(0, 100, 0)
+        .setInterpolator(new DecelerateInterpolator())
+        .setSpinDuration(2000)
+        .setLineWidth(15f)
+        .setSpinClockwise(true)
+        .build();
+
+    seriesItem1.addArcSeriesItemListener(new SeriesItem.SeriesItemListener() {
+      @Override
+      public void onSeriesItemAnimationProgress(float percentComplete, float currentPosition) {
+        porcentageView.setText(String.valueOf((int) currentPosition));
+      }
+
+      @Override
+      public void onSeriesItemDisplayProgress(float percentComplete) {
+
+      }
+    });
+
+    int index = cricleChartView.addSeries(seriesItem1);
+
+    cricleChartView.executeReset();
+
+    cricleChartView.addEvent(new DecoEvent.Builder(percentage)
+        .setIndex(index)
+        .setDelay(500)
+        .build());
+  }
+
+  private void setupChart() {
+    //noinspection deprecation
+    cricleChartView.addSeries(new SeriesItem.Builder(Color.argb(255, 218, 218, 218))
+        .setRange(0, 100, 100)
+        .setLineWidth(15f)
+        .build());
+
   }
 }
