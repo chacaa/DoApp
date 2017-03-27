@@ -52,6 +52,7 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
         .user(user)
         .build();
     startActivity(intent);
+    finish();
   }
 
   private void createOnboardingCards(@StringRes int description, @DrawableRes int iconId) {

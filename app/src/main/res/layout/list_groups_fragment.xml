@@ -43,27 +43,30 @@
                     />
 
                 <TextView
+                    android:id="@+id/month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Month"
                     android:textSize="22sp"
                     android:textColor="@color/white"
                     android:layout_marginTop="25dp"
+                    tools:text="Month"
                     />
 
                 <TextView
+                    android:id="@+id/year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:hint="2017"
                     android:textSize="12sp"
                     android:textColor="@color/white"
                     android:layout_marginTop="50dp"
                     android:alpha="0.7"
+                    tools:text="2017"
                     />
 
                 <ImageView
+                    android:id="@+id/previous_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -72,6 +75,7 @@
                     />
 
                 <ImageView
+                    android:id="@+id/next_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|end"
@@ -146,6 +150,15 @@
                         android:text="@string/do_it"
                         android:textSize="20sp"
                         android:textStyle="bold"
+                        />
+
+                    <ImageView
+                        android:id="@+id/logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/logout"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="10dp"
                         />
 
                 </FrameLayout>
@@ -330,7 +343,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/item"
+                            android:text="@string/zero_item"
                             android:textSize="12sp"
                             />
 
@@ -376,7 +389,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/item"
+                            android:text="@string/zero_item"
                             android:textSize="12sp"
                             />
 
@@ -431,7 +444,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/item"
+                            android:text="@string/zero_item"
                             android:textSize="12sp"
                             />
 
@@ -477,7 +490,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/item"
+                            android:text="@string/zero_item"
                             android:textSize="12sp"
                             />
 
@@ -532,7 +545,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/item"
+                            android:text="@string/zero_item"
                             android:textSize="12sp"
                             />
 
@@ -579,7 +592,7 @@
                             android:alpha="0.5"
                             android:gravity="center"
                             android:layout_marginBottom="20dp"
-                            android:text="@string/item"
+                            android:text="@string/zero_item"
                             android:textSize="12sp"
                             />
 

@@ -115,6 +115,7 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
                 .user(user)
                 .build();
             getContext().startActivity(intent);
+            getActivity().finish();
           }
 
           @Override

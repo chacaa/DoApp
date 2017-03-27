@@ -36,7 +36,9 @@ import com.xmartlabs.scasas.doapp.model.Task;
 import com.xmartlabs.scasas.doapp.model.User;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -79,8 +81,10 @@ public class GroupsListFragment extends BaseFragment {
   DecoView cricleChartView;
   @BindView(R.id.portcentage)
   TextView porcentageView;
-  @BindView(R.id.main_toolbar)
-  Toolbar toolbar;
+  @BindView(R.id.month)
+  TextView monthTextView;
+  @BindView(R.id.year)
+  TextView yearTextView;
 
   @Inject
   GroupController groupController;
@@ -90,7 +94,8 @@ public class GroupsListFragment extends BaseFragment {
   @Arg(bundler = ParcelerArgsBundler.class)
   User user;
 
-  private List<Group> groups = new ArrayList<Group>();
+  private LocalDate date;
+  private List<Group> groups = new ArrayList<>();
 
   @Override
   protected int getLayoutResId() {
@@ -100,7 +105,7 @@ public class GroupsListFragment extends BaseFragment {
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-//    toolbar.setTitle(R.string.do_it);
+    setupCurrentDate();
     getGroups();
     newTaskView.setVisibility(View.GONE);
     String[] items = getResources().getStringArray(R.array.group_array);
@@ -108,6 +113,12 @@ public class GroupsListFragment extends BaseFragment {
     adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
     groupsSpinnerView.setAdapter(adapter);
     adjustSpinnerView(groupsSpinnerView);
+    setupDateFields();
+  }
+
+  private void setupCurrentDate() {
+    LocalDate actualDate = LocalDate.now();
+    date = LocalDate.of(actualDate.getYear(), actualDate.getMonth(), 1);
   }
 
   @OnClick(R.id.fab_button)
@@ -169,6 +180,32 @@ public class GroupsListFragment extends BaseFragment {
         .user(user)
         .build();
     insertTask(task, group);
+    setupCurrentDate();
+    getFinishedPorcentage();
+    setupDateFields();
+  }
+
+  @OnClick(R.id.next_month)
+  void onClickedNextMonthButton() {
+    date = date.plusMonths(1);
+    getFinishedPorcentage();
+    setupDateFields();
+  }
+
+  @OnClick(R.id.previous_month)
+  void onClickedPrevMonthButton() {
+    date = date.minusMonths(1);
+    getFinishedPorcentage();
+    setupDateFields();
+  }
+
+  @OnClick(R.id.logout)
+  void onClickedLogoutButton() {
+    Intent intent = Henson.with(getContext())
+            .gotoSignInActivity()
+            .build();
+    getContext().startActivity(intent);
+    getActivity().finish();
   }
 
   private void setFieldsEmpty() {
@@ -363,13 +400,13 @@ public class GroupsListFragment extends BaseFragment {
   public void onResume() {
     super.onResume();
     updateAll(groups);
+    setupCurrentDate();
     setupChart();
-    LocalDate date = LocalDate.now();
-    date.plusDays(-23);
-    getFinishedPorcentage(date);
+    getFinishedPorcentage();
+    setupDateFields();
   }
 
-  private void getFinishedPorcentage(LocalDate date) {
+  private void getFinishedPorcentage() {
     taskController.getIntFinishPercentage(user, date).subscribe(new SingleSubscriber<Long>() {
       @Override
       public void onSuccess(Long percentage) {
@@ -378,7 +415,7 @@ public class GroupsListFragment extends BaseFragment {
 
       @Override
       public void onError(Throwable error) {
-
+        Timber.e(error);
       }
     });
   }
@@ -392,7 +429,6 @@ public class GroupsListFragment extends BaseFragment {
         .setLineWidth(15f)
         .setSpinClockwise(true)
         .build();
-
     seriesItem1.addArcSeriesItemListener(new SeriesItem.SeriesItemListener() {
       @Override
       public void onSeriesItemAnimationProgress(float percentComplete, float currentPosition) {
@@ -404,14 +440,11 @@ public class GroupsListFragment extends BaseFragment {
 
       }
     });
-
     int index = cricleChartView.addSeries(seriesItem1);
-
     cricleChartView.executeReset();
-
     cricleChartView.addEvent(new DecoEvent.Builder(percentage)
         .setIndex(index)
-        .setDelay(500)
+        .setDelay(100)
         .build());
   }
 
@@ -421,6 +454,14 @@ public class GroupsListFragment extends BaseFragment {
         .setRange(0, 100, 100)
         .setLineWidth(15f)
         .build());
+  }
 
+  private void setupDateFields() {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
+    String stringDate = date.format(formatter);
+    monthTextView.setText(stringDate);
+    formatter = DateTimeFormatter.ofPattern("YYYY");
+    stringDate = date.format(formatter);
+    yearTextView.setText(stringDate);
   }
 }

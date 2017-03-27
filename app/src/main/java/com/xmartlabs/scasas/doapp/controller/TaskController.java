@@ -109,8 +109,12 @@ public class TaskController extends Controller {
   public Single<Long> getIntFinishPercentage(User user, LocalDate date) {
     return Single
         .zip(getTasksCountForASpecificMonth(user, date),
-            getFinishedTasksCountForASpecificMonth(user, date),
-            (totalCount, finishedCount) -> finishedCount * 100 / totalCount
+                getFinishedTasksCountForASpecificMonth(user, date), (totalCount, finishedCount) -> {
+                    if (totalCount == 0) {
+                        return 0L;
+                    }
+                    return finishedCount * 100 / totalCount;
+                }
         )
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io());

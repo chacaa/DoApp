@@ -43,10 +43,15 @@ public class SignInFragment extends BaseFragment {
     return R.layout.singin_fragment;
   }
 
+  @SuppressWarnings("deprecation")
   @OnClick(R.id.sign_up)
   void onClickedSignUp() {
     Intent intent = Henson.with(getContext()).gotoSignUpActivity().build();
     getContext().startActivity(intent);
+    usernameView.setText(null);
+    usernameView.setHintTextColor(getResources().getColor(R.color.white));
+    passwordView.setText(null);
+    passwordView.setHintTextColor(getResources().getColor(R.color.white));
   }
 
   @OnClick(R.id.sign_in)
@@ -64,6 +69,7 @@ public class SignInFragment extends BaseFragment {
           .user(user)
           .build();
       getContext().startActivity(intent);
+      getActivity().finish();
     } else {
       showSnackbarMessage(R.string.wrong_password);
     }
