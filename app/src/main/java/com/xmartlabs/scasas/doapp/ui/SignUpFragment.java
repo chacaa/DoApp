@@ -113,9 +113,9 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
             Intent intent = Henson.with(getContext())
                 .gotoOnBoardingActivity()
                 .user(user)
-                .build();
+                .build()
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             getContext().startActivity(intent);
-            getActivity().finish();
           }
 
           @Override
@@ -201,7 +201,7 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
 
       @Override
       public void onError(Throwable error) {
-        Snackbar.make(getView(),error.toString(),Snackbar.LENGTH_LONG);
+        Snackbar.make(getView(), error.toString(), Snackbar.LENGTH_LONG);
         Timber.e(error);
       }
     });

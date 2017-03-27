@@ -5,15 +5,20 @@ import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
@@ -51,10 +56,14 @@ public class TasksListFragment extends BaseFragment {
   EditText descriptionView;
   @BindView(R.id.fab_button)
   FloatingActionButton fabButtonView;
-  @BindView(R.id.header_title)
-  TextView headerTitleView;
+  //  @BindView(R.id.header_title)
+//  TextView headerTitleView;
   @BindView(R.id.header_image)
   ImageView headerImageView;
+  @BindView(R.id.main_collapsing)
+  CollapsingToolbarLayout collapsingToolbarView;
+  @BindView(R.id.main_toolbar)
+  Toolbar toolbarView;
 
   @Inject
   TaskController taskController;
@@ -73,18 +82,18 @@ public class TasksListFragment extends BaseFragment {
   }
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setHasOptionsMenu(true);
-  }
-
-  @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    AppCompatActivity activity = (AppCompatActivity) getActivity();
+    activity.setSupportActionBar(toolbarView);
+    activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setupHeader();
     setupRecyclerView();
     getTasks();
     newTaskView.setVisibility(View.GONE);
+    //noinspection deprecation
+    collapsingToolbarView.setExpandedTitleColor(getResources().getColor(android.R.color.white));
+
   }
 
   private void setupRecyclerView() {
@@ -103,6 +112,7 @@ public class TasksListFragment extends BaseFragment {
   @OnClick(R.id.close)
   void onClickedCloseImageView() {
     closeNewTaskView();
+    ((BaseAppCompatActivity) getActivity()).hideKeyboard();
   }
 
   @OnClick(R.id.add_task)
@@ -116,6 +126,7 @@ public class TasksListFragment extends BaseFragment {
         .group(group)
         .build();
     insertTask(task);
+    ((BaseAppCompatActivity) getActivity()).hideKeyboard();
     closeNewTaskView();
   }
 
@@ -140,7 +151,7 @@ public class TasksListFragment extends BaseFragment {
           @Override
           public void onSuccess(Task task) {
             int message = task.isFinished() ? R.string.good_job : R.string.cmon_you_can_do_this;
-            Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
           }
 
           @Override
@@ -156,12 +167,13 @@ public class TasksListFragment extends BaseFragment {
           @Override
           public void onSuccess(Task task) {
             adapter.addTask(task);
-            Snackbar.make(getView(), R.string.task_added, Snackbar.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
           }
 
           @Override
           public void onError(Throwable error) {
             Timber.e(error);
+            Toast.makeText(getContext(), R.string.failed_add_task, Toast.LENGTH_SHORT).show();
           }
         });
   }
@@ -186,31 +198,37 @@ public class TasksListFragment extends BaseFragment {
   private void setupHeader() {
     if (Objects.equals(group.getName(), getString(R.string.shop))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.food_image));
-      headerTitleView.setText(getString(R.string.shop));
+      collapsingToolbarView.setTitle(getString(R.string.shop));
+//      headerTitleView.setText(getString(R.string.shop));
       return;
     }
     if (Objects.equals(group.getName(), getString(R.string.work))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.work));
-      headerTitleView.setText(getString(R.string.work));
+      collapsingToolbarView.setTitle(getString(R.string.work));
+//      headerTitleView.setText(getString(R.string.work));
       return;
     }
     if (Objects.equals(group.getName(), getString(R.string.health))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.healthy));
-      headerTitleView.setText(getString(R.string.health));
+      collapsingToolbarView.setTitle(getString(R.string.health));
+//      headerTitleView.setText(getString(R.string.health));
       return;
     }
     if (Objects.equals(group.getName(), getString(R.string.travel))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.travels));
-      headerTitleView.setText(getString(R.string.travel));
+      collapsingToolbarView.setTitle(getString(R.string.travel));
+//      headerTitleView.setText(getString(R.string.travel));
       return;
     }
     if (Objects.equals(group.getName(), getString(R.string.bills))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.bills));
-      headerTitleView.setText(getString(R.string.bills));
+      collapsingToolbarView.setTitle(getString(R.string.bills));
+//      headerTitleView.setText(getString(R.string.bills));
       return;
     }
     headerImageView.setImageDrawable(getDrawable(R.drawable.cars));
-    headerTitleView.setText(getString(R.string.auto));
+    collapsingToolbarView.setTitle(getString(R.string.auto));
+//    headerTitleView.setText(getString(R.string.auto));
   }
 
   private Drawable getDrawable(@DrawableRes int image) {

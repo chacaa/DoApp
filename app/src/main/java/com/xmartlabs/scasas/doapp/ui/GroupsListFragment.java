@@ -7,16 +7,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.annimon.stream.Stream;
 
@@ -38,7 +35,6 @@ import com.xmartlabs.scasas.doapp.model.User;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -130,6 +126,7 @@ public class GroupsListFragment extends BaseFragment {
   @OnClick(R.id.close)
   void onClickedCloseImageView() {
     closeNewTaskView();
+    hideSoftKeyboard();
   }
 
   @OnClick(R.id.shop_linear)
@@ -180,6 +177,7 @@ public class GroupsListFragment extends BaseFragment {
         .user(user)
         .build();
     insertTask(task, group);
+    hideSoftKeyboard();
     setupCurrentDate();
     getFinishedPorcentage();
     setupDateFields();
@@ -202,10 +200,10 @@ public class GroupsListFragment extends BaseFragment {
   @OnClick(R.id.logout)
   void onClickedLogoutButton() {
     Intent intent = Henson.with(getContext())
-            .gotoSignInActivity()
-            .build();
+        .gotoSignInActivity()
+        .build()
+        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     getContext().startActivity(intent);
-    getActivity().finish();
   }
 
   private void setFieldsEmpty() {
@@ -267,7 +265,7 @@ public class GroupsListFragment extends BaseFragment {
         .subscribe(new SingleSubscriber<Task>() {
           @Override
           public void onSuccess(Task task) {
-            Snackbar.make(getView(), R.string.task_added, Snackbar.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
             updateItemCount(group.getName());
             closeNewTaskView();
           }
@@ -463,5 +461,9 @@ public class GroupsListFragment extends BaseFragment {
     formatter = DateTimeFormatter.ofPattern("YYYY");
     stringDate = date.format(formatter);
     yearTextView.setText(stringDate);
+  }
+
+  private void hideSoftKeyboard() {
+    ((BaseAppCompatActivity) getActivity()).hideKeyboard();
   }
 }

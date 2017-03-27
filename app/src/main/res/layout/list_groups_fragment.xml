@@ -47,9 +47,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:textSize="22sp"
-                    android:textColor="@color/white"
                     android:layout_marginTop="25dp"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
                     tools:text="Month"
                     />
 
@@ -57,11 +57,11 @@
                     android:id="@+id/year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:textSize="12sp"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="50dp"
                     android:alpha="0.7"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
                     tools:text="2017"
                     />
 
@@ -69,18 +69,22 @@
                     android:id="@+id/previous_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/stats_arrow_left"
                     android:layout_marginStart="15dp"
+                    android:src="@drawable/stats_arrow_left"
                     />
 
                 <ImageView
                     android:id="@+id/next_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_gravity="center_vertical|end"
-                    android:src="@drawable/stats_arrow_right"
                     android:layout_marginEnd="15dp"
+                    android:src="@drawable/stats_arrow_right"
                     />
 
                 <com.hookedonplay.decoviewlib.DecoView
@@ -122,9 +126,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginTop="80dp"
                     android:text="@string/completed"
                     android:textSize="14sp"
-                    android:layout_marginTop="80dp"
                     />
 
             </FrameLayout>
@@ -133,8 +137,8 @@
                 android:id="@+id/main_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
                 android:background="@color/white"
+                app:layout_collapseMode="pin"
                 >
 
                 <FrameLayout
@@ -146,8 +150,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|center_vertical"
-                        android:textColor="@color/reddish_pink"
                         android:text="@string/do_it"
+                        android:textColor="@color/reddish_pink"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         />
@@ -156,14 +160,14 @@
                         android:id="@+id/logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/logout"
                         android:layout_gravity="center_vertical|end"
                         android:layout_marginEnd="10dp"
+                        android:src="@drawable/logout"
                         />
 
                 </FrameLayout>
 
-                </android.support.v7.widget.Toolbar>
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -173,9 +177,11 @@
         android:id="@+id/fab_button"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:background="@color/reddish_pink"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:src="@drawable/add"
+        app:fab_backgroundColor="@color/reddish_pink"
         app:layout_anchor="@id/main_appbar"
         app:layout_anchorGravity="bottom|right|end"
         />
@@ -195,63 +201,62 @@
             android:orientation="vertical"
             >
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="34.5dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:layout_marginBottom="10dp"
                 android:layout_marginEnd="25dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 >
 
-                <com.rey.material.widget.Spinner
-                    android:id="@+id/groups_spinner"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="-2dp"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="20dp"
-                    app:spn_arrowColor="@color/white"
-                    app:spn_arrowSize="5dp"
-                    app:spn_arrowSwitchMode="true"
-                    app:spn_dividerColor="@android:color/transparent"
-                    app:spn_label="Spinner"
-                    />
-
                 <LinearLayout
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    />
+                    android:id="@+id/linear_groups_spinner"
+                    android:layout_width="70dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentStart="true"
+                    >
+
+                    <com.rey.material.widget.Spinner
+                        android:id="@+id/groups_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="-8dp"
+                        android:paddingEnd="10dp"
+                        app:spn_arrowColor="@color/white"
+                        app:spn_arrowSize="5dp"
+                        app:spn_arrowSwitchMode="true"
+                        app:spn_dividerColor="@android:color/transparent"
+                        app:spn_label="Spinner"
+                        />
+
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/close"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/icon_close"
-
                     />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34.5dp"
-                android:gravity="center_vertical"
-                android:layout_marginEnd="25dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal"
-                >
 
                 <EditText
                     android:id="@+id/title_edit_text"
-                    android:layout_width="300dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:hint="@string/add_title"
                     android:inputType="textNoSuggestions"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/linear_groups_spinner"
                     android:layout_marginEnd="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toStartOf="@+id/add_task"
                     android:maxLines="1"
                     android:nextFocusForward="@+id/description_edit_text"
                     android:textColor="@color/white"
@@ -261,40 +266,35 @@
 
                 <TextView
                     android:id="@+id/add_task"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/close"
+                    android:layout_marginTop="10dp"
                     android:text="@string/add"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-
                     />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="34.5dp"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginStart="25dp"
-                android:orientation="horizontal"
-                >
 
                 <EditText
                     android:id="@+id/description_edit_text"
-                    android:layout_width="300dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:hint="@string/add_description"
                     android:inputType="textNoSuggestions"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/title_edit_text"
                     android:layout_marginEnd="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toStartOf="@+id/add_task"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     />
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

@@ -67,9 +67,9 @@ public class SignInFragment extends BaseFragment {
       Intent intent = Henson.with(getContext())
           .gotoGroupsListActivity()
           .user(user)
-          .build();
+          .build()
+          .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
       getContext().startActivity(intent);
-      getActivity().finish();
     } else {
       showSnackbarMessage(R.string.wrong_password);
     }

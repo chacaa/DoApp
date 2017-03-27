@@ -62,9 +62,17 @@
         <activity
             android:launchMode="singleTask"
             android:name=".ui.TasksListActivity"
-            android:screenOrientation="portrait"
             android:parentActivityName=".ui.GroupsListActivity"
-            />
+            android:screenOrientation="portrait"
+            >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.GroupsListActivity"
+                />
+
+        </activity>
 
         <activity
             android:label="@string/do_it"

@@ -50,9 +50,9 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     Intent intent = Henson.with(getApplicationContext())
         .gotoGroupsListActivity()
         .user(user)
-        .build();
+        .build()
+        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     startActivity(intent);
-    finish();
   }
 
   private void createOnboardingCards(@StringRes int description, @DrawableRes int iconId) {
