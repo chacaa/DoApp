@@ -59,13 +59,13 @@ public class GroupsListFragment extends BaseFragment {
   DecoView cricleChartView;
   @BindView(R.id.description_edit_text)
   EditText descriptionView;
-  @BindView(R.id.groups_spinner)
+  @BindView(R.id.fab_button)
   FloatingActionButton fabButtonView;
-  @BindView(R.id.new_task)
+  @BindView(R.id.groups_spinner)
   Spinner groupsSpinnerView;
   @BindView(R.id.health_items)
   TextView healthItemsView;
-  @BindView(R.id.fab_button)
+  @BindView(R.id.new_task)
   LinearLayout newTaskView;
   @BindView(R.id.month)
   TextView monthTextView;
