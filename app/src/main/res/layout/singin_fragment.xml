@@ -26,22 +26,31 @@
         android:orientation="vertical"
         >
 
-        <TextView
-            android:id="@+id/sign_in"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:background="@color/reddish_pink"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="@string/sing_in"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            />
+            >
+
+            <TextView
+                android:id="@+id/sign_in"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/sing_in"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/sign_up"
             android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:gravity="center"
             android:orientation="horizontal"

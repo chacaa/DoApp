@@ -51,34 +51,34 @@ import timber.log.Timber;
  */
 @FragmentWithArgs
 public class GroupsListFragment extends BaseFragment {
-  @BindView(R.id.groups_spinner)
-  Spinner groupsSpinnerView;
-  @BindView(R.id.fab_button)
-  FloatingActionButton fabButtonView;
-  @BindView(R.id.new_task)
-  LinearLayout newTaskView;
-  @BindView(R.id.title_edit_text)
-  EditText titleView;
-  @BindView(R.id.description_edit_text)
-  EditText descriptionView;
-  @BindView(R.id.shop_items)
-  TextView shopItemsView;
-  @BindView(R.id.work_items)
-  TextView workItemsView;
-  @BindView(R.id.health_items)
-  TextView healthItemsView;
-  @BindView(R.id.travel_items)
-  TextView travelItemsView;
-  @BindView(R.id.bills_items)
-  TextView billsItemsView;
   @BindView(R.id.auto_items)
   TextView autoItemsView;
+  @BindView(R.id.bills_items)
+  TextView billsItemsView;
   @BindView(R.id.circle_chart)
   DecoView cricleChartView;
-  @BindView(R.id.portcentage)
-  TextView porcentageView;
+  @BindView(R.id.description_edit_text)
+  EditText descriptionView;
+  @BindView(R.id.groups_spinner)
+  FloatingActionButton fabButtonView;
+  @BindView(R.id.new_task)
+  Spinner groupsSpinnerView;
+  @BindView(R.id.health_items)
+  TextView healthItemsView;
+  @BindView(R.id.fab_button)
+  LinearLayout newTaskView;
   @BindView(R.id.month)
   TextView monthTextView;
+  @BindView(R.id.portcentage)
+  TextView percentageView;
+  @BindView(R.id.shop_items)
+  TextView shopItemsView;
+  @BindView(R.id.title_edit_text)
+  EditText titleView;
+  @BindView(R.id.travel_items)
+  TextView travelItemsView;
+  @BindView(R.id.work_items)
+  TextView workItemsView;
   @BindView(R.id.year)
   TextView yearTextView;
 
@@ -179,21 +179,21 @@ public class GroupsListFragment extends BaseFragment {
     insertTask(task, group);
     hideSoftKeyboard();
     setupCurrentDate();
-    getFinishedPorcentage();
+    getFinishedPercentage();
     setupDateFields();
   }
 
   @OnClick(R.id.next_month)
   void onClickedNextMonthButton() {
     date = date.plusMonths(1);
-    getFinishedPorcentage();
+    getFinishedPercentage();
     setupDateFields();
   }
 
   @OnClick(R.id.previous_month)
   void onClickedPrevMonthButton() {
     date = date.minusMonths(1);
-    getFinishedPorcentage();
+    getFinishedPercentage();
     setupDateFields();
   }
 
@@ -400,11 +400,11 @@ public class GroupsListFragment extends BaseFragment {
     updateAll(groups);
     setupCurrentDate();
     setupChart();
-    getFinishedPorcentage();
+    getFinishedPercentage();
     setupDateFields();
   }
 
-  private void getFinishedPorcentage() {
+  private void getFinishedPercentage() {
     taskController.getIntFinishPercentage(user, date).subscribe(new SingleSubscriber<Long>() {
       @Override
       public void onSuccess(Long percentage) {
@@ -430,7 +430,9 @@ public class GroupsListFragment extends BaseFragment {
     seriesItem1.addArcSeriesItemListener(new SeriesItem.SeriesItemListener() {
       @Override
       public void onSeriesItemAnimationProgress(float percentComplete, float currentPosition) {
-        porcentageView.setText(String.valueOf((int) currentPosition));
+        if (isAdded()) {
+          percentageView.setText(String.valueOf((int) currentPosition));
+        }
       }
 
       @Override

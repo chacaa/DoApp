@@ -61,4 +61,5 @@
     <string name="completed">Completed</string>
     <string name="do_it">Do it!</string>
     <string name="failed_add_task">Failed to add the task</string>
+    <string name="no_task">No tasks added yet</string>
 </resources>

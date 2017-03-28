@@ -7,8 +7,6 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,24 +44,24 @@ import timber.log.Timber;
  */
 @FragmentWithArgs
 public class TasksListFragment extends BaseFragment {
-  @BindView(R.id.task_recycler_view)
-  RecyclerView recyclerView;
-  @BindView(R.id.new_task)
-  LinearLayout newTaskView;
-  @BindView(R.id.title_edit_text)
-  EditText titleView;
+  @BindView(R.id.main_collapsing)
+  CollapsingToolbarLayout collapsingToolbarView;
   @BindView(R.id.description_edit_text)
   EditText descriptionView;
   @BindView(R.id.fab_button)
   FloatingActionButton fabButtonView;
-  //  @BindView(R.id.header_title)
-//  TextView headerTitleView;
   @BindView(R.id.header_image)
   ImageView headerImageView;
-  @BindView(R.id.main_collapsing)
-  CollapsingToolbarLayout collapsingToolbarView;
+  @BindView(R.id.new_task)
+  LinearLayout newTaskView;
+  @BindView(R.id.no_task_text)
+  TextView noTaskTextView;
+  @BindView(R.id.task_recycler_view)
+  RecyclerView recyclerView;
   @BindView(R.id.main_toolbar)
   Toolbar toolbarView;
+  @BindView(R.id.title_edit_text)
+  EditText titleView;
 
   @Inject
   TaskController taskController;
@@ -93,7 +91,6 @@ public class TasksListFragment extends BaseFragment {
     newTaskView.setVisibility(View.GONE);
     //noinspection deprecation
     collapsingToolbarView.setExpandedTitleColor(getResources().getColor(android.R.color.white));
-
   }
 
   private void setupRecyclerView() {
@@ -167,6 +164,7 @@ public class TasksListFragment extends BaseFragment {
           @Override
           public void onSuccess(Task task) {
             adapter.addTask(task);
+            noTaskTextView.setVisibility(View.GONE);
             Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
           }
 
@@ -185,6 +183,7 @@ public class TasksListFragment extends BaseFragment {
           public void onSuccess(List<Task> tasks) {
             if (!tasks.isEmpty()) {
               adapter.setTasks(tasks);
+              noTaskTextView.setVisibility(tasks.size() == 0 ? View.VISIBLE : View.GONE);
             }
           }
 
@@ -199,36 +198,30 @@ public class TasksListFragment extends BaseFragment {
     if (Objects.equals(group.getName(), getString(R.string.shop))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.food_image));
       collapsingToolbarView.setTitle(getString(R.string.shop));
-//      headerTitleView.setText(getString(R.string.shop));
       return;
     }
     if (Objects.equals(group.getName(), getString(R.string.work))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.work));
       collapsingToolbarView.setTitle(getString(R.string.work));
-//      headerTitleView.setText(getString(R.string.work));
       return;
     }
     if (Objects.equals(group.getName(), getString(R.string.health))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.healthy));
       collapsingToolbarView.setTitle(getString(R.string.health));
-//      headerTitleView.setText(getString(R.string.health));
       return;
     }
     if (Objects.equals(group.getName(), getString(R.string.travel))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.travels));
       collapsingToolbarView.setTitle(getString(R.string.travel));
-//      headerTitleView.setText(getString(R.string.travel));
       return;
     }
     if (Objects.equals(group.getName(), getString(R.string.bills))) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.bills));
       collapsingToolbarView.setTitle(getString(R.string.bills));
-//      headerTitleView.setText(getString(R.string.bills));
       return;
     }
     headerImageView.setImageDrawable(getDrawable(R.drawable.cars));
     collapsingToolbarView.setTitle(getString(R.string.auto));
-//    headerTitleView.setText(getString(R.string.auto));
   }
 
   private Drawable getDrawable(@DrawableRes int image) {

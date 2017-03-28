@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import com.codemybrainsout.onboarder.AhoyOnboarderActivity;
 import com.codemybrainsout.onboarder.AhoyOnboarderCard;
 import com.f2prateek.dart.Dart;
-import com.f2prateek.dart.HensonNavigable;
 import com.f2prateek.dart.InjectExtra;
 import com.xmartlabs.scasas.doapp.R;
 import com.xmartlabs.scasas.doapp.model.User;
@@ -26,8 +25,8 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
   @InjectExtra
   User user;
 
-  private List<AhoyOnboarderCard> pages = new ArrayList<>();
   private ViewPager cardViewPager;
+  private List<AhoyOnboarderCard> pages = new ArrayList<>();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     showNavigationControls(false);
     setOnboardPages(pages);
     setFinishButtonTitle(R.string.lets_do_it);
-    cardViewPager.setPadding(75, 276, 75, 281);
+    cardViewPager.setPadding(75, 86, 75, 91);
   }
 
   @Override
