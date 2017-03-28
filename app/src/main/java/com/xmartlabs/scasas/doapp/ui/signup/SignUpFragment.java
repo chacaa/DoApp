@@ -1,4 +1,4 @@
-package com.xmartlabs.scasas.doapp.ui;
+package com.xmartlabs.scasas.doapp.ui.signup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.annimon.stream.Stream;
-import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.trello.rxlifecycle.RxLifecycle;
 import com.trello.rxlifecycle.android.FragmentEvent;
@@ -26,6 +25,8 @@ import com.xmartlabs.scasas.doapp.controller.UserController;
 import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.User;
 import com.xmartlabs.scasas.doapp.R;
+import com.xmartlabs.scasas.doapp.ui.BaseFragment;
+import com.xmartlabs.scasas.doapp.ui.Henson;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;

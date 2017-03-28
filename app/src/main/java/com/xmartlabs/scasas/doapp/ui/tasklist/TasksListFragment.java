@@ -1,4 +1,4 @@
-package com.xmartlabs.scasas.doapp.ui;
+package com.xmartlabs.scasas.doapp.ui.tasklist;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -26,6 +26,8 @@ import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.Task;
 import com.xmartlabs.scasas.doapp.R;
 import com.xmartlabs.scasas.doapp.model.User;
+import com.xmartlabs.scasas.doapp.ui.BaseAppCompatActivity;
+import com.xmartlabs.scasas.doapp.ui.BaseFragment;
 
 import org.threeten.bp.LocalDate;
 

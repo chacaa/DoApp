@@ -43,33 +43,33 @@
 
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.SignInActivity"
+            android:name=".ui.signin.SignInActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.SignUpActivity"
+            android:name=".ui.signup.SignUpActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.OnBoardingActivity"
+            android:name=".ui.onboarding.OnBoardingActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.TasksListActivity"
-            android:parentActivityName=".ui.GroupsListActivity"
+            android:name=".ui.tasklist.TasksListActivity"
+            android:parentActivityName=".ui.grouplist.GroupsListActivity"
             android:screenOrientation="portrait"
             >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.GroupsListActivity"
+                android:value=".ui.grouplist.GroupsListActivity"
                 />
 
         </activity>
@@ -77,7 +77,7 @@
         <activity
             android:label="@string/do_it"
             android:launchMode="singleTask"
-            android:name=".ui.GroupsListActivity"
+            android:name=".ui.grouplist.GroupsListActivity"
             android:screenOrientation="portrait"
             />
 

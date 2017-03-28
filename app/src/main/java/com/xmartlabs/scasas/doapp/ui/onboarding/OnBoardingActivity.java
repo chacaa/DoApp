@@ -1,4 +1,4 @@
-package com.xmartlabs.scasas.doapp.ui;
+package com.xmartlabs.scasas.doapp.ui.onboarding;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import com.f2prateek.dart.Dart;
 import com.f2prateek.dart.InjectExtra;
 import com.xmartlabs.scasas.doapp.R;
 import com.xmartlabs.scasas.doapp.model.User;
+import com.xmartlabs.scasas.doapp.ui.Henson;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -32,7 +32,7 @@ public abstract class BaseAppCompatActivity extends RxAppCompatActivity {
     getSupportFragmentManager().beginTransaction().remove(fragment).commit();
   }
 
-  protected void hideKeyboard() {
+  public void hideKeyboard() {
     InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
     View currentFocus = this.getCurrentFocus();
     if (currentFocus != null) {

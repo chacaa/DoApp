@@ -1,4 +1,4 @@
-package com.xmartlabs.scasas.doapp.ui;
+package com.xmartlabs.scasas.doapp.ui.grouplist;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -31,6 +31,9 @@ import com.xmartlabs.scasas.doapp.controller.TaskController;
 import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.Task;
 import com.xmartlabs.scasas.doapp.model.User;
+import com.xmartlabs.scasas.doapp.ui.BaseAppCompatActivity;
+import com.xmartlabs.scasas.doapp.ui.BaseFragment;
+import com.xmartlabs.scasas.doapp.ui.Henson;
 
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;

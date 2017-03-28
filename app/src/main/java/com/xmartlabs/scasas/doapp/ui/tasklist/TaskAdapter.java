@@ -1,4 +1,4 @@
-package com.xmartlabs.scasas.doapp.ui;
+package com.xmartlabs.scasas.doapp.ui.tasklist;
 
 import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;

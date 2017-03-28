@@ -1,4 +1,4 @@
-package com.xmartlabs.scasas.doapp.ui;
+package com.xmartlabs.scasas.doapp.ui.signin;
 
 import android.content.Intent;
 import android.support.annotation.LayoutRes;
@@ -11,6 +11,8 @@ import com.trello.rxlifecycle.android.FragmentEvent;
 import com.xmartlabs.scasas.doapp.controller.UserController;
 import com.xmartlabs.scasas.doapp.model.User;
 import com.xmartlabs.scasas.doapp.R;
+import com.xmartlabs.scasas.doapp.ui.BaseFragment;
+import com.xmartlabs.scasas.doapp.ui.Henson;
 
 import java.util.concurrent.CancellationException;
 
