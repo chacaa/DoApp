@@ -1,5 +1,8 @@
 package com.xmartlabs.scasas.doapp.controller;
 
+import android.support.annotation.CheckResult;
+import android.support.annotation.NonNull;
+
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.Task;
@@ -18,7 +21,8 @@ import rx.schedulers.Schedulers;
  * Created by scasas on 3/16/17.
  */
 public class TaskController extends Controller {
-  public Single<Task> insertTask(Task task) {
+  @CheckResult
+  public Single<Task> insertTask(@NonNull Task task) {
     return Single
         .fromCallable(() -> {
           task.insert();
@@ -28,7 +32,8 @@ public class TaskController extends Controller {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<List<Task>> getTasks(User user, Group group) {
+  @CheckResult
+  public Single<List<Task>> getTasks(@NonNull User user, @NonNull Group group) {
     return Single
         .fromCallable(() -> SQLite.select()
             .from(Task.class)
@@ -40,7 +45,8 @@ public class TaskController extends Controller {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<Task> changeTaskState(Task task) {
+  @CheckResult
+  public Single<Task> changeTaskState(@NonNull Task task) {
     return Single
         .fromCallable(() -> {
           task.setFinished(!task.isFinished());
@@ -51,7 +57,8 @@ public class TaskController extends Controller {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<Long> getTasksCount(User user, Group group) {
+  @CheckResult
+  public Single<Long> getTasksCount(@NonNull User user, @NonNull Group group) {
     return Single
         .fromCallable(() -> SQLite.selectCountOf()
             .from(Task.class)
@@ -63,7 +70,7 @@ public class TaskController extends Controller {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<Long> getTasksCountForASpecificMonth(User user, LocalDate date) {
+  private Single<Long> getTasksCountForASpecificMonth(@NonNull User user, @NonNull LocalDate date) {
     return Single
         .fromCallable(() -> SQLite.selectCountOf()
             .from(Task.class)
@@ -76,7 +83,8 @@ public class TaskController extends Controller {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<Long> getFinishedTasksCount(User user, Group group) {
+  @CheckResult
+  public Single<Long> getFinishedTasksCount(@NonNull User user, @NonNull Group group) {
     return Single
         .fromCallable(() -> SQLite.selectCountOf()
             .from(Task.class)
@@ -89,7 +97,7 @@ public class TaskController extends Controller {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<Long> getFinishedTasksCountForASpecificMonth(User user, LocalDate date) {
+  private Single<Long> getFinishedTasksCountForASpecificMonth(@NonNull User user, @NonNull LocalDate date) {
     return Single
         .fromCallable(() -> SQLite.selectCountOf()
             .from(Task.class)
@@ -103,7 +111,8 @@ public class TaskController extends Controller {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<Long> getFinishPercentage(User user, LocalDate date) {
+  @CheckResult
+  public Single<Long> getFinishPercentage(@NonNull User user, @NonNull LocalDate date) {
     return Single
         .zip(getTasksCountForASpecificMonth(user, date),
             getFinishedTasksCountForASpecificMonth(user, date),

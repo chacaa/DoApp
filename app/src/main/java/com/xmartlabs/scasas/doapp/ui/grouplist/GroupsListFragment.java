@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -16,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.annimon.stream.Objects;
 import com.annimon.stream.Stream;
 
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
@@ -26,13 +26,13 @@ import com.hookedonplay.decoviewlib.DecoView;
 import com.hookedonplay.decoviewlib.charts.SeriesItem;
 import com.hookedonplay.decoviewlib.events.DecoEvent;
 import com.rey.material.widget.Spinner;
+import com.xmartlabs.scasas.doapp.GroupEnum;
 import com.xmartlabs.scasas.doapp.R;
 import com.xmartlabs.scasas.doapp.controller.GroupController;
 import com.xmartlabs.scasas.doapp.controller.TaskController;
 import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.Task;
 import com.xmartlabs.scasas.doapp.model.User;
-import com.xmartlabs.scasas.doapp.ui.BaseAppCompatActivity;
 import com.xmartlabs.scasas.doapp.ui.BaseFragment;
 import com.xmartlabs.scasas.doapp.ui.Henson;
 
@@ -41,7 +41,6 @@ import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -138,42 +137,42 @@ public class GroupsListFragment extends BaseFragment {
   @OnClick(R.id.close)
   void onClickedCloseImageView() {
     closeNewTaskView();
-    hideSoftKeyboard();
+    hideKeyboard();
   }
 
   @OnClick(R.id.shop_linear)
-  void onClikedShopGroup() {
-    Group group = getGroup(R.string.shop);
+  void onClickedShopGroup() {
+    Group group = getGroup(GroupEnum.Shop.toString());
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.work_linear)
-  void onClikedWorkGroup() {
-    Group group = getGroup(R.string.work);
+  void onClickedWorkGroup() {
+    Group group = getGroup(GroupEnum.Work.toString());
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.health_linear)
-  void onClikedHealthGroup() {
-    Group group = getGroup(R.string.health);
+  void onClickedHealthGroup() {
+    Group group = getGroup(GroupEnum.Health.toString());
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.travel_linear)
-  void onClikedTravelGroup() {
-    Group group = getGroup(R.string.travel);
+  void onClickedTravelGroup() {
+    Group group = getGroup(GroupEnum.Travel.toString());
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.bills_linear)
-  void onClikedBillsGroup() {
-    Group group = getGroup(R.string.bills);
+  void onClickedBillsGroup() {
+    Group group = getGroup(GroupEnum.Bills.toString());
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.auto_linear)
-  void onClikedAutoGroup() {
-    Group group = getGroup(R.string.auto);
+  void onClickedAutoGroup() {
+    Group group = getGroup(GroupEnum.Auto.toString());
     goToListOfTasksFragment(group);
   }
 
@@ -189,7 +188,7 @@ public class GroupsListFragment extends BaseFragment {
         .user(user)
         .build();
     insertTask(task, group);
-    hideSoftKeyboard();
+    hideKeyboard();
     setupCurrentDate();
     getFinishedPercentage();
     setupDateFields();
@@ -267,18 +266,13 @@ public class GroupsListFragment extends BaseFragment {
         .get();
   }
 
-  private Group getGroup(@StringRes int groupName) {
-    String name = getResources().getString(groupName);
-    return getGroup(name);
-  }
-
   private void insertTask(Task task, Group group) {
     taskController.insertTask(task)
         .subscribe(new SingleSubscriber<Task>() {
           @Override
           public void onSuccess(Task task) {
             Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
-            updateItemCount(group.getName());
+            updateTaskCount(group);
             closeNewTaskView();
           }
 
@@ -289,64 +283,15 @@ public class GroupsListFragment extends BaseFragment {
         });
   }
 
-  private void updateItemCount(String groupName) {
-    int group = getStringRes(groupName);
-    if (group != 0) {
-      updateItemCount(group);
-    }
-  }
-
-  private void updateItemCount(@StringRes int groupName) {
-    switch (groupName) {
-      case R.string.shop:
-        updateTaskCount(R.string.shop);
-        break;
-      case R.string.work:
-        updateTaskCount(R.string.work);
-        break;
-      case R.string.health:
-        updateTaskCount(R.string.health);
-        break;
-      case R.string.travel:
-        updateTaskCount(R.string.travel);
-        break;
-      case R.string.bills:
-        updateTaskCount(R.string.bills);
-        break;
-      case R.string.auto:
-        updateTaskCount(R.string.auto);
-        break;
-      default:
-        updateAll(groups);
-    }
-  }
-
   private void updateAll(List<Group> groups) {
     Stream.of(groups).forEach(this::updateTaskCount);
-  }
-
-  private void updateTaskCount(@StringRes int groupName) {
-    Group group = getGroup(groupName);
-    taskController.getTasksCount(user, group).subscribe(new SingleSubscriber<Long>() {
-      @Override
-      public void onSuccess(Long taskCount) {
-        int groupName = getStringRes(group.getName());
-        updateItemField(groupName, taskCount);
-      }
-
-      @Override
-      public void onError(Throwable error) {
-        Timber.e(error);
-      }
-    });
   }
 
   private void updateTaskCount(@NonNull Group group) {
     taskController.getTasksCount(user, group).subscribe(new SingleSubscriber<Long>() {
       @Override
       public void onSuccess(Long taskCount) {
-        int groupName = getStringRes(group.getName());
-        updateItemField(groupName, taskCount);
+        updateItemField(group.getName(), taskCount);
       }
 
       @Override
@@ -356,54 +301,28 @@ public class GroupsListFragment extends BaseFragment {
     });
   }
 
-  private String getTextFromStringRes(@StringRes int text) {
-    return getResources().getString(text);
-  }
-
-  private int getStringRes(String text) {
-    if (text.equals(getTextFromStringRes(R.string.shop))) {
-      return R.string.shop;
+  private void updateItemField(String groupName, Long itemCount) {
+    if (Objects.equals(groupName, GroupEnum.Shop.toString())) {
+      shopItemsView.setText(String.format(getString(R.string.item), itemCount));
+      return;
     }
-    if (text.equals(getTextFromStringRes(R.string.work))) {
-      return R.string.work;
+    if (Objects.equals(groupName, GroupEnum.Work.toString())) {
+      shopItemsView.setText(String.format(getString(R.string.item), itemCount));
+      return;
     }
-    if (text.equals(getTextFromStringRes(R.string.health))) {
-      return R.string.health;
+    if (Objects.equals(groupName, GroupEnum.Health.toString())) {
+      shopItemsView.setText(String.format(getString(R.string.item), itemCount));
+      return;
     }
-    if (text.equals(getTextFromStringRes(R.string.travel))) {
-      return R.string.travel;
+    if (Objects.equals(groupName, GroupEnum.Travel.toString())) {
+      shopItemsView.setText(String.format(getString(R.string.item), itemCount));
+      return;
     }
-    if (text.equals(getTextFromStringRes(R.string.bills))) {
-      return R.string.bills;
+    if (Objects.equals(groupName, GroupEnum.Bills.toString())) {
+      shopItemsView.setText(String.format(getString(R.string.item), itemCount));
+      return;
     }
-    if (text.equals(getTextFromStringRes(R.string.auto))) {
-      return R.string.auto;
-    }
-    return 0;
-  }
-
-  private void updateItemField(@StringRes int groupName, long itemCount) {
-    switch (groupName) {
-      case R.string.shop:
-        shopItemsView.setText(String.format(getString(R.string.item), itemCount));
-        break;
-      case R.string.work:
-        workItemsView.setText(String.format(getString(R.string.item), itemCount));
-        break;
-      case R.string.health:
-        healthItemsView.setText(String.format(getString(R.string.item), itemCount));
-        break;
-      case R.string.travel:
-        travelItemsView.setText(String.format(getString(R.string.item), itemCount));
-        break;
-      case R.string.bills:
-        billsItemsView.setText(String.format(getString(R.string.item), itemCount));
-        break;
-      case R.string.auto:
-        autoItemsView.setText(String.format(getString(R.string.item), itemCount));
-        break;
-      default:
-    }
+    autoItemsView.setText(String.format(getString(R.string.item), itemCount));
   }
 
   @Override
@@ -474,9 +393,5 @@ public class GroupsListFragment extends BaseFragment {
     formatter = DateTimeFormatter.ofPattern(YEAR_PATTERN);
     stringDate = date.format(formatter);
     yearTextView.setText(stringDate);
-  }
-
-  private void hideSoftKeyboard() {
-    ((BaseAppCompatActivity) getActivity()).hideKeyboard();
   }
 }
