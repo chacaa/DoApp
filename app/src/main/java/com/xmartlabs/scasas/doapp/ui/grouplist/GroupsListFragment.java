@@ -26,7 +26,7 @@ import com.hookedonplay.decoviewlib.DecoView;
 import com.hookedonplay.decoviewlib.charts.SeriesItem;
 import com.hookedonplay.decoviewlib.events.DecoEvent;
 import com.rey.material.widget.Spinner;
-import com.xmartlabs.scasas.doapp.GroupEnum;
+import com.xmartlabs.scasas.doapp.GroupType;
 import com.xmartlabs.scasas.doapp.R;
 import com.xmartlabs.scasas.doapp.controller.GroupController;
 import com.xmartlabs.scasas.doapp.controller.TaskController;
@@ -142,37 +142,37 @@ public class GroupsListFragment extends BaseFragment {
 
   @OnClick(R.id.shop_linear)
   void onClickedShopGroup() {
-    Group group = getGroup(GroupEnum.Shop.toString());
+    Group group = getGroup(getString(GroupType.SHOP.getTitle()));
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.work_linear)
   void onClickedWorkGroup() {
-    Group group = getGroup(GroupEnum.Work.toString());
+    Group group = getGroup(getString(GroupType.WORK.getTitle()));
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.health_linear)
   void onClickedHealthGroup() {
-    Group group = getGroup(GroupEnum.Health.toString());
+    Group group = getGroup(getString(GroupType.HEALTH.getTitle()));
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.travel_linear)
   void onClickedTravelGroup() {
-    Group group = getGroup(GroupEnum.Travel.toString());
+    Group group = getGroup(getString(GroupType.TRAVEL.getTitle()));
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.bills_linear)
   void onClickedBillsGroup() {
-    Group group = getGroup(GroupEnum.Bills.toString());
+    Group group = getGroup(getString(GroupType.BILLS.getTitle()));
     goToListOfTasksFragment(group);
   }
 
   @OnClick(R.id.auto_linear)
   void onClickedAutoGroup() {
-    Group group = getGroup(GroupEnum.Auto.toString());
+    Group group = getGroup(getString(GroupType.AUTO.getTitle()));
     goToListOfTasksFragment(group);
   }
 
@@ -302,23 +302,23 @@ public class GroupsListFragment extends BaseFragment {
   }
 
   private void updateItemField(String groupName, Long itemCount) {
-    if (Objects.equals(groupName, GroupEnum.Shop.toString())) {
+    if (Objects.equals(groupName.toUpperCase(), GroupType.SHOP.toString())) {
       shopItemsView.setText(String.format(getString(R.string.item), itemCount));
       return;
     }
-    if (Objects.equals(groupName, GroupEnum.Work.toString())) {
+    if (Objects.equals(groupName.toUpperCase(), GroupType.WORK.toString())) {
       shopItemsView.setText(String.format(getString(R.string.item), itemCount));
       return;
     }
-    if (Objects.equals(groupName, GroupEnum.Health.toString())) {
+    if (Objects.equals(groupName.toUpperCase(), GroupType.HEALTH.toString())) {
       shopItemsView.setText(String.format(getString(R.string.item), itemCount));
       return;
     }
-    if (Objects.equals(groupName, GroupEnum.Travel.toString())) {
+    if (Objects.equals(groupName.toUpperCase(), GroupType.TRAVEL.toString())) {
       shopItemsView.setText(String.format(getString(R.string.item), itemCount));
       return;
     }
-    if (Objects.equals(groupName, GroupEnum.Bills.toString())) {
+    if (Objects.equals(groupName.toUpperCase(), GroupType.BILLS.toString())) {
       shopItemsView.setText(String.format(getString(R.string.item), itemCount));
       return;
     }

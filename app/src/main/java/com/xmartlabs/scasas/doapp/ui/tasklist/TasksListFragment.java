@@ -7,7 +7,6 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,11 +20,10 @@ import android.widget.Toast;
 
 import com.annimon.stream.Objects;
 import com.annimon.stream.Optional;
-import com.annimon.stream.function.Consumer;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.hannesdorfmann.fragmentargs.bundler.ParcelerArgsBundler;
-import com.xmartlabs.scasas.doapp.GroupEnum;
+import com.xmartlabs.scasas.doapp.GroupType;
 import com.xmartlabs.scasas.doapp.controller.TaskController;
 import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.Task;
@@ -209,33 +207,33 @@ public class TasksListFragment extends BaseFragment {
   }
 
   private void setupHeader() {
-    if (Objects.equals(group.getName(), GroupEnum.Shop.toString())) {
-      headerImageView.setImageDrawable(getDrawable(R.drawable.food_image));
-      collapsingToolbarView.setTitle(GroupEnum.Shop.toString());
+    if (Objects.equals(group.getName().toUpperCase(), GroupType.SHOP.toString())) {
+      headerImageView.setImageDrawable(getDrawable(GroupType.SHOP.getImage()));
+      collapsingToolbarView.setTitle(getString(GroupType.SHOP.getImage()));
       return;
     }
-    if (Objects.equals(group.getName(), GroupEnum.Work.toString())) {
-      headerImageView.setImageDrawable(getDrawable(R.drawable.work));
-      collapsingToolbarView.setTitle(GroupEnum.Work.toString());
+    if (Objects.equals(group.getName().toUpperCase(), GroupType.WORK.toString())) {
+      headerImageView.setImageDrawable(getDrawable(GroupType.WORK.getImage()));
+      collapsingToolbarView.setTitle(getString(GroupType.WORK.getImage()));
       return;
     }
-    if (Objects.equals(group.getName(), GroupEnum.Health.toString())) {
-      headerImageView.setImageDrawable(getDrawable(R.drawable.healthy));
-      collapsingToolbarView.setTitle(GroupEnum.Health.toString());
+    if (Objects.equals(group.getName().toUpperCase(), GroupType.HEALTH.toString())) {
+      headerImageView.setImageDrawable(getDrawable(GroupType.HEALTH.getImage()));
+      collapsingToolbarView.setTitle(getString(GroupType.HEALTH.getImage()));
       return;
     }
-    if (Objects.equals(group.getName(), GroupEnum.Travel.toString())) {
-      headerImageView.setImageDrawable(getDrawable(R.drawable.travels));
-      collapsingToolbarView.setTitle(GroupEnum.Travel.toString());
+    if (Objects.equals(group.getName().toUpperCase(), GroupType.TRAVEL.toString())) {
+      headerImageView.setImageDrawable(getDrawable(GroupType.TRAVEL.getImage()));
+      collapsingToolbarView.setTitle(getString(GroupType.TRAVEL.getImage()));
       return;
     }
-    if (Objects.equals(group.getName(), GroupEnum.Bills.toString())) {
-      headerImageView.setImageDrawable(getDrawable(R.drawable.bills));
-      collapsingToolbarView.setTitle(GroupEnum.Bills.toString());
+    if (Objects.equals(group.getName().toUpperCase(), GroupType.BILLS.toString())) {
+      headerImageView.setImageDrawable(getDrawable(GroupType.BILLS.getImage()));
+      collapsingToolbarView.setTitle(getString(GroupType.BILLS.getImage()));
       return;
     }
-    headerImageView.setImageDrawable(getDrawable(R.drawable.cars));
-    collapsingToolbarView.setTitle(GroupEnum.Auto.toString());
+    headerImageView.setImageDrawable(getDrawable(GroupType.AUTO.getImage()));
+    collapsingToolbarView.setTitle(getString(GroupType.AUTO.getImage()));
   }
 
   private Drawable getDrawable(@DrawableRes int image) {
