@@ -45,8 +45,8 @@ public class SignInFragment extends BaseFragment {
     return R.layout.singin_fragment;
   }
 
-  @SuppressWarnings("deprecation")
   @OnClick(R.id.sign_up)
+  @SuppressWarnings("deprecation")
   void onClickedSignUp() {
     Intent intent = Henson.with(getContext()).gotoSignUpActivity().build();
     getContext().startActivity(intent);
@@ -113,9 +113,6 @@ public class SignInFragment extends BaseFragment {
 
           @Override
           public void onError(Throwable error) {
-            if (!(error instanceof CancellationException)) {
-              //TODO
-            }
             Timber.e(error);
           }
         });

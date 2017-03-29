@@ -45,20 +45,19 @@ import timber.log.Timber;
  */
 @FragmentWithArgs
 public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
-  @BindView(R.id.edit_text_user)
-  EditText username;
-  @BindView(R.id.edit_text_email)
-  EditText email;
   @BindView(R.id.text_view_birthday)
   TextView birthday;
+  @BindView(R.id.edit_text_email)
+  EditText email;
   @BindView(R.id.edit_text_password)
   EditText password;
-
-  @Inject
-  UserController userController;
+  @BindView(R.id.edit_text_user)
+  EditText username;
 
   @Inject
   GroupController groupController;
+  @Inject
+  UserController userController;
 
   private User user = createEmptyUser();
 
@@ -76,7 +75,7 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
 
   @OnClick(R.id.sign_in)
   void onSingInClicked() {
-    goToSinginActivity();
+    goToSigninActivity();
   }
 
   @OnClick(R.id.sign_up)
@@ -100,7 +99,7 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
     datePickerDialog.show(getActivity().getFragmentManager(), "Date");
   }
 
-  private void goToSinginActivity() {
+  private void goToSigninActivity() {
     getActivity().finish();
   }
 
@@ -121,9 +120,6 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
 
           @Override
           public void onError(Throwable error) {
-            if (!(error instanceof CancellationException)) {
-              //TODO
-            }
             Snackbar.make(getView(), R.string.failed_create_account, Snackbar.LENGTH_SHORT).show();
           }
         });

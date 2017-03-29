@@ -3,7 +3,6 @@ package com.xmartlabs.scasas.doapp.ui.onboarding;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v4.view.ViewPager;
 
@@ -22,7 +21,11 @@ import java.util.List;
  * Created by scasas on 3/13/17.
  */
 public class OnBoardingActivity extends AhoyOnboarderActivity {
-  @NonNull
+  public static final int BOTTOM = 91;
+  public static final int LEFT = 75;
+  public static final int RIGHT = 75;
+  public static final int TOP = 86;
+
   @InjectExtra
   User user;
 
@@ -34,15 +37,23 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     super.onCreate(savedInstanceState);
     Dart.inject(this);
     cardViewPager = (ViewPager) findViewById(R.id.vp_pager);
-    createOnboardingCards(R.string.create_groups, R.drawable.tutorial_1);
-    createOnboardingCards(R.string.add_manage_tasks, R.drawable.tutorial_2);
-    createOnboardingCards(R.string.how_you_are_doing, R.drawable.tutorial_3);
-    createOnboardingCards(R.string.to_dashboard, R.drawable.tutorial_4);
+    createAllCards();
+    setupAhoyOnboarding();
+  }
+
+  private void setupAhoyOnboarding() {
     setImageBackground(R.drawable.bg_walkthrough);
     showNavigationControls(false);
     setOnboardPages(pages);
     setFinishButtonTitle(R.string.lets_do_it);
-    cardViewPager.setPadding(75, 86, 75, 91);
+    cardViewPager.setPadding(LEFT, TOP, RIGHT, BOTTOM);
+  }
+
+  private void createAllCards() {
+    createOnboardingCard(R.string.create_groups, R.drawable.tutorial_1);
+    createOnboardingCard(R.string.add_manage_tasks, R.drawable.tutorial_2);
+    createOnboardingCard(R.string.how_you_are_doing, R.drawable.tutorial_3);
+    createOnboardingCard(R.string.to_dashboard, R.drawable.tutorial_4);
   }
 
   @Override
@@ -55,7 +66,7 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     startActivity(intent);
   }
 
-  private void createOnboardingCards(@StringRes int description, @DrawableRes int iconId) {
+  private void createOnboardingCard(@StringRes int description, @DrawableRes int iconId) {
     AhoyOnboarderCard ahoyOnboarderCard = new AhoyOnboarderCard("", getString(description), iconId);
     ahoyOnboarderCard.setBackgroundColor(R.color.white);
     ahoyOnboarderCard.setDescriptionColor(R.color.dark_grey);
