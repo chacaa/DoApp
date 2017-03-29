@@ -3,6 +3,7 @@ package com.xmartlabs.scasas.doapp.ui.grouplist;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -93,9 +94,13 @@ public class GroupsListFragment extends BaseFragment {
   @Arg(bundler = ParcelerArgsBundler.class)
   User user;
 
+  public static final String MONTH_PATTERN = "MMMM";
+  public static final String YEAR_PATTERN = "YYYY";
+
   private LocalDate date;
   private List<Group> groups = new ArrayList<>();
 
+  @LayoutRes
   @Override
   protected int getLayoutResId() {
     return R.layout.list_groups_fragment;
@@ -107,12 +112,16 @@ public class GroupsListFragment extends BaseFragment {
     setupCurrentDate();
     getGroups();
     newTaskView.setVisibility(View.GONE);
+    setupGroupSpinnerView();
+    setupDateFields();
+  }
+
+  private void setupGroupSpinnerView() {
     String[] items = getResources().getStringArray(R.array.group_array);
     ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.support_simple_spinner_dropdown_item, items);
     adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
     groupsSpinnerView.setAdapter(adapter);
     adjustSpinnerView(groupsSpinnerView);
-    setupDateFields();
   }
 
   private void setupCurrentDate() {
@@ -290,22 +299,22 @@ public class GroupsListFragment extends BaseFragment {
   private void updateItemCount(@StringRes int groupName) {
     switch (groupName) {
       case R.string.shop:
-        getTaskCount(R.string.shop);
+        updateTaskCount(R.string.shop);
         break;
       case R.string.work:
-        getTaskCount(R.string.work);
+        updateTaskCount(R.string.work);
         break;
       case R.string.health:
-        getTaskCount(R.string.health);
+        updateTaskCount(R.string.health);
         break;
       case R.string.travel:
-        getTaskCount(R.string.travel);
+        updateTaskCount(R.string.travel);
         break;
       case R.string.bills:
-        getTaskCount(R.string.bills);
+        updateTaskCount(R.string.bills);
         break;
       case R.string.auto:
-        getTaskCount(R.string.auto);
+        updateTaskCount(R.string.auto);
         break;
       default:
         updateAll(groups);
@@ -313,10 +322,10 @@ public class GroupsListFragment extends BaseFragment {
   }
 
   private void updateAll(List<Group> groups) {
-    Stream.of(groups).forEach(this::getTaskCount);
+    Stream.of(groups).forEach(this::updateTaskCount);
   }
 
-  private void getTaskCount(@StringRes int groupName) {
+  private void updateTaskCount(@StringRes int groupName) {
     Group group = getGroup(groupName);
     taskController.getTasksCount(user, group).subscribe(new SingleSubscriber<Long>() {
       @Override
@@ -332,7 +341,7 @@ public class GroupsListFragment extends BaseFragment {
     });
   }
 
-  private void getTaskCount(Group group) {
+  private void updateTaskCount(@NonNull Group group) {
     taskController.getTasksCount(user, group).subscribe(new SingleSubscriber<Long>() {
       @Override
       public void onSuccess(Long taskCount) {
@@ -423,14 +432,14 @@ public class GroupsListFragment extends BaseFragment {
 
   private void setupCurrentPercentage(int percentage) {
     //noinspection deprecation
-    SeriesItem seriesItem1 = new SeriesItem.Builder(getResources().getColor(R.color.seafoam_blue_two))
+    SeriesItem seriesItem = new SeriesItem.Builder(getResources().getColor(R.color.seafoam_blue_two))
         .setRange(0, 100, 0)
         .setInterpolator(new DecelerateInterpolator())
         .setSpinDuration(2000)
         .setLineWidth(15f)
         .setSpinClockwise(true)
         .build();
-    seriesItem1.addArcSeriesItemListener(new SeriesItem.SeriesItemListener() {
+    seriesItem.addArcSeriesItemListener(new SeriesItem.SeriesItemListener() {
       @Override
       public void onSeriesItemAnimationProgress(float percentComplete, float currentPosition) {
         if (isAdded()) {
@@ -440,10 +449,9 @@ public class GroupsListFragment extends BaseFragment {
 
       @Override
       public void onSeriesItemDisplayProgress(float percentComplete) {
-
       }
     });
-    int index = cricleChartView.addSeries(seriesItem1);
+    int index = cricleChartView.addSeries(seriesItem);
     cricleChartView.executeReset();
     cricleChartView.addEvent(new DecoEvent.Builder(percentage)
         .setIndex(index)
@@ -460,10 +468,10 @@ public class GroupsListFragment extends BaseFragment {
   }
 
   private void setupDateFields() {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(MONTH_PATTERN);
     String stringDate = date.format(formatter);
     monthTextView.setText(stringDate);
-    formatter = DateTimeFormatter.ofPattern("YYYY");
+    formatter = DateTimeFormatter.ofPattern(YEAR_PATTERN);
     stringDate = date.format(formatter);
     yearTextView.setText(stringDate);
   }
