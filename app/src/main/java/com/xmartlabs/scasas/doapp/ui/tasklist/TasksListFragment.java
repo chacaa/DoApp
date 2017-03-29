@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.annimon.stream.Objects;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.hannesdorfmann.fragmentargs.bundler.ParcelerArgsBundler;
@@ -26,13 +27,11 @@ import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.Task;
 import com.xmartlabs.scasas.doapp.R;
 import com.xmartlabs.scasas.doapp.model.User;
-import com.xmartlabs.scasas.doapp.ui.BaseAppCompatActivity;
 import com.xmartlabs.scasas.doapp.ui.BaseFragment;
 
 import org.threeten.bp.LocalDate;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -84,13 +83,17 @@ public class TasksListFragment extends BaseFragment {
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    AppCompatActivity activity = (AppCompatActivity) getActivity();
-    activity.setSupportActionBar(toolbarView);
-    activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    setupToolbar();
     setupHeader();
     setupRecyclerView();
     getTasks();
     newTaskView.setVisibility(View.GONE);
+  }
+
+  private void setupToolbar() {
+    AppCompatActivity activity = (AppCompatActivity) getActivity();
+    activity.setSupportActionBar(toolbarView);
+    activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     //noinspection deprecation
     collapsingToolbarView.setExpandedTitleColor(getResources().getColor(android.R.color.white));
   }
@@ -111,7 +114,7 @@ public class TasksListFragment extends BaseFragment {
   @OnClick(R.id.close)
   void onClickedCloseImageView() {
     closeNewTaskView();
-    ((BaseAppCompatActivity) getActivity()).hideKeyboard();
+    hideKeyboard();
   }
 
   @OnClick(R.id.add_task)
@@ -125,7 +128,7 @@ public class TasksListFragment extends BaseFragment {
         .group(group)
         .build();
     insertTask(task);
-    ((BaseAppCompatActivity) getActivity()).hideKeyboard();
+    hideKeyboard();
     closeNewTaskView();
   }
 
@@ -166,8 +169,10 @@ public class TasksListFragment extends BaseFragment {
           @Override
           public void onSuccess(Task task) {
             adapter.addTask(task);
-            noTaskTextView.setVisibility(View.GONE);
-            Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
+            if (isAdded()) {
+              noTaskTextView.setVisibility(View.GONE);
+              Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
+            }
           }
 
           @Override
@@ -185,7 +190,9 @@ public class TasksListFragment extends BaseFragment {
           public void onSuccess(List<Task> tasks) {
             if (!tasks.isEmpty()) {
               adapter.setTasks(tasks);
-              noTaskTextView.setVisibility(tasks.size() == 0 ? View.VISIBLE : View.GONE);
+              if (isAdded()) {
+                noTaskTextView.setVisibility(tasks.size() == 0 ? View.VISIBLE : View.GONE);
+              }
             }
           }
 

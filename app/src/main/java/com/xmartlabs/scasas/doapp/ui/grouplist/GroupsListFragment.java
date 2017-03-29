@@ -408,7 +408,7 @@ public class GroupsListFragment extends BaseFragment {
   }
 
   private void getFinishedPercentage() {
-    taskController.getIntFinishPercentage(user, date).subscribe(new SingleSubscriber<Long>() {
+    taskController.getFinishPercentage(user, date).subscribe(new SingleSubscriber<Long>() {
       @Override
       public void onSuccess(Long percentage) {
         setupCurrentPercentage(percentage.intValue());

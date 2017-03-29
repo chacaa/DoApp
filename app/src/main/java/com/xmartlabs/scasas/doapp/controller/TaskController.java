@@ -103,7 +103,7 @@ public class TaskController extends Controller {
         .subscribeOn(Schedulers.io());
   }
 
-  public Single<Long> getIntFinishPercentage(User user, LocalDate date) {
+  public Single<Long> getFinishPercentage(User user, LocalDate date) {
     return Single
         .zip(getTasksCountForASpecificMonth(user, date),
             getFinishedTasksCountForASpecificMonth(user, date),
