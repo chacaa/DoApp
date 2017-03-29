@@ -7,6 +7,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,9 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.annimon.stream.Objects;
+import com.annimon.stream.Optional;
+import com.annimon.stream.function.Consumer;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.hannesdorfmann.fragmentargs.bundler.ParcelerArgsBundler;
+import com.xmartlabs.scasas.doapp.GroupEnum;
 import com.xmartlabs.scasas.doapp.controller.TaskController;
 import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.Task;
@@ -93,7 +97,8 @@ public class TasksListFragment extends BaseFragment {
   private void setupToolbar() {
     AppCompatActivity activity = (AppCompatActivity) getActivity();
     activity.setSupportActionBar(toolbarView);
-    activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    Optional.ofNullable(activity.getSupportActionBar())
+        .ifPresent(actionBar -> actionBar.setDisplayHomeAsUpEnabled(true));
     //noinspection deprecation
     collapsingToolbarView.setExpandedTitleColor(getResources().getColor(android.R.color.white));
   }
@@ -204,33 +209,33 @@ public class TasksListFragment extends BaseFragment {
   }
 
   private void setupHeader() {
-    if (Objects.equals(group.getName(), getString(R.string.shop))) {
+    if (Objects.equals(group.getName(), GroupEnum.Shop.toString())) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.food_image));
-      collapsingToolbarView.setTitle(getString(R.string.shop));
+      collapsingToolbarView.setTitle(GroupEnum.Shop.toString());
       return;
     }
-    if (Objects.equals(group.getName(), getString(R.string.work))) {
+    if (Objects.equals(group.getName(), GroupEnum.Work.toString())) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.work));
-      collapsingToolbarView.setTitle(getString(R.string.work));
+      collapsingToolbarView.setTitle(GroupEnum.Work.toString());
       return;
     }
-    if (Objects.equals(group.getName(), getString(R.string.health))) {
+    if (Objects.equals(group.getName(), GroupEnum.Health.toString())) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.healthy));
-      collapsingToolbarView.setTitle(getString(R.string.health));
+      collapsingToolbarView.setTitle(GroupEnum.Health.toString());
       return;
     }
-    if (Objects.equals(group.getName(), getString(R.string.travel))) {
+    if (Objects.equals(group.getName(), GroupEnum.Travel.toString())) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.travels));
-      collapsingToolbarView.setTitle(getString(R.string.travel));
+      collapsingToolbarView.setTitle(GroupEnum.Travel.toString());
       return;
     }
-    if (Objects.equals(group.getName(), getString(R.string.bills))) {
+    if (Objects.equals(group.getName(), GroupEnum.Bills.toString())) {
       headerImageView.setImageDrawable(getDrawable(R.drawable.bills));
-      collapsingToolbarView.setTitle(getString(R.string.bills));
+      collapsingToolbarView.setTitle(GroupEnum.Bills.toString());
       return;
     }
     headerImageView.setImageDrawable(getDrawable(R.drawable.cars));
-    collapsingToolbarView.setTitle(getString(R.string.auto));
+    collapsingToolbarView.setTitle(GroupEnum.Auto.toString());
   }
 
   private Drawable getDrawable(@DrawableRes int image) {
