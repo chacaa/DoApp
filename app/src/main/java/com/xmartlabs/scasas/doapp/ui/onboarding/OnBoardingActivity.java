@@ -21,10 +21,10 @@ import java.util.List;
  * Created by scasas on 3/13/17.
  */
 public class OnBoardingActivity extends AhoyOnboarderActivity {
-  public static final int BOTTOM = 91;
-  public static final int LEFT = 75;
-  public static final int RIGHT = 75;
-  public static final int TOP = 86;
+  public static final int PADDING_BOTTOM = 91;
+  public static final int PADDING_LEFT = 75;
+  public static final int PADDING_RIGHT = 75;
+  public static final int PADDING_TOP = 86;
 
   @InjectExtra
   User user;
@@ -46,7 +46,7 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     showNavigationControls(false);
     setOnboardPages(pages);
     setFinishButtonTitle(R.string.lets_do_it);
-    cardViewPager.setPadding(LEFT, TOP, RIGHT, BOTTOM);
+    cardViewPager.setPadding(PADDING_LEFT, PADDING_TOP, PADDING_RIGHT, PADDING_BOTTOM);
   }
 
   private void createAllCards() {

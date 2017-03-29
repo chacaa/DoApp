@@ -54,6 +54,17 @@ import timber.log.Timber;
  */
 @FragmentWithArgs
 public class GroupsListFragment extends BaseFragment {
+  public static final String MONTH_PATTERN = "MMMM";
+  public static final String YEAR_PATTERN = "YYYY";
+
+  @Arg(bundler = ParcelerArgsBundler.class)
+  User user;
+
+  @Inject
+  GroupController groupController;
+  @Inject
+  TaskController taskController;
+
   @BindView(R.id.auto_items)
   TextView autoItemsView;
   @BindView(R.id.bills_items)
@@ -84,17 +95,6 @@ public class GroupsListFragment extends BaseFragment {
   TextView workItemsView;
   @BindView(R.id.year)
   TextView yearTextView;
-
-  @Inject
-  GroupController groupController;
-  @Inject
-  TaskController taskController;
-
-  @Arg(bundler = ParcelerArgsBundler.class)
-  User user;
-
-  public static final String MONTH_PATTERN = "MMMM";
-  public static final String YEAR_PATTERN = "YYYY";
 
   private LocalDate date;
   private List<Group> groups = new ArrayList<>();

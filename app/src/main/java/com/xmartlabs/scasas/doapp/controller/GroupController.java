@@ -35,8 +35,7 @@ public class GroupController extends Controller {
         .fromCallable(() -> SQLite.select()
             .from(Group.class)
             .where(Group_Table.user_id.eq(user.getId()))
-            .queryResults()
-            .toList()
+            .queryList()
         )
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io());

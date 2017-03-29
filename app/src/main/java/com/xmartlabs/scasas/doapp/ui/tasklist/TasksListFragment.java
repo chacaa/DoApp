@@ -47,6 +47,14 @@ import timber.log.Timber;
  */
 @FragmentWithArgs
 public class TasksListFragment extends BaseFragment {
+  @Arg(bundler = ParcelerArgsBundler.class)
+  Group group;
+  @Arg(bundler = ParcelerArgsBundler.class)
+  User user;
+
+  @Inject
+  TaskController taskController;
+
   @BindView(R.id.main_collapsing)
   CollapsingToolbarLayout collapsingToolbarView;
   @BindView(R.id.description_edit_text)
@@ -65,14 +73,6 @@ public class TasksListFragment extends BaseFragment {
   Toolbar toolbarView;
   @BindView(R.id.title_edit_text)
   EditText titleView;
-
-  @Inject
-  TaskController taskController;
-
-  @Arg(bundler = ParcelerArgsBundler.class)
-  Group group;
-  @Arg(bundler = ParcelerArgsBundler.class)
-  User user;
 
   private TaskAdapter adapter;
 
