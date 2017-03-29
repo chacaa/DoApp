@@ -5,7 +5,6 @@ import com.xmartlabs.scasas.doapp.model.Group;
 import com.xmartlabs.scasas.doapp.model.Task;
 import com.xmartlabs.scasas.doapp.model.Task_Table;
 import com.xmartlabs.scasas.doapp.model.User;
-import com.xmartlabs.scasas.doapp.ui.SingleFragmentActivity;
 
 import org.threeten.bp.LocalDate;
 
@@ -13,7 +12,6 @@ import java.util.List;
 
 import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 
 /**
@@ -36,8 +34,7 @@ public class TaskController extends Controller {
             .from(Task.class)
             .where(Task_Table.user_id.eq(user.getId()))
             .and(Task_Table.group_id.eq(group.getId()))
-            .queryResults()
-            .toList()
+            .queryList()
         )
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io());

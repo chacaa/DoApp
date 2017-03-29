@@ -31,8 +31,6 @@ import com.xmartlabs.scasas.doapp.ui.Henson;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
 
-import java.util.concurrent.CancellationException;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -191,16 +189,19 @@ public class SignUpFragment extends BaseFragment implements DatePickerDialog.OnD
         .name(name)
         .user(user)
         .build();
-    groupController.insertGroup(group).subscribe(new SingleSubscriber<Group>() {
-      @Override
-      public void onSuccess(Group value) {
-      }
+    groupController.insertGroup(group)
+        .subscribe(new SingleSubscriber<Group>() {
+          @Override
+          public void onSuccess(Group value) {
+          }
 
-      @Override
-      public void onError(Throwable error) {
-        Snackbar.make(getView(), error.toString(), Snackbar.LENGTH_LONG);
-        Timber.e(error);
-      }
-    });
+          @Override
+          public void onError(Throwable error) {
+            if (isAdded()) {
+              Snackbar.make(getView(), error.toString(), Snackbar.LENGTH_LONG);
+              Timber.e(error);
+            }
+          }
+        });
   }
 }
