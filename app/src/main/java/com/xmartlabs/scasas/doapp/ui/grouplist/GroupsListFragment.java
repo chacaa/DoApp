@@ -245,18 +245,21 @@ public class GroupsListFragment extends BaseFragment {
   }
 
   private void getGroups() {
-    groupController.getGroups(user).subscribe(new SingleSubscriber<List<Group>>() {
-      @Override
-      public void onSuccess(List<Group> groupList) {
-        groups = groupList;
-        updateAll(groupList);
-      }
+    groupController.getGroups(user)
+        .subscribe(new SingleSubscriber<List<Group>>() {
+          @Override
+          public void onSuccess(List<Group> groupList) {
+            groups = groupList;
+            if (isAdded()) {
+              updateAll(groupList);
+            }
+          }
 
-      @Override
-      public void onError(Throwable error) {
-        Timber.e(error);
-      }
-    });
+          @Override
+          public void onError(Throwable error) {
+            Timber.e(error);
+          }
+        });
   }
 
   private Group getGroup(@NonNull String groupName) {
@@ -271,9 +274,11 @@ public class GroupsListFragment extends BaseFragment {
         .subscribe(new SingleSubscriber<Task>() {
           @Override
           public void onSuccess(Task task) {
-            Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
-            updateTaskCount(group);
-            closeNewTaskView();
+            if (isAdded()) {
+              Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
+              updateTaskCount(group);
+              closeNewTaskView();
+            }
           }
 
           @Override
@@ -288,17 +293,18 @@ public class GroupsListFragment extends BaseFragment {
   }
 
   private void updateTaskCount(@NonNull Group group) {
-    taskController.getTasksCount(user, group).subscribe(new SingleSubscriber<Long>() {
-      @Override
-      public void onSuccess(Long taskCount) {
-        updateItemField(group.getName(), taskCount);
-      }
+    taskController.getTasksCount(user, group)
+        .subscribe(new SingleSubscriber<Long>() {
+          @Override
+          public void onSuccess(Long taskCount) {
+            updateItemField(group.getName(), taskCount);
+          }
 
-      @Override
-      public void onError(Throwable error) {
-        Timber.e(error);
-      }
-    });
+          @Override
+          public void onError(Throwable error) {
+            Timber.e(error);
+          }
+        });
   }
 
   private void updateItemField(String groupName, Long itemCount) {
@@ -336,17 +342,18 @@ public class GroupsListFragment extends BaseFragment {
   }
 
   private void getFinishedPercentage() {
-    taskController.getFinishPercentage(user, date).subscribe(new SingleSubscriber<Long>() {
-      @Override
-      public void onSuccess(Long percentage) {
-        setupCurrentPercentage(percentage.intValue());
-      }
+    taskController.getFinishPercentage(user, date)
+        .subscribe(new SingleSubscriber<Long>() {
+          @Override
+          public void onSuccess(Long percentage) {
+            setupCurrentPercentage(percentage.intValue());
+          }
 
-      @Override
-      public void onError(Throwable error) {
-        Timber.e(error);
-      }
-    });
+          @Override
+          public void onError(Throwable error) {
+            Timber.e(error);
+          }
+        });
   }
 
   private void setupCurrentPercentage(int percentage) {
