@@ -23,6 +23,8 @@ import com.annimon.stream.Optional;
 import com.hannesdorfmann.fragmentargs.annotation.Arg;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
 import com.hannesdorfmann.fragmentargs.bundler.ParcelerArgsBundler;
+import com.trello.rxlifecycle.RxLifecycle;
+import com.trello.rxlifecycle.android.FragmentEvent;
 import com.xmartlabs.scasas.doapp.GroupType;
 import com.xmartlabs.scasas.doapp.controller.TaskController;
 import com.xmartlabs.scasas.doapp.model.Group;
@@ -168,14 +170,13 @@ public class TasksListFragment extends BaseFragment {
 
   private void insertTask(Task task) {
     taskController.insertTask(task)
+        .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
         .subscribe(new SingleSubscriber<Task>() {
           @Override
           public void onSuccess(Task task) {
             adapter.addTask(task);
-            if (isAdded()) {
-              noTaskTextView.setVisibility(View.GONE);
-              Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
-            }
+            noTaskTextView.setVisibility(View.GONE);
+            Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
           }
 
           @Override
@@ -188,14 +189,13 @@ public class TasksListFragment extends BaseFragment {
 
   private void getTasks() {
     taskController.getTasks(user, group)
+        .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
         .subscribe(new SingleSubscriber<List<Task>>() {
           @Override
           public void onSuccess(List<Task> tasks) {
             if (!tasks.isEmpty()) {
               adapter.setTasks(tasks);
-              if (isAdded()) {
-                noTaskTextView.setVisibility(tasks.size() == 0 ? View.VISIBLE : View.GONE);
-              }
+              noTaskTextView.setVisibility(tasks.size() == 0 ? View.VISIBLE : View.GONE);
             }
           }
 

@@ -26,6 +26,8 @@ import com.hookedonplay.decoviewlib.DecoView;
 import com.hookedonplay.decoviewlib.charts.SeriesItem;
 import com.hookedonplay.decoviewlib.events.DecoEvent;
 import com.rey.material.widget.Spinner;
+import com.trello.rxlifecycle.RxLifecycle;
+import com.trello.rxlifecycle.android.FragmentEvent;
 import com.xmartlabs.scasas.doapp.GroupType;
 import com.xmartlabs.scasas.doapp.R;
 import com.xmartlabs.scasas.doapp.controller.GroupController;
@@ -246,13 +248,12 @@ public class GroupsListFragment extends BaseFragment {
 
   private void getGroups() {
     groupController.getGroups(user)
+        .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
         .subscribe(new SingleSubscriber<List<Group>>() {
           @Override
           public void onSuccess(List<Group> groupList) {
             groups = groupList;
-            if (isAdded()) {
-              updateAll(groupList);
-            }
+            updateAll(groupList);
           }
 
           @Override
@@ -271,14 +272,13 @@ public class GroupsListFragment extends BaseFragment {
 
   private void insertTask(Task task, Group group) {
     taskController.insertTask(task)
+        .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
         .subscribe(new SingleSubscriber<Task>() {
           @Override
           public void onSuccess(Task task) {
-            if (isAdded()) {
-              Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
-              updateTaskCount(group);
-              closeNewTaskView();
-            }
+            Toast.makeText(getContext(), R.string.task_added, Toast.LENGTH_SHORT).show();
+            updateTaskCount(group);
+            closeNewTaskView();
           }
 
           @Override
@@ -294,6 +294,7 @@ public class GroupsListFragment extends BaseFragment {
 
   private void updateTaskCount(@NonNull Group group) {
     taskController.getTasksCount(user, group)
+        .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
         .subscribe(new SingleSubscriber<Long>() {
           @Override
           public void onSuccess(Long taskCount) {
@@ -343,6 +344,7 @@ public class GroupsListFragment extends BaseFragment {
 
   private void getFinishedPercentage() {
     taskController.getFinishPercentage(user, date)
+        .compose(RxLifecycle.<User, FragmentEvent>bindUntilEvent(lifecycle(), FragmentEvent.DESTROY_VIEW).forSingle())
         .subscribe(new SingleSubscriber<Long>() {
           @Override
           public void onSuccess(Long percentage) {
@@ -368,9 +370,7 @@ public class GroupsListFragment extends BaseFragment {
     seriesItem.addArcSeriesItemListener(new SeriesItem.SeriesItemListener() {
       @Override
       public void onSeriesItemAnimationProgress(float percentComplete, float currentPosition) {
-        if (isAdded()) {
-          percentageView.setText(String.valueOf((int) currentPosition));
-        }
+        percentageView.setText(String.valueOf((int) currentPosition));
       }
 
       @Override
