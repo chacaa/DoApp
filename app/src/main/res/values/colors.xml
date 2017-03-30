@@ -20,4 +20,9 @@
     <color name="dark_grey">#1d1d26</color>
     <color name="seafoam_blue_two">#50d2c2</color>
     <color name="seafoam_blue_two_light">#f5f9f9</color>
+    <color name="slate_blue">#6563a4</color>
+    <color name="periwinkle">#8c88ff</color>
+    <color name="light_orange">#fcab53</color>
+    <color name="pale_magenta">#d667cd</color>
+    <color name="pale_grey">#bdbdbd</color>
 </resources>

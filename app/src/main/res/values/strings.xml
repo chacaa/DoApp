@@ -40,4 +40,26 @@
     <string name="cmon_you_can_do_this">C\'mon you can Do it!</string>
     <string name="good_job">Task done! Good job!</string>
     <string name="task_added">Task added</string>
+    <string name="shop">Shop</string>
+    <string name="work">Work</string>
+    <string name="health">Health</string>
+    <string name="travel">Travel</string>
+    <string name="bills">Bills</string>
+    <string name="auto">Auto</string>
+    <string name="item">%1$d ITEMS</string>
+    <string name="zero_item">0 ITEMS</string>
+    <string-array name="group_array">
+        <item>@string/shop</item>
+        <item>@string/work</item>
+        <item>@string/health</item>
+        <item>@string/travel</item>
+        <item>@string/bills</item>
+        <item>@string/auto</item>
+    </string-array>
+    <string name="all">All</string>
+    <string name="simbol">%</string>
+    <string name="completed">Completed</string>
+    <string name="do_it">Do it!</string>
+    <string name="failed_add_task">Failed to add the task</string>
+    <string name="no_task">No tasks added yet</string>
 </resources>

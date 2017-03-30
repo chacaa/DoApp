@@ -17,14 +17,16 @@ import com.xmartlabs.scasas.doapp.ui.BaseActivity;
 import com.xmartlabs.scasas.doapp.ui.BaseAppCompatActivity;
 import com.xmartlabs.scasas.doapp.ui.BaseFragment;
 import com.xmartlabs.scasas.doapp.ui.FragmentWithDrawer;
-import com.xmartlabs.scasas.doapp.ui.SignInActivity;
-import com.xmartlabs.scasas.doapp.ui.SignInFragment;
+import com.xmartlabs.scasas.doapp.ui.grouplist.GroupsListActivity;
+import com.xmartlabs.scasas.doapp.ui.grouplist.GroupsListFragment;
+import com.xmartlabs.scasas.doapp.ui.signin.SignInActivity;
+import com.xmartlabs.scasas.doapp.ui.signin.SignInFragment;
 import com.xmartlabs.scasas.doapp.ui.MainActivity;
-import com.xmartlabs.scasas.doapp.ui.SignUpActivity;
-import com.xmartlabs.scasas.doapp.ui.SignUpFragment;
+import com.xmartlabs.scasas.doapp.ui.signup.SignUpActivity;
+import com.xmartlabs.scasas.doapp.ui.signup.SignUpFragment;
 import com.xmartlabs.scasas.doapp.ui.StartActivity;
-import com.xmartlabs.scasas.doapp.ui.TasksListActivity;
-import com.xmartlabs.scasas.doapp.ui.TasksListFragment;
+import com.xmartlabs.scasas.doapp.ui.tasklist.TasksListActivity;
+import com.xmartlabs.scasas.doapp.ui.tasklist.TasksListFragment;
 import com.xmartlabs.scasas.doapp.ui.ValidatableFragment;
 import com.xmartlabs.scasas.doapp.ui.WelcomeActivity;
 import com.xmartlabs.scasas.doapp.ui.WelcomeFragment;
@@ -59,6 +61,7 @@ public interface ApplicationComponent {
   void inject(BaseAppCompatActivity baseAppCompatActivity);
   void inject(SingleFragmentActivity singleFragmentActivity);
 
+  void inject(GroupsListActivity groupsListActivity);
   void inject(MainActivity mainActivity);
   void inject(SignInActivity signInActivity);
   void inject(SignUpActivity signUpActivity);
@@ -70,6 +73,7 @@ public interface ApplicationComponent {
   void inject(FragmentWithDrawer fragmentWithDrawer);
   void inject(ValidatableFragment validatableFragment);
 
+  void inject(GroupsListFragment groupsListFragment);
   void inject(SignInFragment signInFragment);
   void inject(SignUpFragment signUpFragment);
   void inject(TasksListFragment tasksListFragment);

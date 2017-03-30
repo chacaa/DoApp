@@ -43,25 +43,33 @@
 
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.SignInActivity"
+            android:name=".ui.signin.SignInActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.SignUpActivity"
+            android:name=".ui.signup.SignUpActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.OnBoardingActivity"
+            android:name=".ui.onboarding.OnBoardingActivity"
             android:screenOrientation="portrait"
             />
 
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.TasksListActivity"
+            android:name=".ui.tasklist.TasksListActivity"
+            android:parentActivityName=".ui.grouplist.GroupsListActivity"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
+            android:label="@string/do_it"
+            android:launchMode="singleTask"
+            android:name=".ui.grouplist.GroupsListActivity"
             android:screenOrientation="portrait"
             />
 

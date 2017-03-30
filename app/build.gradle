@@ -200,9 +200,11 @@ dependencies {
     }
     compile "com.f2prateek.dart:dart:${DART_VERSION}"
     compile "com.f2prateek.dart:henson:${DART_VERSION}"
+    compile 'com.github.bmarrdev:android-DecoView-charting:v1.2'
     compile 'com.github.mrmike:Ok2Curl:0.2.5'
     compile "com.github.Raizlabs.DBFlow:dbflow-core:${DB_FLOW_VERSION}"
     compile "com.github.Raizlabs.DBFlow:dbflow:${DB_FLOW_VERSION}"
+    compile 'com.github.rey5137:material:1.2.4'
     compile 'com.github.square.picasso:picasso:8c16e8564e'
     compile "com.github.tbroyer.bullet:bullet:${BULLET_VERSION}"
     compile "com.google.dagger:dagger:${DAGGER_VERSION}"

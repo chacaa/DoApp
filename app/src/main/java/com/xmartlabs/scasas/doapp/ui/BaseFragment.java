@@ -12,9 +12,11 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.hannesdorfmann.fragmentargs.FragmentArgs;
 import com.hannesdorfmann.fragmentargs.annotation.FragmentWithArgs;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.trello.rxlifecycle.components.support.RxFragment;
 import com.xmartlabs.scasas.doapp.DoAppApplication;
 import com.xmartlabs.scasas.doapp.R;
@@ -46,7 +48,6 @@ public abstract class BaseFragment extends RxFragment {
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(getLayoutResId(), container, false);
     unbinder = ButterKnife.bind(this, view);
-
     return view;
   }
 
@@ -111,6 +112,14 @@ public abstract class BaseFragment extends RxFragment {
   protected void showSnackbarMessage(@StringRes int stringId) {
     if (getView() != null) {
       Snackbar.make(getView(), stringId, Snackbar.LENGTH_SHORT).show();
+    }
+  }
+
+  public void hideKeyboard() {
+    InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+    View currentFocus = getActivity().getCurrentFocus();
+    if (currentFocus != null) {
+      inputMethodManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
     }
   }
 }
