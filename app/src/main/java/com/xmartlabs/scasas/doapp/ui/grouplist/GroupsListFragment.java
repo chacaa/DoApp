@@ -60,11 +60,6 @@ public class GroupsListFragment extends BaseFragment {
   @Arg(bundler = ParcelerArgsBundler.class)
   User user;
 
-  @Inject
-  GroupController groupController;
-  @Inject
-  TaskController taskController;
-
   @BindView(R.id.auto_items)
   TextView autoItemsView;
   @BindView(R.id.bills_items)
@@ -95,6 +90,11 @@ public class GroupsListFragment extends BaseFragment {
   TextView workItemsView;
   @BindView(R.id.year)
   TextView yearTextView;
+
+  @Inject
+  GroupController groupController;
+  @Inject
+  TaskController taskController;
 
   private LocalDate date;
   private List<Group> groups = new ArrayList<>();
